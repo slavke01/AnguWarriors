@@ -1,0 +1,53 @@
+<h1>Napravi incident molim te</h1>
+
+<p>Incident ID:</p>
+<input (input)="onChangeIncId($event.target.value)" type="text">
+
+<p>Type:</p>
+<select (change) = "onChangeType($event.target.value)" > <option [selected]="type" *ngFor="let opcija of niz">{{opcija}}</option> </select>
+
+<p>Confirmed:</p>
+<label class="radio">
+    
+    <input (change)= "onChangeConfTrue()" name="rb1" type="radio" />
+    Yes
+    <input (change)= "onChangeConfFalse()" name="rb1" type="radio" />
+    No
+    
+</label>
+
+<p>Status:</p>
+<input (input)="onChangeStatus($event.target.value)" type="text">
+
+<p>Description:</p>
+<input (input)="onChangeDesc($event.target.value)" type="text">
+
+<p>ETA:</p>
+<input (input)="onChangeEta($event.target.value)" type="date">
+
+
+<p>ATA:</p>
+<input (input)="onChangeAta($event.target.value)" type="date">
+
+<p>Affected customers:</p>
+<input (input)="onChangeAffectedCustomers($event.target.value)" type="text">
+
+<p>Outage time:</p>
+<input (input)="onChangeOutageTime($event.target.value)" type="date">
+
+<p>ETR:</p>
+<input (input)="onChangeEtr($event.target.value)" type="date">
+
+<p>Calls:</p>
+<input (input)="onChangeCalls($event.target.value)" type="text">
+
+<p>Voltage [kV]:</p>
+<input (input)="onChangeVoltage($event.target.value)" type="text">
+
+<p>Scheduled time:</p>
+<input (input)="onChangeScheduledTime($event.target.value)" type="date">
+
+<div>
+    <br/>
+    <button (click) ="gotovoFja()" style="background-color: lightsalmon;">Done</button>
+</div>

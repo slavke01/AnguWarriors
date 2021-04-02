@@ -1,0 +1,14 @@
+<h1>Log In:</h1>
+<p>Username:</p>
+<input (input)="onChangeUsername($event.target.value)" type="text">
+<p>Password:</p>
+<input  (input)="onChangePassword($event.target.value)" type="password">
+<div>
+    <button (click)="metodaNova()" style="background-color: lightgreen;">Done</button>
+</div>
+
+<div>
+    <h1>Do not have an account???</h1>
+    <button>Register!</button>
+</div>
+

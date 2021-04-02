@@ -1,0 +1,27 @@
+<h1>Registruj se molim te</h1>
+
+<p>First name:</p>
+<input (input)="onChangeFirstName($event.target.value)" type="text">
+
+<p>Last name:</p>
+<input (input)="onChangeLastName($event.target.value)" type="text">
+
+<p>Date of birth:</p>
+<input (input)="onChangeDateOfBirth($event.target.value)" type="text">
+
+<p>Address:</p>
+<input (input)="onChangeAddress($event.target.value)" type="text">
+
+<p>Email address:</p>
+<input (input)="onChangeEmailAddress($event.target.value)" type="text">
+
+<p>Username:</p>
+<input (input)="onChangeUsername($event.target.value)" type="text">
+
+<p>Password:</p>
+<input (input)="onChangePassword($event.target.value)" type="password">
+
+<div>
+    <br/>
+    <button (click)="metodaAjmo()" style="background-color:lightblue;" >Done</button>
+</div>
