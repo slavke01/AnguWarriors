@@ -1,0 +1,28 @@
+.left{
+
+    position: absolute;
+}
+
+.mid{
+    position: absolute;
+    left: 250px;    
+
+}
+
+.right{
+    left: 500px;
+    position: absolute;
+}
+.btn{
+
+position:absolute;
+top :400px;
+left :300px;
+}
+
+.confi{
+position: absolute;
+top:76px;
+left :69px;
+
+}

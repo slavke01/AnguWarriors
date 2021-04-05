@@ -1,11 +1,21 @@
 <h1>Napravi incident molim te</h1>
 
+<table>
+    <tr>
+        <th>
+            <div class="left">
+
 <p>Incident ID:</p>
 <input (input)="onChangeIncId($event.target.value)" type="text">
+<table>
+    <tr>
 
+        <th>
 <p>Type:</p>
 <select (change) = "onChangeType($event.target.value)" > <option [selected]="type" *ngFor="let opcija of niz">{{opcija}}</option> </select>
-
+</th>
+<th>
+<div class="confi">
 <p>Confirmed:</p>
 <label class="radio">
     
@@ -15,13 +25,20 @@
     No
     
 </label>
+</div>
+</th>
 
+</tr>
+</table>
 <p>Status:</p>
 <input (input)="onChangeStatus($event.target.value)" type="text">
 
 <p>Description:</p>
 <input (input)="onChangeDesc($event.target.value)" type="text">
-
+</div>
+</th>
+<th>
+    <div class="mid">
 <p>ETA:</p>
 <input (input)="onChangeEta($event.target.value)" type="date">
 
@@ -34,7 +51,10 @@
 
 <p>Outage time:</p>
 <input (input)="onChangeOutageTime($event.target.value)" type="date">
-
+    </div>
+</th>
+<th>
+    <div class="right">
 <p>ETR:</p>
 <input (input)="onChangeEtr($event.target.value)" type="date">
 
@@ -46,8 +66,11 @@
 
 <p>Scheduled time:</p>
 <input (input)="onChangeScheduledTime($event.target.value)" type="date">
-
-<div>
+</div>
+</th>
+</tr>
+</table>
+<div class="btn">
     <br/>
     <button (click) ="gotovoFja()" style="background-color: lightsalmon;">Done</button>
 </div>
