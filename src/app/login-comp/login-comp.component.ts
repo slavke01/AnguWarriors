@@ -9,7 +9,7 @@ export class LoginCompComponent implements OnInit {
 
   username=null;
   password=null;
-
+  federer="assets/federer.jpg";
   constructor() { }
 
   ngOnInit(): void {
