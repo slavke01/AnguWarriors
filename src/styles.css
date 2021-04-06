@@ -1,37 +1,41 @@
 /* You can add global styles to this file, and also import other style files 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 */
-.login{
+.login {
+  position: absolute;
+  left: 30px;
+  top: 60px;
+  right: 60px;
+  margin-top: 28px;
+  margin-left: 550px;
+  width: 270px;
+  height: 300px;
 
-    position: absolute;
-    left: 30px;
-    top: 60px;
-    right: 60px;
-    margin-top:28px;
-margin-left: 550px;
-    width: 270px;
-    height: 300px;
-    
-    border: 2px lightgray;
-    border-style: solid;
-    background: skyblue;
+  border: 2px lightgray;
+  border-style: solid;
+  background: skyblue;
 }
-.fed{
-    position: absolute;
-    margin-left: 15px;
-    margin-top: 75px;
-    width: 500px;
-    height: 500px;
+.fed {
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 75px;
+  width: 500px;
+  height: 500px;
 }
-.reg-but{
+.reg-but {
+  position: absolute;
+  width: 400px;
+  height: 125px;
+  border: 3px red;
+  border-style: solid;
+  background: lightgray;
+  margin-top: 445px;
+  margin-left: 570px;
+}
 
-    width: 400px;
-    height: 125px;
-    border: 3px red;
-    border-style: solid;
-    position: absolute;
-    background: lightgray;
-    top: 455px;
-    right: 570px;
-
+.sidebar{
+    height: fit-content;
+    width: 30px;
+    background-color: lightgray;
+    margin-left: 5px;
 }

@@ -1,0 +1,19 @@
+.sidebar{
+    height: fit-content;
+    width: 40px;
+    background-color: lightblue;
+    border: lightgrey;
+    border-style: solid;
+    margin-left: 2px;
+    margin-top:60px;
+}
+
+.akoBasMora{
+    margin-left: 5px;
+    
+}
+
+.slicica-sidebar{
+    width: 30px;
+    height:  30px;
+}

@@ -10,12 +10,16 @@ export class LoginCompComponent implements OnInit {
   username=null;
   password=null;
   federer="assets/federer.jpg";
+  show=true;
   constructor() { }
 
   ngOnInit(): void {
-
+    this.show=true;
 
   }
+
+  
+
 
   metodaNova(){
     console.log(this.username);

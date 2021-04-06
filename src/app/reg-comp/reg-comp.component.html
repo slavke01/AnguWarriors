@@ -1,37 +1,66 @@
 <h1>Registruj se molim te</h1>
 <table>
-    <tr>
-        <th>
-<div class="reg-left">
-<p class="Name">First name:</p>
-<input class="Input" (input)="onChangeFirstName($event.target.value)" type="text">
+  <tr>
+    <th>
+      <div class="reg-left">
+        <p class="Name">First name:</p>
+        <input
+          class="Input"
+          (input)="onChangeFirstName($event.target.value)"
+          type="text"
+        />
 
-<p class="Name">Last name:</p>
-<input class="Input" (input)="onChangeLastName($event.target.value)" type="text">
+        <p class="Name">Last name:</p>
+        <input
+          class="Input"
+          (input)="onChangeLastName($event.target.value)"
+          type="text"
+        />
 
-<p class="Name">Date of birth:</p>
-<input class="Input" (input)="onChangeDateOfBirth($event.target.value)" type="text">
-</div>
-</th>
-<th>
-<div class="reg-right">
-<p class="Name">Address:</p>
-<input class="Input" (input)="onChangeAddress($event.target.value)" type="text">
+        <p class="Name">Date of birth:</p>
+        <input
+          class="Input"
+          (input)="onChangeDateOfBirth($event.target.value)"
+          type="text"
+        />
+      </div>
+    </th>
+    <th>
+      <div class="reg-right">
+        <p class="Name">Address:</p>
+        <input
+          class="Input"
+          (input)="onChangeAddress($event.target.value)"
+          type="text"
+        />
 
-<p class="Name">Email address:</p>
-<input class="Input" (input)="onChangeEmailAddress($event.target.value)" type="text">
+        <p class="Name">Email address:</p>
+        <input
+          class="Input"
+          (input)="onChangeEmailAddress($event.target.value)"
+          type="text"
+        />
 
-<p class="Name">Username:</p>
-<input class="Input" (input)="onChangeUsername($event.target.value)" type="text">
+        <p class="Name">Username:</p>
+        <input
+          class="Input"
+          (input)="onChangeUsername($event.target.value)"
+          type="text"
+        />
 
-<p class ="Name">Password:</p>
-<input class="Input" (input)="onChangePassword($event.target.value)" type="password">
-</div>
-</th>
-
-</tr>
+        <p class="Name">Password:</p>
+        <input
+          class="Input"
+          (input)="onChangePassword($event.target.value)"
+          type="password"
+        />
+      </div>
+    </th>
+  </tr>
 </table>
 <div class="btn">
-    <br/>
-    <button (click)="metodaAjmo()" style="background-color:lightblue;" >Done</button>
+  <br />
+  <button (click)="metodaAjmo()" style="background-color: lightblue">
+    Done
+  </button>
 </div>
