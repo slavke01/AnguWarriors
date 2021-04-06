@@ -7,6 +7,7 @@ import { LoginCompComponent } from './login-comp/login-comp.component';
 import { RegCompComponent } from './reg-comp/reg-comp.component';
 import { IncidentNewComponent } from './incident-new/incident-new.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { SideBarComponent } from './side-bar/side-bar.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path:'',
-        component:SideBarComponent
+        component:LoginCompComponent
       },
       {
       path:'register',

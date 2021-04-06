@@ -1,66 +1,172 @@
-<h1>Registruj se molim te</h1>
+<h3>Registruj se molim te</h3>
 <table>
-  <tr>
-    <th>
-      <div class="reg-left">
-        <p class="Name">First name:</p>
-        <input
-          class="Input"
-          (input)="onChangeFirstName($event.target.value)"
-          type="text"
-        />
 
-        <p class="Name">Last name:</p>
-        <input
-          class="Input"
-          (input)="onChangeLastName($event.target.value)"
-          type="text"
-        />
-
-        <p class="Name">Date of birth:</p>
-        <input
-          class="Input"
-          (input)="onChangeDateOfBirth($event.target.value)"
-          type="text"
-        />
+  
+    
+      <div class="levi">
+        <div >
+        
+          <label for="firstName">First name:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeFirstName($event.target.value)"
+            type="text"
+            name="firstName"
+            ngModel
+            #firstName="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="firstName.touched && !firstName.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+        <div >
+          
+          <label for="lastName">Last name:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeLastName($event.target.value)"
+            type="text"
+            name="lastName"
+            ngModel
+            #lastName="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="lastName.touched && !lastName.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+        <div >
+          
+          <label for="username">Username:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeUsername($event.target.value)"
+            type="text"
+            name="username"
+            ngModel
+            #username="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="username.touched && !username.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+        <div>
+          
+          <label for="password">Password: &nbsp;</label>
+        
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangePassword($event.target.value)"
+            type="text"
+            name="password"
+            ngModel
+            #password="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="password.touched && !password.valid">
+            Ne sme biti prazno!
+          </div> 
+      
+        </div> 
+    
       </div>
-    </th>
-    <th>
-      <div class="reg-right">
-        <p class="Name">Address:</p>
-        <input
-          class="Input"
-          (input)="onChangeAddress($event.target.value)"
-          type="text"
-        />
+    
 
-        <p class="Name">Email address:</p>
-        <input
-          class="Input"
-          (input)="onChangeEmailAddress($event.target.value)"
-          type="text"
-        />
+    
+      <div class="desni">
 
-        <p class="Name">Username:</p>
-        <input
-          class="Input"
-          (input)="onChangeUsername($event.target.value)"
-          type="text"
-        />
-
-        <p class="Name">Password:</p>
-        <input
-          class="Input"
-          (input)="onChangePassword($event.target.value)"
-          type="password"
-        />
+        <div >
+        
+          <label for="email">Email address:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeEmailAddress($event.target.value)"
+            type="text"
+            name="email"
+            ngModel
+            #email="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="email.touched && !email.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+        <div >
+          
+          <label for="birthday">Date of Birth:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeDateOfBirth($event.target.value)"
+            type="text"
+            name="birthday"
+            ngModel
+            #birthday="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="birthday.touched && !birthday.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+        <div >
+          
+          <label for="address">Address:</label>
+          <input
+            
+            required
+            class="input-textbox-left"
+            (input)="onChangeAddress($event.target.value)"
+            type="text"
+            name="address"
+            ngModel
+            #address="ngModel"
+            
+          />
+          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="address.touched && !address.valid">
+            Ne sme biti prazno!
+          </div> 
+        </div> 
+      
+    
       </div>
-    </th>
-  </tr>
+    
+
+  
+
+
+  
+
 </table>
-<div class="btn">
-  <br />
-  <button (click)="metodaAjmo()" style="background-color: lightblue">
-    Done
-  </button>
-</div>
+<form>
+  <br/>
+  <br/>
+
+
+
+  <div class="btn">
+    <br />
+    <button (click)="metodaAjmo()" style="background-color: lightblue">
+      Done
+    </button>
+  </div>
+
+</form>
+

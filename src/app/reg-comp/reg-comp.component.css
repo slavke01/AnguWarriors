@@ -8,7 +8,20 @@ top: 83px;
 .btn{
 
 position: absolute;
-top: 375px;
-left: 150px;
+margin-top: 20px;
+margin-left: 150px;
 
+}
+
+.input-textbox-left{
+    margin-left: 40px;
+
+}
+
+.levi{
+    margin-left: 10px;
+}
+
+.desni{
+    margin-left: 10px;
 }
