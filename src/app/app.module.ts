@@ -8,6 +8,7 @@ import { RegCompComponent } from './reg-comp/reg-comp.component';
 import { IncidentNewComponent } from './incident-new/incident-new.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardCompComponent } from './dashboard-comp/dashboard-comp.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     LoginCompComponent,
     RegCompComponent,
     IncidentNewComponent,
-    SideBarComponent
+    SideBarComponent,
+    DashboardCompComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forRoot([
       {
         path:'',
-        component:LoginCompComponent
+        component:DashboardCompComponent
       },
       {
       path:'register',
