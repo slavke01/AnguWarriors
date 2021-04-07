@@ -1,36 +1,8 @@
   
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-.login {
-  position: absolute;
-  left: 30px;
-  top: 60px;
-  right: 60px;
-  margin-top: 28px;
-  margin-left: 550px;
-  width: 270px;
-  height: 300px;
 
-  border: 2px lightgray;
-  border-style: solid;
+body{
+
   background: skyblue;
 }
-.fed {
-  position: absolute;
-  margin-left: 15px;
-  margin-top: 75px;
-  width: 500px;
-  height: 500px;
-}
-.reg-but {
-  position: absolute;
-  width: 400px;
-  height: 125px;
-  border: 3px red;
-  border-style: solid;
-  background: lightgray;
-  margin-top: 445px;
-  margin-left: 570px;
-}
-
-

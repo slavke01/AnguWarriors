@@ -1,4 +1,5 @@
-<h3>Registruj se molim te</h3>
+<div class="reg-comp">
+<h3 style="font-size: 60px;" >Registruj se molim te</h3>
 <table>
 
   
@@ -8,7 +9,7 @@
         
           <label for="firstName">First name:</label>
           <input
-            
+            style="margin-left: 62px;"
             required
             class="input-textbox-left"
             (input)="onChangeFirstName($event.target.value)"
@@ -27,7 +28,7 @@
           
           <label for="lastName">Last name:</label>
           <input
-            
+          style="margin-left: 62px;"
             required
             class="input-textbox-left"
             (input)="onChangeLastName($event.target.value)"
@@ -46,7 +47,7 @@
           
           <label for="username">Username:</label>
           <input
-            
+          style="margin-left: 64px;"
             required
             class="input-textbox-left"
             (input)="onChangeUsername($event.target.value)"
@@ -66,7 +67,7 @@
           <label for="password">Password: &nbsp;</label>
         
           <input
-            
+          style="margin-left: 62px;"
             required
             class="input-textbox-left"
             (input)="onChangePassword($event.target.value)"
@@ -111,7 +112,7 @@
           
           <label for="birthday">Date of Birth:</label>
           <input
-            
+          style="margin-left: 47px;"
             required
             class="input-textbox-left"
             (input)="onChangeDateOfBirth($event.target.value)"
@@ -130,7 +131,7 @@
           
           <label for="address">Address:</label>
           <input
-            
+          style="margin-left: 79px;"
             required
             class="input-textbox-left"
             (input)="onChangeAddress($event.target.value)"
@@ -170,3 +171,4 @@
 
 </form>
 
+</div>

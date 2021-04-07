@@ -1,36 +1,43 @@
+<div class="login-comp">
+  <h1 style="position: absolute;top: 40px; left: 600px;">Federer Distribution</h1>
 <table>
   <tr>
       
     <th>
+      <div>
       <img class="fed" src="{{ federer }}" />
+      <label style="font-style: oblique; font-size: 30px; position: absolute; left: 120px; top: 700px;"> Learn to be patient</label>
+      </div>
     </th>
 
     <th>
       <div class="login">
         <h1>Log In:</h1>
         <p>Username:</p>
-        <input (input)="onChangeUsername($event.target.value)" type="text" />
+        <input class="form-control"(input)="onChangeUsername($event.target.value)" type="text" />
         <p>Password:</p>
-        <input
+        <input class="form-control"
           (input)="onChangePassword($event.target.value)"
           type="password"
         />
         <div>
-          <button (click)="metodaNova()" style="background-color: lightgreen">
-            Done
+          <br/>
+          <button (click)="metodaNova()" class="btn btn-dark">
+            Log In
           </button>
+
+          
         </div>
+        <label>Dont have an account?</label>
+        <a routerLink="/register"> Register! </a>
+        
       </div>
+    
+      
     </th>
 
-    <th>
-      <div class="reg-but">
-            <h1>Do not have an account???</h1>
-          <div>
-            <button><a routerLink="/register"> Register! </a></button>
-          </div>
-      </div>
-    </th>
+    
 
   </tr>
 </table>
+</div>

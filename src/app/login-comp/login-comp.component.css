@@ -1,0 +1,24 @@
+.login {
+    position: absolute;
+    top: 180px;
+    left: 950px;
+   
+    width: 350px;
+    height: 400px;
+  
+    border: 4px lightgray;
+    border-style: outset;
+    background: skyblue;
+  }
+  .fed {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 75px;
+    width: 500px;
+    height: 500px;
+  }
+ .login-comp{
+    margin-left: 100px;
+    margin-top: 100px;
+
+ }
