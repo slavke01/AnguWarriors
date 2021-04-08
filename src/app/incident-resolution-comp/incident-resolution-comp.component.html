@@ -1,0 +1,92 @@
+<div>
+  <table>
+    <tr style="margin-top: 60px; margin-left: 40px; position: absolute">
+      <table>
+        <tr>
+          <th>
+            <label style="margin-right: 50px" class="res-text">Cause:</label>
+          </th>
+          <th>
+            <select
+              class="form-control"
+              (change)="onChangeCause($event.target.value)"
+            >
+              <option [selected]="type" *ngFor="let opcija of cause">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+        </tr>
+      </table>
+    </tr>
+    <tr style="margin-top: 160px; margin-left: 40px; position: absolute">
+      <table>
+        <tr>
+          <th>
+            <label style="margin-right: 50px" class="res-text">Subcause:</label>
+          </th>
+          <th>
+            <select
+              class="form-control"
+              (change)="onChangeSubcause($event.target.value)"
+            >
+              <option [selected]="type" *ngFor="let opcija of subcause">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+        </tr>
+      </table>
+    </tr>
+    <tr style="margin-top: 260px; margin-left: 40px; position: absolute">
+      <table>
+        <tr>
+          <th>
+            <label style="margin-right: 50px" class="res-text"
+              >Construction type:</label
+            >
+          </th>
+        
+          <th>
+            <select
+              class="form-control"
+              (change)="onChangeConstruction($event.target.value)"
+            >
+              <option [selected]="type" *ngFor="let opcija of construction">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+        </tr>
+      </table>
+    </tr>
+    <tr style="margin-top: 360px; margin-left: 40px; position: absolute">
+
+
+
+      <table>
+        <tr>
+          <th>
+            <label style="margin-right: 50px" class="res-text"
+              >Material:</label
+            >
+          </th>
+        
+          <th>
+            <select
+              class="form-control"
+              (change)="onChangeConstruction($event.target.value)"
+            >
+              <option [selected]="type" *ngFor="let opcija of materijal">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+        </tr>
+      </table>
+
+
+
+    </tr>
+  </table>
+</div>

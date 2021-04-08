@@ -4,26 +4,26 @@
     <table class="table table-borderless">
       
           <tr>
-            <th scope="col"><a href="/register">Basic Information</a></th>
+            <th scope="col"><button (click)="on_click_basic()" type="button" class="btn btn-link">Basic Information</button></th>
           </tr>
           <tr>
-            <th scope="col"><a href="">Devices</a></th>
+            <th scope="col"><button (click)="on_click_devices()" type="button" class="btn btn-link">Devices</button></th>
           </tr>
           <tr>
-            <th scope="col"><a href="">Resolution</a></th>
+            <th scope="col"><button (click)="on_click_resolution()" type="button" class="btn btn-link">Resolution</button></th>
           </tr>
 
             <tr>
-            <th scope="col"><a href="">Calls</a></th>
+            <th scope="col"><button (click)="on_click_calls()" type="button" class="btn btn-link">Calls</button></th>
           </tr>
             <tr>
-            <th scope="col"><a href="">Crew</a></th>
+            <th scope="col"><button (click)="on_click_crew()" type="button" class="btn btn-link">Crew</button></th>
           </tr>
           <tr>
-            <th scope="col"><a href="">Multimedia Attachments</a></th>
+            <th scope="col"><button (click)="on_click_multimedia()" type="button" class="btn btn-link">Multimedia Attachments</button></th>
           </tr>
           <tr>
-            <th scope="col"><a href="">Equipment</a></th>
+            <th scope="col"><button (click)="on_click_equipment()" type="button" class="btn btn-link">Equipment</button></th>
           </tr>
 
       </table>
@@ -34,7 +34,14 @@
 </div>
 
 <div class="content">
-<app-incident-new style="margin-top: 20px ; margin-right: 20px;"></app-incident-new>
+
+<app-incident-new *ngIf="show_basic==true" style="margin-top: 20px ; margin-right: 20px;" ></app-incident-new>
+<app-new-devices-comp *ngIf="show_devices==true"></app-new-devices-comp>
+<app-incident-resolution-comp *ngIf="show_resolution==true"></app-incident-resolution-comp>
+<app-incident-calls-comp *ngIf="show_calls==true" ></app-incident-calls-comp>
+<app-incident-crew-comp *ngIf="show_crew==true"></app-incident-crew-comp>
+<app-incident-multimedia-comp *ngIf="show_multimedia==true"></app-incident-multimedia-comp>
+<app-incident-equipment-comp *ngIf="show_equipment==true"></app-incident-equipment-comp>
 </div>
 
 <app-side-bar ></app-side-bar>

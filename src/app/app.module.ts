@@ -11,6 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { DashboardCompComponent } from './dashboard-comp/dashboard-comp.component';
 import { IncidentsCompComponent } from './incidents-comp/incidents-comp.component';
 import { NewIncidentCompComponent } from './new-incident-comp/new-incident-comp.component';
+import { NewDevicesCompComponent } from './new-devices-comp/new-devices-comp.component';
+import { IncidentResolutionCompComponent } from './incident-resolution-comp/incident-resolution-comp.component';
+import { IncidentCallsCompComponent } from './incident-calls-comp/incident-calls-comp.component';
+import { IncidentCrewCompComponent } from './incident-crew-comp/incident-crew-comp.component';
+import { IncidentMultimediaCompComponent } from './incident-multimedia-comp/incident-multimedia-comp.component';
+import { IncidentEquipmentCompComponent } from './incident-equipment-comp/incident-equipment-comp.component';
+import { NewCallCompComponent } from './new-call-comp/new-call-comp.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +29,13 @@ import { NewIncidentCompComponent } from './new-incident-comp/new-incident-comp.
     DashboardCompComponent,
     IncidentsCompComponent,
     NewIncidentCompComponent,
+    NewDevicesCompComponent,
+    IncidentResolutionCompComponent,
+    IncidentCallsCompComponent,
+    IncidentCrewCompComponent,
+    IncidentMultimediaCompComponent,
+    IncidentEquipmentCompComponent,
+    NewCallCompComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +43,7 @@ import { NewIncidentCompComponent } from './new-incident-comp/new-incident-comp.
     RouterModule.forRoot([
       {
         path:'',
-        component:DashboardCompComponent
+        component:NewCallCompComponent
       },
       {
       path:'register',
