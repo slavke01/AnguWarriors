@@ -1,0 +1,25 @@
+.tabela-link{
+
+position: absolute;
+border: 1px black;
+border-style: solid;
+top: 100px;
+left: 100px;
+width: 250px;
+}
+
+.tabela-link table tr th:hover{
+
+background: gray;
+
+}
+.content{
+
+position: absolute;
+top: 100px;
+left: 400px;
+border: 1px black;
+border-style: solid;
+width: 60%;
+height: 500px;
+}

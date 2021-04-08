@@ -5,14 +5,14 @@
     <th>
       <div class="left">
         <p>Incident ID:</p>
-        <input (input)="onChangeIncId($event.target.value)" type="text" />
+        <input class="form-control" (input)="onChangeIncId($event.target.value)" type="text" />
         <table>
 
           <tr>
 
             <th>
               <p>Type:</p>
-              <select (change)="onChangeType($event.target.value)">
+              <select class="form-control" (change)="onChangeType($event.target.value)">
                 <option [selected]="type" *ngFor="let opcija of niz">
                   {{ opcija }}
                 </option>
@@ -23,7 +23,7 @@
               <div class="confi">
                 <p>Confirmed:</p>
                 <label class="radio">
-                  <input
+                  <input 
                     (change)="onChangeConfTrue()"
                     name="rb1"
                     type="radio"
@@ -42,55 +42,55 @@
           </tr>
         </table>
         <p>Status:</p>
-        <input (input)="onChangeStatus($event.target.value)" type="text" />
+        <input class="form-control" (input)="onChangeStatus($event.target.value)" type="text" />
 
         <p>Description:</p>
-        <input (input)="onChangeDesc($event.target.value)" type="text" />
+        <input (input)="onChangeDesc($event.target.value)" type="text"  class="form-control"/>
       </div>
     </th>
     
     <th>
       <div class="mid">
         <p>ETA:</p>
-        <input (input)="onChangeEta($event.target.value)" type="date" />
+        <input (input)="onChangeEta($event.target.value)" type="date" class="form-control" />
 
         <p>ATA:</p>
-        <input (input)="onChangeAta($event.target.value)" type="date" />
+        <input (input)="onChangeAta($event.target.value)" type="date" class="form-control"/>
 
         <p>Affected customers:</p>
         <input
           (input)="onChangeAffectedCustomers($event.target.value)"
-          type="text"
+          type="text" class="form-control"
         />
 
         <p>Outage time:</p>
-        <input (input)="onChangeOutageTime($event.target.value)" type="date" />
+        <input (input)="onChangeOutageTime($event.target.value)" type="date"  class="form-control"/>
       </div>
     </th>
 
     <th>
       <div class="right">
         <p>ETR:</p>
-        <input (input)="onChangeEtr($event.target.value)" type="date" />
+        <input (input)="onChangeEtr($event.target.value)" type="date" class="form-control" />
 
         <p>Calls:</p>
-        <input (input)="onChangeCalls($event.target.value)" type="text" />
+        <input (input)="onChangeCalls($event.target.value)" type="text"class="form-control" />
 
         <p>Voltage [kV]:</p>
-        <input (input)="onChangeVoltage($event.target.value)" type="text" />
+        <input (input)="onChangeVoltage($event.target.value)" type="text"class="form-control" />
 
         <p>Scheduled time:</p>
         <input
           (input)="onChangeScheduledTime($event.target.value)"
-          type="date"
+          type="date"class="form-control"
         />
       </div>
     </th>
   </tr>
 </table>
-<div class="btn">
+<div>
   <br />
-  <button (click)="gotovoFja()" style="background-color: lightsalmon">
+  <button class="btn btn-dark" (click)="gotovoFja()">
     Done
   </button>
 </div>

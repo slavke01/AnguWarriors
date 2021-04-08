@@ -9,6 +9,8 @@ import { IncidentNewComponent } from './incident-new/incident-new.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardCompComponent } from './dashboard-comp/dashboard-comp.component';
+import { IncidentsCompComponent } from './incidents-comp/incidents-comp.component';
+import { NewIncidentCompComponent } from './new-incident-comp/new-incident-comp.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { DashboardCompComponent } from './dashboard-comp/dashboard-comp.componen
     RegCompComponent,
     IncidentNewComponent,
     SideBarComponent,
-    DashboardCompComponent
+    DashboardCompComponent,
+    IncidentsCompComponent,
+    NewIncidentCompComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,19 @@ import { DashboardCompComponent } from './dashboard-comp/dashboard-comp.componen
       {
       path:'register',
       component: RegCompComponent
+      },
+      {
+        path:'incidents',
+        component: IncidentsCompComponent
+
+      },
+      {
+        path:'home',
+        component:DashboardCompComponent
+      },
+      {
+        path:'new',
+        component:NewIncidentCompComponent
       }
     ])
 

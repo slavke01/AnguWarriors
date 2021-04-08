@@ -1,0 +1,22 @@
+.tabela-div{
+
+
+position: absolute;
+border: 3px gray;
+border-style: solid;
+top: 100px;
+left: 200px;
+width: 80%;
+height: 500px;
+margin-top: 20px;
+}
+
+.buttons-div{
+
+position: absolute;
+
+left: 200px;
+top:50px;
+
+
+}
