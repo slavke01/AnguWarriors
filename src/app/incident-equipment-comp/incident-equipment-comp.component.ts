@@ -9,6 +9,21 @@ export class IncidentEquipmentCompComponent implements OnInit {
 
   constructor() { }
 
+
+  id="";
+  tip="";
+  naziv="";
+  adresa="";
+  koordinate="";
+
+
+  onButtonClick(){
+    this.id="1";
+    this.tip="Pokvarilo se";
+    this.naziv="glupko";
+    this.adresa="Daleko";
+    this.koordinate="postoje";
+  }
   ngOnInit(): void {
   }
 

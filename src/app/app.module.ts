@@ -18,6 +18,7 @@ import { IncidentCrewCompComponent } from './incident-crew-comp/incident-crew-co
 import { IncidentMultimediaCompComponent } from './incident-multimedia-comp/incident-multimedia-comp.component';
 import { IncidentEquipmentCompComponent } from './incident-equipment-comp/incident-equipment-comp.component';
 import { NewCallCompComponent } from './new-call-comp/new-call-comp.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { NewCallCompComponent } from './new-call-comp/new-call-comp.component';
     RouterModule.forRoot([
       {
         path:'',
-        component:NewCallCompComponent
+        component:DashboardCompComponent
       },
       {
       path:'register',
@@ -62,7 +63,8 @@ import { NewCallCompComponent } from './new-call-comp/new-call-comp.component';
         path:'new',
         component:NewIncidentCompComponent
       }
-    ])
+    ]),
+    BrowserAnimationsModule
 
   ],
   providers: [],
