@@ -24,6 +24,12 @@ import { NewCallDialogTableComponent } from './new-call-dialog-table/new-call-di
 import { NotificationsMenuCompComponent } from './notifications-menu-comp/notifications-menu-comp.component';
 import { Notifications3CompComponent } from './notifications3-comp/notifications3-comp.component';
 import { SettingsCompComponent } from './settings-comp/settings-comp.component';
+import { WorkRequestCompComponent } from './work-request-comp/work-request-comp.component';
+import { NewWorkRequestComponent } from './new-work-request/new-work-request.component';
+import { BasicInformationWorkRequestComponent } from './basic-information-work-request/basic-information-work-request.component';
+import { StateChangesHistoryRequestComponent } from './state-changes-history-request/state-changes-history-request.component';
+import { MultimediaAttachmentsNewRequestComponent } from './multimedia-attachments-new-request/multimedia-attachments-new-request.component';
+import { EquipmentNewRequestComponent } from './equipment-new-request/equipment-new-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +49,13 @@ import { SettingsCompComponent } from './settings-comp/settings-comp.component';
     NewCallCompComponent,
     NotificationsMenuCompComponent,
     Notifications3CompComponent,
-    SettingsCompComponent
+    SettingsCompComponent,
+    WorkRequestCompComponent,
+    NewWorkRequestComponent,
+    BasicInformationWorkRequestComponent,
+    StateChangesHistoryRequestComponent,
+    MultimediaAttachmentsNewRequestComponent,
+    EquipmentNewRequestComponent
   ],
   entryComponents:[NewCallDialogTableComponent],
   imports: [
@@ -53,7 +65,7 @@ import { SettingsCompComponent } from './settings-comp/settings-comp.component';
     RouterModule.forRoot([
       {
         path:'',
-        component:SettingsCompComponent
+        component:NewWorkRequestComponent
       },
       {
       path:'register',

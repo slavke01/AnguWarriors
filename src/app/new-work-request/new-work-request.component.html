@@ -1,0 +1,40 @@
+
+
+<div class="tabela-link">
+
+    <table class="table table-borderless">
+      
+          <tr>
+            <th scope="col"><button (click)="basicClicked()" type="button" class="btn btn-link">Basic Information</button></th>
+          </tr>
+          <tr>
+            <th scope="col"><button (click)="historyChangesClicked()" type="button" class="btn btn-link">History of state changes</button></th>
+          </tr>
+          <tr>
+            <th scope="col"><button (click)="multimediaClicked()" type="button" class="btn btn-link">Multimedia attachments </button></th>
+          </tr>
+
+            <tr>
+            <th scope="col"><button (click)="equipmentClicked()" type="button" class="btn btn-link">Equipment </button></th>
+          </tr>
+        
+      </table>
+
+</div>
+
+
+<div style="position: absolute; margin-top: 100px; margin-left: 400px;">
+    
+    <app-basic-information-work-request *ngIf="basic==true" style="margin-top: 20px ; margin-right: 20px;" ></app-basic-information-work-request>
+    <app-state-changes-history-request *ngIf="historyChanges==true"></app-state-changes-history-request>
+    <app-multimedia-attachments-new-request *ngIf="multimedia==true"></app-multimedia-attachments-new-request>
+    <app-equipment-new-request *ngIf="equipment==true"></app-equipment-new-request>
+
+</div>
+
+
+
+<app-side-bar></app-side-bar>
+
+
+

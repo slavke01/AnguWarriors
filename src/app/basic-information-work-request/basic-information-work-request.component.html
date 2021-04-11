@@ -1,0 +1,138 @@
+<table>
+    <tr>
+        <th>
+            <label for="">Type:</label>
+            <select class="form-control" (change)="onChangeType($event.target.value)">
+              <option [selected]="type" *ngFor="let opcija of tipovi">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Status: &nbsp;</label>
+            <label for="">Draft</label>
+        </th>
+    </tr>
+
+
+    <tr>
+        <th>
+            <label for="">Incident: &nbsp;</label>
+            <button>...</button>
+        </th>
+        <th>
+            
+                <div>
+                  <label for="">&nbsp;Emergency:</label>
+                  <label class="radio">
+                    <input 
+                      (change)="onChangeEmTrue()"
+                      name="rb1"
+                      type="radio"
+                    />
+                    Yes
+                    <input
+                      (change)="onChangeEmFalse()"
+                      name="rb1"
+                      type="radio"
+                    />
+                    No
+                  </label>
+                </div>
+              
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Type of work:</label>
+            <select  (change)="onChangeType($event.target.value)">
+              <option [selected]="type" *ngFor="let opcija of tipoviWork">
+                {{ opcija }}
+              </option>
+            </select>
+          </th>
+
+          <th>
+              <label for="">Company:</label>
+              <input (input)="onChangeCompany($event.target.value)" type="text">
+          </th>
+
+          
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Start date/time:</label>
+            <input (input)="onChangeStartTime($event.target.value)" type="date"  />
+
+        </th>
+        
+        <th>
+        
+                <label for="">Incident: &nbsp;</label>
+                <label for="">INC1</label>
+            
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">End date/time</label>
+            <input (input)="onChangeEndTime($event.target.value)" type="date" />
+        </th>
+
+        <th>
+            <label for="">Phone No:</label>
+            <input (input)="onChangePhoneNo($event.target.value)" type="text">
+        </th>
+        
+    </tr>
+    <tr>
+        <th>
+            <label for="">Created by: &nbsp;</label>
+                <label for="">Novak Djokovic</label>
+        </th>
+        <th>
+            <label for="">Date/time created:</label>
+            <input (input)="onChangeCreatedTime($event.target.value)" type="date" />
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Puropose:</label>
+        </th>
+        <th>
+            <input (input)="onChangePurpose($event.target.value)" type="text">
+        </th>
+        
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Details:</label>
+        </th>
+        <th>
+            <input (input)="onChangeDetails($event.target.value)" type="text">
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <label for="">Notes:</label>
+        </th>
+        <th>
+            <input (input)="onChangeNotes($event.target.value)" type="text">
+        </th>
+    </tr>
+        
+
+        
+
+    
+
+</table>
