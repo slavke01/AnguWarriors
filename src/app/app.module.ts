@@ -23,6 +23,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { NewCallDialogTableComponent } from './new-call-dialog-table/new-call-dialog-table.component';
 import { NotificationsMenuCompComponent } from './notifications-menu-comp/notifications-menu-comp.component';
 import { Notifications3CompComponent } from './notifications3-comp/notifications3-comp.component';
+import { SettingsCompComponent } from './settings-comp/settings-comp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { Notifications3CompComponent } from './notifications3-comp/notifications
     IncidentEquipmentCompComponent,
     NewCallCompComponent,
     NotificationsMenuCompComponent,
-    Notifications3CompComponent
+    Notifications3CompComponent,
+    SettingsCompComponent
   ],
   entryComponents:[NewCallDialogTableComponent],
   imports: [
@@ -51,7 +53,7 @@ import { Notifications3CompComponent } from './notifications3-comp/notifications
     RouterModule.forRoot([
       {
         path:'',
-        component:Notifications3CompComponent
+        component:SettingsCompComponent
       },
       {
       path:'register',
@@ -73,6 +75,10 @@ import { Notifications3CompComponent } from './notifications3-comp/notifications
       {
         path:'notifications',
         component:Notifications3CompComponent
+      },
+      {
+        path:'settings',
+        component:SettingsCompComponent
       }
     ]),
     BrowserAnimationsModule
