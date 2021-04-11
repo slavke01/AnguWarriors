@@ -19,7 +19,8 @@ import { IncidentMultimediaCompComponent } from './incident-multimedia-comp/inci
 import { IncidentEquipmentCompComponent } from './incident-equipment-comp/incident-equipment-comp.component';
 import { NewCallCompComponent } from './new-call-comp/new-call-comp.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { NewCallDialogTableComponent } from './new-call-dialog-table/new-call-dialog-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +39,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IncidentEquipmentCompComponent,
     NewCallCompComponent,
   ],
+  entryComponents:[NewCallDialogTableComponent],
   imports: [
     BrowserModule,
     FormsModule,
+    AngularMaterialModule,
     RouterModule.forRoot([
       {
         path:'',

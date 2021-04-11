@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NewCallDialogTableComponent } from '../new-call-dialog-table/new-call-dialog-table.component';
 @Component({
   selector: 'app-new-call-comp',
   templateUrl: './new-call-comp.component.html',
   styleUrls: ['./new-call-comp.component.css'],
 })
 export class NewCallCompComponent implements OnInit {
-  constructor() {}
-
+  constructor(public dialog:MatDialog){}
   reason = '';
   comment = '';
   hazard = '';
+
+
+  openDialog(){
+
+    this.dialog.open(NewCallDialogTableComponent);
+
+  }
   onChangeReason(param: string) {
     this.reason = param;
   }
