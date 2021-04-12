@@ -4,45 +4,56 @@
     <button style="margin-left: 800px; margin-top: 10px; width: 100px; height: 50px; position: absolute;" type="button"class="btn btn-outline-dark" >Filter</button>
 </div>
 
-<div class="div-tabela">
+<div class="tabela-div">
+  
 
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Coordinates</th>
-            <th scope="col">Address</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Slavisa</td>
-            <td>Milakovic</td>
-            <td>Brcko</td>
-            <td>FTN</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Djurdja</td>
-            <td>Citakovic</td>
-            <td>Valjevo</td>
-            <td>FTN</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Aleksa</td>
-            <td>Sarsanski</td>
-            <td>Celarevo</td>
-            <td>FTN</td>
-          </tr>
-          
-        </tbody>
-      </table>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
 
+      <!-- Progress Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="coordinates">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Koordinate</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.coordinates }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="adress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Adress</th>
+        <td mat-cell *matCellDef="let row" >
+          {{ row.adress }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5 , 10]"></mat-paginator>
+  </div>
 </div>
 
 

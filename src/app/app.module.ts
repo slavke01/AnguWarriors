@@ -91,6 +91,12 @@ import { EquipmentNewRequestComponent } from './equipment-new-request/equipment-
       {
         path:'settings',
         component:SettingsCompComponent
+      },
+      {
+          path:'requests',
+          component:WorkRequestCompComponent
+
+
       }
     ]),
     BrowserAnimationsModule
