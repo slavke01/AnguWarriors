@@ -6,9 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipment-new-request.component.css']
 })
 export class EquipmentNewRequestComponent implements OnInit {
-
+  id="";
+  tip="";
+  naziv="";
+  adresa="";
+  koordinate="";
   constructor() { }
-
+  onButtonClick(){
+    this.id="1";
+    this.tip="Pokvarilo se";
+    this.naziv="glupko";
+    this.adresa="Daleko";
+    this.koordinate="postoje";
+  }
   ngOnInit(): void {
   }
 
