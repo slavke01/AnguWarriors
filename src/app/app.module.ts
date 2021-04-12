@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginCompComponent } from './login-comp/login-comp.component';
@@ -30,6 +30,9 @@ import { BasicInformationWorkRequestComponent } from './basic-information-work-r
 import { StateChangesHistoryRequestComponent } from './state-changes-history-request/state-changes-history-request.component';
 import { MultimediaAttachmentsNewRequestComponent } from './multimedia-attachments-new-request/multimedia-attachments-new-request.component';
 import { EquipmentNewRequestComponent } from './equipment-new-request/equipment-new-request.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,54 +58,56 @@ import { EquipmentNewRequestComponent } from './equipment-new-request/equipment-
     BasicInformationWorkRequestComponent,
     StateChangesHistoryRequestComponent,
     MultimediaAttachmentsNewRequestComponent,
-    EquipmentNewRequestComponent
+    EquipmentNewRequestComponent,
+    NewCallDialogTableComponent
   ],
-  entryComponents:[NewCallDialogTableComponent],
+  entryComponents: [NewCallDialogTableComponent],
+  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule],
+
   imports: [
     BrowserModule,
     FormsModule,
     AngularMaterialModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
     RouterModule.forRoot([
       {
-        path:'',
-        component:NewWorkRequestComponent
+        path: '',
+        component: NewCallCompComponent,
       },
       {
-      path:'register',
-      component: RegCompComponent
+        path: 'register',
+        component: RegCompComponent,
       },
       {
-        path:'incidents',
-        component: IncidentsCompComponent
-
+        path: 'incidents',
+        component: IncidentsCompComponent,
       },
       {
-        path:'home',
-        component:DashboardCompComponent
+        path: 'home',
+        component: DashboardCompComponent,
       },
       {
-        path:'new',
-        component:NewIncidentCompComponent
+        path: 'new',
+        component: NewIncidentCompComponent,
       },
       {
-        path:'notifications',
-        component:Notifications3CompComponent
+        path: 'notifications',
+        component: Notifications3CompComponent,
       },
       {
-        path:'settings',
-        component:SettingsCompComponent
+        path: 'settings',
+        component: SettingsCompComponent,
       },
       {
-          path:'requests',
-          component:WorkRequestCompComponent
-
-
-      }
+        path: 'requests',
+        component: WorkRequestCompComponent,
+      },
     ]),
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

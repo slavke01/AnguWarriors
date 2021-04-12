@@ -4,6 +4,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field"
 import{MatPaginatorModule}from "@angular/material/paginator"
+
 const MaterialComponents=[
     MatButtonModule,
     MatDialogModule,
@@ -14,10 +15,12 @@ const MaterialComponents=[
 
 @NgModule({
   imports: [
-   MaterialComponents
+   MaterialComponents,
+  
   ],
   exports:[
-    MaterialComponents
+    MaterialComponents,
+ 
   ]
 
 })

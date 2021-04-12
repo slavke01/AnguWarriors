@@ -1,0 +1,24 @@
+.tabela-div {
+    position: absolute;
+    border: 3px gray;
+    border-style: solid;
+    top: 50px;
+  
+    width: 100%;
+  
+    margin-top: 20px;
+  }
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td,
+  th {
+    width: 25%;
+  }
+  
