@@ -33,6 +33,8 @@ import { EquipmentNewRequestComponent } from './equipment-new-request/equipment-
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MapComponentComponent } from './map-component/map-component.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     StateChangesHistoryRequestComponent,
     MultimediaAttachmentsNewRequestComponent,
     EquipmentNewRequestComponent,
-    NewCallDialogTableComponent
+    NewCallDialogTableComponent,
+    MapComponentComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule],
@@ -74,7 +77,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RouterModule.forRoot([
       {
         path: '',
-        component: NewCallCompComponent,
+        component: DashboardCompComponent,
       },
       {
         path: 'register',
@@ -103,7 +106,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       {
         path: 'requests',
         component: WorkRequestCompComponent,
-      },
+      },{
+
+        path: 'map',
+        component: MapComponentComponent,
+
+      }
     ]),
     BrowserAnimationsModule,
   ],

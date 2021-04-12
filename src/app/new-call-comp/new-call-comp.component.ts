@@ -18,7 +18,7 @@ export class NewCallCompComponent implements OnInit {
 
   openDialog(){
 
-    this.dialog.open(NewCallDialogTableComponent);
+    this.dialog.open(NewCallDialogTableComponent,{height:'400px',width:'800px'});
 
   }
   onChangeReason(param: string) {
