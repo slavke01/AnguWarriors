@@ -77,7 +77,7 @@ import { MapComponentComponent } from './map-component/map-component.component';
     RouterModule.forRoot([
       {
         path: '',
-        component: DashboardCompComponent,
+        component: LoginCompComponent,
       },
       {
         path: 'register',
