@@ -62,7 +62,7 @@ import { MapComponentComponent } from './map-component/map-component.component';
     MultimediaAttachmentsNewRequestComponent,
     EquipmentNewRequestComponent,
     NewCallDialogTableComponent,
-    MapComponentComponent
+    MapComponentComponent,
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule],
@@ -94,6 +94,36 @@ import { MapComponentComponent } from './map-component/map-component.component';
       {
         path: 'new',
         component: NewIncidentCompComponent,
+        children: [
+          {
+            path: '',
+            component: IncidentNewComponent,
+          },
+          {
+            path: 'devices',
+            component: NewDevicesCompComponent,
+          },
+          {
+            path: 'resolution',
+            component: IncidentResolutionCompComponent,
+          },
+          {
+            path: 'calls',
+            component: IncidentCallsCompComponent,
+          },
+          {
+            path: 'crew',
+            component: IncidentCrewCompComponent,
+          },
+          {
+            path: 'multimedia',
+            component: IncidentMultimediaCompComponent,
+          },
+          {
+            path: 'equipment',
+            component: IncidentEquipmentCompComponent,
+          },
+        ],
       },
       {
         path: 'notifications',
@@ -106,12 +136,32 @@ import { MapComponentComponent } from './map-component/map-component.component';
       {
         path: 'requests',
         component: WorkRequestCompComponent,
-      },{
+        children: [
+          {
+            path: '',
+            component: BasicInformationWorkRequestComponent,
+          },
+          {
+            path: 'history',
+            component: StateChangesHistoryRequestComponent,
+          },
+          {
+            path: 'multimedia',
+            component: MultimediaAttachmentsNewRequestComponent,
+          },
+          {
+            path: 'equipment',
+            component: EquipmentNewRequestComponent,
+          }]
 
+
+
+
+      },
+      {
         path: 'map',
         component: MapComponentComponent,
-
-      }
+      },
     ]),
     BrowserAnimationsModule,
   ],

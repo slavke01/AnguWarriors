@@ -4,26 +4,33 @@
     <table class="table table-borderless">
       
           <tr>
-            <th scope="col"><button (click)="on_click_basic()" type="button" class="btn btn-link">Basic Information</button></th>
+            <th scope="col"><a routerLink="./">
+              <button  type="button" class="btn btn-link">Basic</button></a></th>
           </tr>
           <tr>
-            <th scope="col"><button (click)="on_click_devices()" type="button" class="btn btn-link">Devices</button></th>
+            <th scope="col"><a routerLink="devices">
+              <button  type="button" class="btn btn-link">Devices</button></a></th>
           </tr>
           <tr>
-            <th scope="col"><button (click)="on_click_resolution()" type="button" class="btn btn-link">Resolution</button></th>
+            <th scope="col"><a routerLink="resolution">
+              <button  type="button" class="btn btn-link">Resolution</button></a></th>
           </tr>
 
             <tr>
-            <th scope="col"><button (click)="on_click_calls()" type="button" class="btn btn-link">Calls</button></th>
+            <th scope="col"><a routerLink="calls">
+              <button  type="button" class="btn btn-link">Calls</button></a></th>
           </tr>
             <tr>
-            <th scope="col"><button (click)="on_click_crew()" type="button" class="btn btn-link">Crew</button></th>
+              <th scope="col"><a routerLink="crew">
+                <button  type="button" class="btn btn-link">Crew</button></a></th>
           </tr>
           <tr>
-            <th scope="col"><button (click)="on_click_multimedia()" type="button" class="btn btn-link">Multimedia Attachments</button></th>
+            <th scope="col"><a routerLink="multimedia">
+              <button  type="button" class="btn btn-link">Multimedia Attachments</button></a></th>
           </tr>
           <tr>
-            <th scope="col"><button (click)="on_click_equipment()" type="button" class="btn btn-link">Equipment</button></th>
+            <th scope="col"><a routerLink="equipment">
+              <button  type="button" class="btn btn-link">Equipment</button></a></th>
           </tr>
 
       </table>
@@ -35,13 +42,7 @@
 
 <div class="content">
 
-<app-incident-new *ngIf="show_basic==true" style="margin-top: 20px ; margin-right: 20px;" ></app-incident-new>
-<app-new-devices-comp *ngIf="show_devices==true"></app-new-devices-comp>
-<app-incident-resolution-comp *ngIf="show_resolution==true"></app-incident-resolution-comp>
-<app-incident-calls-comp *ngIf="show_calls==true" ></app-incident-calls-comp>
-<app-incident-crew-comp *ngIf="show_crew==true"></app-incident-crew-comp>
-<app-incident-multimedia-comp *ngIf="show_multimedia==true"></app-incident-multimedia-comp>
-<app-incident-equipment-comp *ngIf="show_equipment==true"></app-incident-equipment-comp>
+<router-outlet></router-outlet>
 </div>
 
 <app-side-bar ></app-side-bar>
