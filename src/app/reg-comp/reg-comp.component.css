@@ -1,33 +1,21 @@
-.reg-right{
-
-position: absolute;
-top: 83px;
 
 
-}
-.btn{
-
-position: absolute;
-margin-top: 20px;
-margin-left: 150px;
-
-}
 
 .input-textbox-left{
     margin-left: 40px;
 
 }
 
-.levi{
-    margin-left: 10px;
-}
 
-.desni{
-    margin-left: 10px;
-}
 .reg-comp{
 
 position: absolute;
 left: 550px;
-top: 100px;
+top: 20px;
+width: 300px;
+padding-left: 25px;
+border-radius: 35px;
+background: gainsboro;
+border: 4px lightgray;
+border-style: outset;
 }

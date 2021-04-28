@@ -1,174 +1,154 @@
-<div class="reg-comp">
-<h2  >Registruj se</h2>
-<table>
 
-  
-    
+  <div class="reg-comp">
+    <h2 style="margin-left: 50px">Registruj se</h2>
+    <table>
       <div class="levi">
-        <div >
-        
-          <label for="firstName">First name:</label>
-          <input
-            style="margin-left: 62px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangeFirstName($event.target.value)"
-            type="text"
-            name="firstName"
-            ngModel
-            #firstName="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="firstName.touched && !firstName.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
-        <div >
-          
-          <label for="lastName">Last name:</label>
-          <input
-          style="margin-left: 62px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangeLastName($event.target.value)"
-            type="text"
-            name="lastName"
-            ngModel
-            #lastName="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="lastName.touched && !lastName.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
-        <div >
-          
-          <label for="username">Username:</label>
-          <input
-          style="margin-left: 64px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangeUsername($event.target.value)"
-            type="text"
-            name="username"
-            ngModel
-            #username="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="username.touched && !username.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
         <div>
-          
-          <label for="password">Password: &nbsp;</label>
-        
-          <input
-          style="margin-left: 62px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangePassword($event.target.value)"
-            type="text"
-            name="password"
-            ngModel
-            #password="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="password.touched && !password.valid">
-            Ne sme biti prazno!
-          </div> 
-      
-        </div> 
-    
-      </div>
-    
+          <p>
+            <mat-form-field appearance="outline"   style="width: 230px;">
+              <mat-label>Enter your name</mat-label>
+              <input
+                matInput
+                (input)="onChangeFirstName($event.target.value)"
+                placeholder="First Name"
+                [formControl]="firstNameCon"
+                required
+              
+              />
+              <mat-error *ngIf="firstNameCon.invalid">{{
+                getErrorMessageFirstName()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
 
-    
+        <div>
+          <p>
+            <mat-form-field appearance="outline" style="width: 230px;">
+              <mat-label>Enter your Last Name</mat-label>
+              <input
+                matInput
+                (input)="onChangeLastName($event.target.value)"
+                placeholder="Last Name"
+                [formControl]="lastNameCon"
+                required
+              />
+              <mat-error *ngIf="lastNameCon.invalid">{{
+                getErrorMessageLastName()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+
+        <div>
+          <p>
+            <mat-form-field appearance="outline" style="width: 230px;">
+              <mat-label>Enter your Username</mat-label>
+              <input
+                matInput
+                (input)="onChangeUsername($event.target.value)"
+                placeholder="Username"
+                [formControl]="usernameCon"
+                required
+              />
+              <mat-error *ngIf="usernameCon.invalid">{{
+                getErrorMessageUsername()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline" style="width: 230px;">
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              (input)="onChangePassword($event.target.value)"
+              [type]="hide ? 'password' : 'text'"
+              [formControl]="passwordCon"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error *ngIf="passwordCon.invalid">{{
+              getErrorMessagePassword()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
       <div class="desni">
+        <div>
+          <mat-form-field appearance="outline" style="width: 230px;">
+            <mat-label>Enter your email</mat-label>
+            <input
+              matInput
+              (input)="onChangeEmailAddress($event.target.value)"
+              placeholder="pat@example.com"
+              [formControl]="email"
+              required
+            />
+            <mat-error *ngIf="email.invalid">{{
+              getErrorMessageEmail()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
 
-        <div >
-        
-          <label for="email">Email address:</label>
-          <input
-            
-            required
-            class="input-textbox-left"
-            (input)="onChangeEmailAddress($event.target.value)"
-            type="text"
-            name="email"
-            ngModel
-            #email="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="email.touched && !email.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
-        <div >
-          
-          <label for="birthday">Date of Birth:</label>
-          <input
-          style="margin-left: 47px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangeDateOfBirth($event.target.value)"
-            type="text"
-            name="birthday"
-            ngModel
-            #birthday="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="birthday.touched && !birthday.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
-        <div >
-          
-          <label for="address">Address:</label>
-          <input
-          style="margin-left: 79px;"
-            required
-            class="input-textbox-left"
-            (input)="onChangeAddress($event.target.value)"
-            type="text"
-            name="address"
-            ngModel
-            #address="ngModel"
-            
-          />
-          <div  class="alert alert-danger" style="width: 190px; margin-left: 95px;" *ngIf="address.touched && !address.valid">
-            Ne sme biti prazno!
-          </div> 
-        </div> 
-      
-    
+        <div>
+          <mat-form-field appearance="outline" style="width: 230px;">
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeDateOfBirth($event.target.value)"
+              [matDatepicker]="picker"
+              [formControl]="dateOfBirthCon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="dateOfBirthCon.invalid">{{
+              getErrorMessageDate()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <p>
+            <mat-form-field appearance="outline" style="width: 230px;">
+              <mat-label>Enter your adress</mat-label>
+              <input
+                matInput
+                (input)="onChangeAddress($event.target.value)"
+                placeholder="Adress"
+                [formControl]="addressCon"
+                required
+              />
+              <mat-error *ngIf="addressCon.invalid">{{
+                getErrorMessageAddress()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
       </div>
-    
-
-  
-
-
-  
-
-</table>
-<form>
-  <br/>
-  <br/>
-
-
-
-  <div class="btn">
-    <br />
-    <button (click)="metodaAjmo()" style="background-color: lightblue">
-      Done
-    </button>
+    </table>
+    <form>
+      <div class="btn" style="margin-left: 60px">
+        <button class="btn btn-dark" (click)="metodaAjmo()">Done</button>
+      </div>
+    </form>
   </div>
 
-</form>
-
-</div>

@@ -34,7 +34,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MapComponentComponent } from './map-component/map-component.component';
-
+import { MatInputModule } from "@angular/material/input"
+import {MatIconModule} from "@angular/material/icon"
+import {ReactiveFormsModule} from "@angular/forms"
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,10 +64,10 @@ import { MapComponentComponent } from './map-component/map-component.component';
     MultimediaAttachmentsNewRequestComponent,
     EquipmentNewRequestComponent,
     NewCallDialogTableComponent,
-    MapComponentComponent,
+    MapComponentComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
-  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule],
+  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
 
   imports: [
     BrowserModule,
@@ -74,6 +76,7 @@ import { MapComponentComponent } from './map-component/map-component.component';
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: '',
