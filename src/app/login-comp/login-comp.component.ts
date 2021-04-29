@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-login-comp',
@@ -11,7 +12,7 @@ export class LoginCompComponent implements OnInit {
   password=null;
   federer="assets/rfl.jpg";
   show=true;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.show=true;
@@ -24,6 +25,7 @@ export class LoginCompComponent implements OnInit {
   metodaNova(){
     console.log(this.username);
     console.log(this.password);
+    this.router.navigate(['/home']);
   }
 
   onChangeUsername(param:string){

@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 import { AppComponent } from './app.component';
 import { LoginCompComponent } from './login-comp/login-comp.component';
 import { RegCompComponent } from './reg-comp/reg-comp.component';
@@ -37,6 +37,7 @@ import { MapComponentComponent } from './map-component/map-component.component';
 import { MatInputModule } from "@angular/material/input"
 import {MatIconModule} from "@angular/material/icon"
 import {ReactiveFormsModule} from "@angular/forms"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,8 @@ import {ReactiveFormsModule} from "@angular/forms"
     MatFormFieldModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    ChartsModule,
+    WavesModule,
     RouterModule.forRoot([
       {
         path: '',

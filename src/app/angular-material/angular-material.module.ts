@@ -8,6 +8,8 @@ import { MatInputModule } from "@angular/material/input"
 import {MatIconModule} from "@angular/material/icon"
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ChartsModule } from 'ng2-charts';
+
 const MaterialComponents=[
     MatButtonModule,
     MatDialogModule,
@@ -17,7 +19,8 @@ const MaterialComponents=[
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ChartsModule 
 ];
 
 @NgModule({
