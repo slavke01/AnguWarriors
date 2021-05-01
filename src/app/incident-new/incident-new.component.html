@@ -4,93 +4,292 @@
   <tr>
     <th>
       <div class="left">
-        <p>Incident ID:</p>
-        <input class="form-control" (input)="onChangeIncId($event.target.value)" type="text" />
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Incident ID</mat-label>
+              <input
+                matInput
+                (input)="onChangeIncId($event.target.value)"
+                placeholder="Incident ID"
+                [formControl]="IncIDCon"
+                required
+              />
+              <mat-error *ngIf="IncIDCon.invalid">{{
+                getErrorMessageIncID()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
         <table>
-
           <tr>
-
             <th>
-              <p>Type:</p>
-              <select class="form-control" (change)="onChangeType($event.target.value)">
-                <option [selected]="type" *ngFor="let opcija of niz">
-                  {{ opcija }}
-                </option>
-              </select>
-            </th>
-
-            <th>
-              <div class="confi">
-                <p>Confirmed:</p>
-                <label class="radio">
-                  <input 
-                    (change)="onChangeConfTrue()"
-                    name="rb1"
-                    type="radio"
-                  />
-                  Yes
-                  <input
-                    (change)="onChangeConfFalse()"
-                    name="rb1"
-                    type="radio"
-                  />
-                  No
-                </label>
+              <div>
+                <mat-form-field appearance="outline" style="margin-left: 15px; width: 100px">
+                  <mat-label>Type</mat-label>
+                  <mat-select [(ngModel)]="type" name="type">
+                    <mat-option *ngFor="let opcija of niz" [value]="opcija">
+                      {{opcija}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
             </th>
 
+            <th>
+              <div class="confi" style="margin-left: 75px">
+                <p>Confirmed:</p>
+                <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle>
+              </div>
+            </th>
           </tr>
         </table>
-        <p>Status:</p>
-        <input class="form-control" (input)="onChangeStatus($event.target.value)" type="text" />
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Status</mat-label>
+              <input
+                matInput
+                (input)="onChangeStatus($event.target.value)"
+                placeholder="Status"
+                [formControl]="StatusCon"
+                required
+              />
+              <mat-error *ngIf="StatusCon.invalid">{{
+                getErrorMessageStatus()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
 
-        <p>Description:</p>
-        <input (input)="onChangeDesc($event.target.value)" type="text"  class="form-control"/>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                (input)="onChangeDesc($event.target.value)"
+                placeholder="Description"
+                [formControl]="DescriptionCon"
+                required
+              />
+              <mat-error *ngIf="DescriptionCon.invalid">{{
+                getErrorMessageDescription()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
       </div>
     </th>
-    
+
     <th>
       <div class="mid">
-        <p>ETA:</p>
-        <input (input)="onChangeEta($event.target.value)" type="date" class="form-control" />
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>ETA</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeEta($event.target.value)"
+              [matDatepicker]="picker1"
+              [formControl]="ETACon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error *ngIf="ETACon.invalid">{{
+              getErrorMessageETA()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
 
-        <p>ATA:</p>
-        <input (input)="onChangeAta($event.target.value)" type="date" class="form-control"/>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>ATA</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeAta($event.target.value)"
+              [matDatepicker]="picker2"
+              [formControl]="ATACon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="ATACon.invalid">{{
+              getErrorMessageATA()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
 
-        <p>Affected customers:</p>
-        <input
-          (input)="onChangeAffectedCustomers($event.target.value)"
-          type="text" class="form-control"
-        />
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Affected Customers</mat-label>
+              <input
+                matInput
+                (input)="onChangeAffectedCustomers($event.target.value)"
+                placeholder="Affected Customers"
+                [formControl]="AffCusCon"
+                required
+              />
+              <mat-error *ngIf="AffCusCon.invalid">{{
+                getErrorMessageAffectedCustomers()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
 
-        <p>Outage time:</p>
-        <input (input)="onChangeOutageTime($event.target.value)" type="date"  class="form-control"/>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>Outage Time</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeOutageTime($event.target.value)"
+              [matDatepicker]="picker5"
+              [formControl]="OutageTimeCon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker5"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker5></mat-datepicker>
+            <mat-error *ngIf="OutageTimeCon.invalid">{{
+              getErrorMessageOutageTime()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </th>
 
     <th>
       <div class="right">
-        <p>ETR:</p>
-        <input (input)="onChangeEtr($event.target.value)" type="date" class="form-control" />
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>ETR</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeEtr($event.target.value)"
+              [matDatepicker]="picker3"
+              [formControl]="ETRCon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker3"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+            <mat-error *ngIf="ETRCon.invalid">{{
+              getErrorMessageETR()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
 
-        <p>Calls:</p>
-        <input (input)="onChangeCalls($event.target.value)" type="text"class="form-control" />
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Calls</mat-label>
+              <input
+                matInput
+                (input)="onChangeCalls($event.target.value)"
+                placeholder="Calls"
+                [formControl]="CallsCon"
+                required
+              />
+              <mat-error *ngIf="CallsCon.invalid">{{
+                getErrorMessageCalls()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
 
-        <p>Voltage [kV]:</p>
-        <input (input)="onChangeVoltage($event.target.value)" type="text"class="form-control" />
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Voltage</mat-label>
+              <input
+                matInput
+                (input)="onChangeVoltage($event.target.value)"
+                placeholder="Voltage"
+                [formControl]="VoltageCon"
+                required
+              />
+              <mat-error *ngIf="VoltageCon.invalid">{{
+                getErrorMessageVoltage()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
 
-        <p>Scheduled time:</p>
-        <input
-          (input)="onChangeScheduledTime($event.target.value)"
-          type="date"class="form-control"
-        />
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>Scheduled Time</mat-label>
+            <input
+              matInput
+              (dateInput)="onChangeScheduledTime($event.target.value)"
+              [matDatepicker]="picker4"
+              [formControl]="SchTimeCon"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker4"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker4></mat-datepicker>
+            <mat-error *ngIf="SchTimeCon.invalid">{{
+              getErrorMessageSchTime()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </th>
   </tr>
 </table>
 <div>
   <br />
-  <button class="btn btn-dark" (click)="gotovoFja()">
-    Done
-  </button>
+  <button class="btn btn-dark" (click)="gotovoFja()">Done</button>
 </div>

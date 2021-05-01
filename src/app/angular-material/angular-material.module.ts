@@ -1,3 +1,5 @@
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -20,7 +22,9 @@ const MaterialComponents=[
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ChartsModule 
+    ChartsModule,
+    MatSlideToggleModule,
+    MatSelectModule
 ];
 
 @NgModule({
