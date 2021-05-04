@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-basic-information-work-request',
   templateUrl: './basic-information-work-request.component.html',
@@ -11,7 +11,17 @@ export class BasicInformationWorkRequestComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  StartTimeCon = new FormControl('', [Validators.required]);
+  EndTimeCon = new FormControl('', [Validators.required]);
+  CreatedTimeCon = new FormControl('', [Validators.required]);
+  PhoneNoCon = new FormControl('', [Validators.required]);
+  CompanyCon = new FormControl('', [Validators.required]);
+  PurposeCon = new FormControl('', [Validators.required]);
+  DetailsCon = new FormControl('', [Validators.required]);
+  NotesCon = new FormControl('', [Validators.required]);
+
   type=null;
+  typeWork=null;
   startTime=null;
   endTime=null;
   emergency=null;
@@ -25,6 +35,64 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   tipovi=["Planned work","Unplanned work"]
   tipoviWork=["work1","work2","work3"]
 
+
+
+  getErrorMessageStartTime() {
+    
+    if (this.StartTimeCon.hasError('required')) {
+      return 'You must Chose a starting date';
+    }
+    return "";
+  }
+  getErrorMessageEndTime() {
+    
+    if (this.EndTimeCon.hasError('required')) {
+      return 'You must Chose an ending date';
+    }
+    return "";
+  }
+  getErrorMessageCreatedTime() {
+    
+    if (this.CreatedTimeCon.hasError('required')) {
+      return 'You must Chose created date';
+    }
+    return "";
+  }
+  getErrorMessagePhoneNo() {
+    
+    if (this.PhoneNoCon.hasError('required')) {
+      return 'You must enter a phone number';
+    }
+    return "";
+  }
+  getErrorMessageCompany() {
+    
+    if (this.CompanyCon.hasError('required')) {
+      return 'You must enter a Company';
+    }
+    return "";
+  }
+  getErrorMessagePurpose() {
+    
+    if (this.PurposeCon.hasError('required')) {
+      return 'You must enter a Purpose';
+    }
+    return "";
+  }
+  getErrorMessageDetails() {
+    
+    if (this.DetailsCon.hasError('required')) {
+      return 'You must enter Details';
+    }
+    return "";
+  }
+  getErrorMessageNotes() {
+    
+    if (this.NotesCon.hasError('required')) {
+      return 'You must enter Notes';
+    }
+    return "";
+  }
   onChangeType(param:string){
     this.type=param;
   }

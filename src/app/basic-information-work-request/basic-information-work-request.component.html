@@ -1,18 +1,22 @@
 <table>
     <tr>
         <th>
-            <label for="">Type:</label>
-            <select class="form-control" (change)="onChangeType($event.target.value)">
-              <option [selected]="type" *ngFor="let opcija of tipovi">
-                {{ opcija }}
-              </option>
-            </select>
+            <div>
+                <mat-form-field appearance="outline" style="margin-left: 15px; width: 200px">
+                  <mat-label>Type</mat-label>
+                  <mat-select [(ngModel)]="type" name="type">
+                    <mat-option *ngFor="let opcija of tipovi" [value]="opcija">
+                      {{opcija}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
           </th>
     </tr>
 
     <tr>
         <th>
-            <label for="">Status: &nbsp;</label>
+            <label for="" style="margin-left: 15px;">Status: &nbsp;</label>
             <label for="">Draft</label>
         </th>
     </tr>
@@ -20,45 +24,53 @@
 
     <tr>
         <th>
-            <label for="">Incident: &nbsp;</label>
-            <button>...</button>
+            <label for="" style="margin-left: 15px;">Incident: &nbsp;</label>
+            <button mat-stroked-button>...</button>
         </th>
         <th>
             
-                <div>
-                  <label for="">&nbsp;Emergency:</label>
-                  <label class="radio">
-                    <input 
-                      (change)="onChangeEmTrue()"
-                      name="rb1"
-                      type="radio"
-                    />
-                    Yes
-                    <input
-                      (change)="onChangeEmFalse()"
-                      name="rb1"
-                      type="radio"
-                    />
-                    No
-                  </label>
-                </div>
+            <label style="margin-left: 15px;">Emergency:&nbsp; </label>
+            <mat-slide-toggle [(ngModel)]="emergency"></mat-slide-toggle>
               
         </th>
     </tr>
 
     <tr>
         <th>
-            <label for="">Type of work:</label>
-            <select  (change)="onChangeType($event.target.value)">
-              <option [selected]="type" *ngFor="let opcija of tipoviWork">
-                {{ opcija }}
-              </option>
-            </select>
+            <div>
+                <mat-form-field appearance="outline" style="margin-left: 15px; width: 200px">
+                  <mat-label>Type of work</mat-label>
+                  <mat-select [(ngModel)]="typeWork" name="type">
+                    <mat-option *ngFor="let opcija of tipoviWork" [value]="opcija">
+                      {{opcija}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
           </th>
 
           <th>
-              <label for="">Company:</label>
-              <input (input)="onChangeCompany($event.target.value)" type="text">
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Company</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeCompany($event.target.value)"
+                      placeholder="Company"
+                      [formControl]="CompanyCon"
+                      required
+                    />
+                    <mat-error *ngIf="CompanyCon.invalid">{{
+                      getErrorMessageCompany()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
           </th>
 
           
@@ -66,14 +78,35 @@
 
     <tr>
         <th>
-            <label for="">Start date/time:</label>
-            <input (input)="onChangeStartTime($event.target.value)" type="date"  />
+            <div>
+                <mat-form-field
+                  appearance="outline"
+                  style="margin-left: 15px; width: 200px"
+                >
+                  <mat-label>Start Date/Time</mat-label>
+                  <input
+                    matInput
+                    (dateInput)="onChangeStartTime($event.target.value)"
+                    [matDatepicker]="picker1"
+                    [formControl]="StartTimeCon"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                  <mat-error *ngIf="StartTimeCon.invalid">{{
+                    getErrorMessageStartTime()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
 
         </th>
         
         <th>
         
-                <label for="">Incident: &nbsp;</label>
+                <label for="" style="margin-left: 15px;">Incident: &nbsp;</label>
                 <label for="">INC1</label>
             
         </th>
@@ -81,58 +114,162 @@
 
     <tr>
         <th>
-            <label for="">End date/time</label>
-            <input (input)="onChangeEndTime($event.target.value)" type="date" />
+            <div>
+                <mat-form-field
+                  appearance="outline"
+                  style="margin-left: 15px; width: 200px"
+                >
+                  <mat-label>End Date/Time</mat-label>
+                  <input
+                    matInput
+                    (dateInput)="onChangeEndTime($event.target.value)"
+                    [matDatepicker]="picker2"
+                    [formControl]="EndTimeCon"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker2"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <mat-error *ngIf="EndTimeCon.invalid">{{
+                    getErrorMessageEndTime()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
         </th>
 
         <th>
-            <label for="">Phone No:</label>
-            <input (input)="onChangePhoneNo($event.target.value)" type="text">
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Phone No.</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangePhoneNo($event.target.value)"
+                      placeholder="Phone No."
+                      [formControl]="PhoneNoCon"
+                      required
+                    />
+                    <mat-error *ngIf="PhoneNoCon.invalid">{{
+                      getErrorMessagePhoneNo()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
         </th>
         
     </tr>
     <tr>
         <th>
-            <label for="">Created by: &nbsp;</label>
+            <label for="" style="margin-left: 15px;">Created by: &nbsp;</label>
                 <label for="">Novak Djokovic</label>
         </th>
         <th>
-            <label for="">Date/time created:</label>
-            <input (input)="onChangeCreatedTime($event.target.value)" type="date" />
+            <div>
+                <mat-form-field
+                  appearance="outline"
+                  style="margin-left: 15px; width: 200px"
+                >
+                  <mat-label>Created Date/Time</mat-label>
+                  <input
+                    matInput
+                    (dateInput)="onChangeCreatedTime($event.target.value)"
+                    [matDatepicker]="picker3"
+                    [formControl]="CreatedTimeCon"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker3"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                  <mat-error *ngIf="CreatedTimeCon.invalid">{{
+                    getErrorMessageCreatedTime()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
         </th>
     </tr>
 
     <tr>
         <th>
-            <label for="">Puropose:</label>
+        <div>
+            <p>
+              <mat-form-field
+                appearance="outline"
+                style="margin-left: 15px; width: 200px"
+              >
+                <mat-label>Purpose</mat-label>
+                <input
+                  matInput
+                  (input)="onChangePurpose($event.target.value)"
+                  placeholder="Purpose"
+                  [formControl]="PurposeCon"
+                  required
+                />
+                <mat-error *ngIf="PurposeCon.invalid">{{
+                  getErrorMessagePurpose()
+                }}</mat-error>
+                <!--mat-hint>Hint</mat-hint-->
+              </mat-form-field>
+            </p>
+          </div>
         </th>
         <th>
-            <input (input)="onChangePurpose($event.target.value)" type="text">
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Details</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeDetails($event.target.value)"
+                      placeholder="Details"
+                      [formControl]="DetailsCon"
+                      required
+                    />
+                    <mat-error *ngIf="DetailsCon.invalid">{{
+                      getErrorMessageDetails()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+
+
         </th>
-        
+        <th>
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Notes</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeNotes($event.target.value)"
+                      placeholder="Notes"
+                      [formControl]="NotesCon"
+                      required
+                    />
+                    <mat-error *ngIf="NotesCon.invalid">{{
+                      getErrorMessageNotes()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+
+
+        </th>
     </tr>
-
-    <tr>
-        <th>
-            <label for="">Details:</label>
-        </th>
-        <th>
-            <input (input)="onChangeDetails($event.target.value)" type="text">
-        </th>
-    </tr>
-
-    <tr>
-        <th>
-            <label for="">Notes:</label>
-        </th>
-        <th>
-            <input (input)="onChangeNotes($event.target.value)" type="text">
-        </th>
-    </tr>
-        
-
-        
-
-    
 
 </table>
