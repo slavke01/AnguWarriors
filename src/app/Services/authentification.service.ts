@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthentificationService {
-  baseURL: string = "http://localhost:5000/";
+  baseURL: string = "http://localhost:44370/";
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,8 @@ export class AuthentificationService {
 
       const headers = { 'content-type': 'application/json'}
       const body = JSON.stringify(user);
-      return this.http.post(this.baseURL+"api/register",body,{'headers':headers});
+      console.log(body);
+      return this.http.post<any>(this.baseURL+"api/register",body);
   }
 
 }

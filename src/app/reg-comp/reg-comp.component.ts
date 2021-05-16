@@ -134,20 +134,23 @@ export class RegCompComponent implements OnInit {
 
   metodaAjmo() {
     console.log('asa');
-    var user: User = {
-      Username: this.username,
-      FirstName: this.firstName,
-      LastName: this.lastName,
-      Password: this.password,
-      DatumRodjenja: this.dateOfBirth,
-      EMail: this.emailAddress,
-      Address: this.address,
-      UserType:"CLAN"
-    };
+    
+      var user: User = {
+        Username: this.username,
+        Password: this.password,
+        FirstName: this.firstName,
+        LastName: this.lastName,
+        DatumRodjenja: this.dateOfBirth,
+        Address: this.address,
+        EMail: this.emailAddress,
+        UserType:"CLAN"
+      };
+    
     console.log(this.firstName);
 
   
 
-    this.authService.registerUser(user).subscribe((data) => console.log(data));
+    this.authService.registerUser(user);
+    console.log(this.authService.registerUser(user));
   }
 }

@@ -21,9 +21,8 @@ namespace AnguWarriorsBack.Controllers
          [HttpPost("/api/register")]
          public async Task<IActionResult> RegisterUser([FromBody]User korisnik) {
 
-          
+              Console.WriteLine(korisnik.FirstName);
 
-     
               return Ok(korisnik);
           }
 
