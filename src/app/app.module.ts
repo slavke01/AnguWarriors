@@ -37,6 +37,8 @@ import { MapComponentComponent } from './map-component/map-component.component';
 import { MatInputModule } from "@angular/material/input"
 import {MatIconModule} from "@angular/material/icon"
 import {ReactiveFormsModule} from "@angular/forms"
+import { AuthentificationService} from "./Services/authentification.service"
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import {ReactiveFormsModule} from "@angular/forms"
     ReactiveFormsModule,
     ChartsModule,
     WavesModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -171,7 +174,20 @@ import {ReactiveFormsModule} from "@angular/forms"
     ]),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    AuthentificationService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export interface User{
+  Username:string;
+  Password:string;
+  FirstName:string;
+  LastName:string;
+  EMail:string;
+  Address:string;
+  DatumRodjenja:Date;
+  UserType:string;
+}

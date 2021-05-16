@@ -19,9 +19,12 @@ namespace AnguWarriorsBack.Controllers
 
 
          [HttpPost("/api/register")]
-         public async Task<IActionResult> RegisterUser() {
+         public async Task<IActionResult> RegisterUser([FromBody]User korisnik) {
 
-              return NotFound();
+          
+
+     
+              return Ok(korisnik);
           }
 
     }
