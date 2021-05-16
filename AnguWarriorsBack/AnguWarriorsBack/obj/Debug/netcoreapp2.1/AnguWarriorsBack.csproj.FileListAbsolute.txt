@@ -1,0 +1,14 @@
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.deps.json
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.json
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.dev.json
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csprojAssemblyReference.cache
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csproj.CoreCompileInputs.cache
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cache
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cs
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfoInputs.cache
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfo.cs
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+C:\Users\Slavisa\Desktop\AngularpRoje\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.pdb

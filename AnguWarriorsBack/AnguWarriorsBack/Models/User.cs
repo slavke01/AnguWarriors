@@ -1,18 +1,36 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AnguWarriorsBack.Models
 {
+    [Table("Users")]
     public class User
     {
+
+        [Key]
+
         public string Username { get; set; }
+
+        [Required]
+        [StringLength(255)]
         public string Password { get; set; }
+        [Required]
+        [StringLength(255)]
         public string FirstName { get; set; }
+        [Required]
+        [StringLength(255)]
         public string LastName { get; set; }
+        [Required]
         public DateTime DatumRodjenja { get; set; }
+        [Required]
+        [StringLength(255)]
         public string Adress { get; set; }
+        [Required]
+        [StringLength(255)]
         public string EMail { get; set; }
         public TipKorisnika UserType { get; set; }
 

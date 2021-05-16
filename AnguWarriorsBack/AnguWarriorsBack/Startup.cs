@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using AnguWarriorsBack.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnguWarriorsBack
 {
@@ -26,6 +28,7 @@ namespace AnguWarriorsBack
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+      services.AddDbContext<AnguWarrDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AnguWarrConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
