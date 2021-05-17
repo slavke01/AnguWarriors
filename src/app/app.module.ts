@@ -187,7 +187,7 @@ export interface User{
   FirstName:string;
   LastName:string;
   EMail:string;
-  Address:string;
+  Adress:string;
   DatumRodjenja:Date;
   UserType:string;
 }

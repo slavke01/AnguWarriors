@@ -32,10 +32,12 @@ namespace AnguWarriorsBack.Models
         [Required]
         [StringLength(255)]
         public string EMail { get; set; }
+        [Required]
         public TipKorisnika UserType { get; set; }
 
 
         public User() { }
+        /*
         public User(string username,string pw,string first,string last,DateTime datum,string adress,string email,TipKorisnika tip) {
 
             this.Username = username;
@@ -47,5 +49,6 @@ namespace AnguWarriorsBack.Models
             this.EMail = email;
             this.UserType = tip;
         }
+        */
     }
 }

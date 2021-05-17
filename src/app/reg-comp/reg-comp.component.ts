@@ -133,7 +133,7 @@ export class RegCompComponent implements OnInit {
   ngOnInit(): void {}
 
   metodaAjmo() {
-    console.log('asa');
+ 
     
       var user: User = {
         Username: this.username,
@@ -141,16 +141,15 @@ export class RegCompComponent implements OnInit {
         FirstName: this.firstName,
         LastName: this.lastName,
         DatumRodjenja: this.dateOfBirth,
-        Address: this.address,
+        Adress: this.address,
         EMail: this.emailAddress,
         UserType:"CLAN"
       };
     
-    console.log(this.firstName);
-
+ 
+          console.log(user);
   
 
-    this.authService.registerUser(user);
-    console.log(this.authService.registerUser(user));
+        this.authService.registerUser(user).subscribe();
   }
 }
