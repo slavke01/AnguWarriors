@@ -147,7 +147,7 @@ export class RegCompComponent implements OnInit {
       };
     
  
-          console.log(user);
+        console.log(user);
   
 
         this.authService.registerUser(user).subscribe();

@@ -25,12 +25,13 @@ namespace AnguWarriorsBack.Controllers
     }
 
         
-         [HttpPost("/api/register")]
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    public async Task<IActionResult> RegisterUser([FromBody] User user) {
-      _context.Users.Add(user);
-      await _context.SaveChangesAsync();
+        [HttpPost("/api/register")]
+       // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+         public async Task<IActionResult> RegisterUser([FromBody] User user) {
+              this._context.Users.Add(user);
+              await this._context.SaveChangesAsync();
               return Ok();
+              
           }
 
     }

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 //import { stat } from 'node:fs';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Incident } from '../app.module';
+import { CRUDService } from '../Services/crud.service';
 @Component({
   selector: 'app-incident-new',
   templateUrl: './incident-new.component.html',
-  styleUrls: ['./incident-new.component.css']
+  styleUrls: ['./incident-new.component.css'],
 })
 export class IncidentNewComponent implements OnInit {
   IncIDCon = new FormControl('', [Validators.required]);
@@ -19,169 +22,160 @@ export class IncidentNewComponent implements OnInit {
   SchTimeCon = new FormControl('', [Validators.required]);
   OutageTimeCon = new FormControl('', [Validators.required]);
   TypeCon = new FormControl('', [Validators.required]);
-  niz=["1","2","3"];
-  incId=null;
-  type=this.niz[0];
+  niz = ['PLANIRANI', 'NEPLANIRANI'];
+  incId = null;
+  type = this.niz[0];
   isChecked = true;
-  status=null;
-  desc=null;
-  eta=null;
-  ata=null;
-  affectedCustomers=null;
-  outageTime=null;
-  etr=null;
-  calls=null;
-  voltage=null;
-  scheduledTime=null;
+  status = null;
+  desc = null;
+  eta = null;
+  ata = null;
+  affectedCustomers:number = null;
+  outageTime = null;
+  etr = null;
+  calls:number = null;
+  voltage:number = null;
+  scheduledTime = null;
   getErrorMessageIncID() {
-    
     if (this.IncIDCon.hasError('required')) {
       return 'You must enter Incident ID';
     }
-    return "";
+    return '';
   }
   getErrorMessageStatus() {
-    
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Status';
     }
-    return "";
+    return '';
   }
   getErrorMessageDescription() {
-    
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Description';
     }
-    return "";
+    return '';
   }
   getErrorMessageAffectedCustomers() {
-    
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Description';
     }
-    return "";
+    return '';
   }
   getErrorMessageCalls() {
-    
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Calls';
     }
-    return "";
+    return '';
   }
   getErrorMessageVoltage() {
-    
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Voltage';
     }
-    return "";
+    return '';
   }
   getErrorMessageETA() {
     if (this.ETACon.hasError('required')) {
       return 'You must chose an ETA';
     }
-    return "";
+    return '';
   }
   getErrorMessageATA() {
     if (this.ATACon.hasError('required')) {
       return 'You must chose an ATA';
     }
-    return "";
+    return '';
   }
   getErrorMessageETR() {
     if (this.ETRCon.hasError('required')) {
       return 'You must chose an ETR';
     }
-    return "";
+    return '';
   }
   getErrorMessageSchTime() {
     if (this.ETRCon.hasError('required')) {
       return 'You must chose Scheduled Time';
     }
-    return "";
+    return '';
   }
   getErrorMessageOutageTime() {
     if (this.ETRCon.hasError('required')) {
       return 'You must chose Outage Time';
     }
-    return "";
+    return '';
   }
   getErrorMessageType() {
     if (this.TypeCon.hasError('required')) {
       return 'You must chose a Type';
     }
-    return "";
+    return '';
   }
-  onChangeIncId(param:string){
-    this.incId=param;
-  }
-
-  onChangeType(param:string){
-
-    console.log("AAAAAAAAAAAAAAAAAAA");
-    this.type=param;
-  }
-  onChangeStatus(param:string){
-    this.status=param;
+  onChangeIncId(param: string) {
+    this.incId = param;
   }
 
-  onChangeDesc(param:string){
-    this.desc=param;
+  onChangeType(param: string) {
+    this.type = param;
+  }
+  onChangeStatus(param: string) {
+    this.status = param;
   }
 
-  onChangeEta(param:string){
-    this.eta=param;
+  onChangeDesc(param: string) {
+    this.desc = param;
   }
 
-  onChangeAta(param:string){
-    this.ata=param;
+  onChangeEta(param: Date) {
+    this.eta = param;
   }
 
-  onChangeAffectedCustomers(param:string){
-    this.affectedCustomers=param;
+  onChangeAta(param: Date) {
+    this.ata = param;
   }
 
-  onChangeOutageTime(param:string){
-    this.outageTime=param;
+  onChangeAffectedCustomers(param: number) {
+    this.affectedCustomers = param;
   }
 
-  onChangeEtr(param:string){
-    this.etr=param;
+  onChangeOutageTime(param: Date) {
+    this.outageTime = param;
   }
 
-  onChangeCalls(param:string){
-    this.calls=param;
+  onChangeEtr(param: Date) {
+    this.etr = param;
   }
 
-  onChangeVoltage(param:string){
-    this.voltage=param;
+  onChangeCalls(param: number) {
+    this.calls = param;
   }
 
-  onChangeScheduledTime(param:string){
-    this.scheduledTime=param;
+  onChangeVoltage(param: number) {
+    this.voltage = param;
   }
 
-  gotovoFja(){
-    console.log(this.incId);
-    console.log(this.type);
-    console.log(this.isChecked);
-    console.log(this.status);
-    console.log(this.desc);
-    console.log(this.eta);
-    console.log(this.ata);
-    console.log(this.affectedCustomers);
-    console.log(this.outageTime);
-    console.log(this.etr);
-    console.log(this.calls);
-    console.log(this.voltage);
-    console.log(this.scheduledTime);
+  onChangeScheduledTime(param: Date) {
+    this.scheduledTime = param;
   }
+  constructor(  private router: Router,private crudService:CRUDService) {}
 
+  ngOnInit(): void {}
+  gotovoFja() {
+    var incident: Incident = {
+      ID: this.incId,
+      IncidentType: this.type,
+      Prioritet: 4,
+      Confirmed: this.isChecked,
+      Status: this.status,
+      ETA: this.eta,
+      ATA: this.ata,
+      ETR: this.etr,
+      VrijemeRada: this.scheduledTime,
+      AffectedPeople: this.affectedCustomers,
+      Pozivi: this.calls,
+      Voltage: this.voltage,
+    };
+    console.log(JSON.stringify(incident));
+
+    this.crudService.createIncident(incident).subscribe();
+  }
 
   
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

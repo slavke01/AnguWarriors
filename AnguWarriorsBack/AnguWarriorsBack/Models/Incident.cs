@@ -1,27 +1,42 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AnguWarriorsBack.Models
 {
+    [Table("Incidents")]
     public class Incident
     {
 
-
-
-        public string ID { get; set; }
-        public TipIncidenta IncidentType { get; set; }
-        public int Prioritet { get; set; }
-        public bool Confirmed { get; set; }
-        public string Status { get; set; }
-        public DateTime ETA { get; set; }
-        public DateTime ATA { get; set; }
-        public DateTime ETR { get; set; }
-        public DateTime VrijemeRada { get; set; }
-        public int AffectedPeople { get; set; }
-        public int Pozivi { get; set; }
-        public int Voltage { get; set; }
+     
+         [Key]
+         public string ID { get; set; }
+         [Required]
+         public TipIncidenta IncidentType { get; set; }
+         [Required]
+         public int Prioritet { get; set; }
+         [Required]
+         public bool Confirmed { get; set; }
+         [Required]
+         [StringLength(255)]
+         public string Status { get; set; }
+         [Required]
+         public DateTime ETA { get; set; }
+         [Required]
+         public DateTime ATA { get; set; }
+         [Required]
+         public DateTime ETR { get; set; }
+         [Required]
+         public DateTime VrijemeRada { get; set; }
+         [Required]
+         public int AffectedPeople { get; set; }
+         [Required]
+         public int Pozivi { get; set; }
+         [Required]
+         public int Voltage { get; set; }
 
 
         public Incident() { }

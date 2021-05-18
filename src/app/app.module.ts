@@ -38,6 +38,7 @@ import { MatInputModule } from "@angular/material/input"
 import {MatIconModule} from "@angular/material/icon"
 import {ReactiveFormsModule} from "@angular/forms"
 import { AuthentificationService} from "./Services/authentification.service"
+import { CRUDService } from "./Services/crud.service"
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -175,7 +176,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
   ],
   providers: [
-    AuthentificationService
+    AuthentificationService,
+    CRUDService
   ],
   bootstrap: [AppComponent],
 })
@@ -190,4 +192,19 @@ export interface User{
   Adress:string;
   DatumRodjenja:Date;
   UserType:string;
+}
+
+export interface Incident{
+  ID:string;
+  IncidentType:string;
+  Prioritet:number;
+  Confirmed:boolean;
+  Status:string;
+  ETA:Date;
+  ATA:Date;
+  ETR:Date;
+  VrijemeRada:Date;
+  AffectedPeople:number;
+  Pozivi:number;
+  Voltage:number;
 }

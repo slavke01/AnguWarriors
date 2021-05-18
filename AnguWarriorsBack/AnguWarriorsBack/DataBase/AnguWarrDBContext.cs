@@ -13,9 +13,8 @@ namespace AnguWarriorsBack.DataBase
 
     }
 
-
-
            public DbSet<User> Users { get; set; }
-
+           public DbSet<Element> Elements { get; set; }
+           public DbSet<Incident> Incidents { get; set; }
   }
 }

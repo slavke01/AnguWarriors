@@ -4,14 +4,16 @@ using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnguWarriorsBack.Migrations
 {
     [DbContext(typeof(AnguWarrDBContext))]
-    partial class AnguWarrDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210518101217_Elements")]
+    partial class Elements
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,40 +40,6 @@ namespace AnguWarriorsBack.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Elements");
-                });
-
-            modelBuilder.Entity("AnguWarriorsBack.Models.Incident", b =>
-                {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("ATA");
-
-                    b.Property<int>("AffectedPeople");
-
-                    b.Property<bool>("Confirmed");
-
-                    b.Property<DateTime>("ETA");
-
-                    b.Property<DateTime>("ETR");
-
-                    b.Property<int>("IncidentType");
-
-                    b.Property<int>("Pozivi");
-
-                    b.Property<int>("Prioritet");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<int>("Voltage");
-
-                    b.Property<DateTime>("VrijemeRada");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Incidents");
                 });
 
             modelBuilder.Entity("AnguWarriorsBack.Models.User", b =>

@@ -13,12 +13,10 @@ export class AuthentificationService {
   constructor(private http: HttpClient) {}
 
   registerUser(user: User): Observable<any> {
-    let headers = { 'Content-Type': 'application/json', };
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json",'Access-Control-Allow-Origin' : '*' }),
     };
     const body = JSON.stringify(user);
-    console.log(body);
     return this.http.post<any>(
       this.baseURL + 'api/register',
       body,
