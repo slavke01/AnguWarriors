@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { NalogRada } from '../app.module';
+import { CRUDService } from '../Services/crud.service';
 @Component({
   selector: 'app-basic-information-work-request',
   templateUrl: './basic-information-work-request.component.html',
@@ -7,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class BasicInformationWorkRequestComponent implements OnInit {
 
-  constructor() { }
+  constructor(private CrudService:CRUDService) { }
 
   ngOnInit(): void {
   }
@@ -97,11 +99,11 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     this.type=param;
   }
 
-  onChangeStartTime(param:string){
+  onChangeStartTime(param:Date){
     this.startTime=param;
   }
 
-  onChangeEndTime(param:string){
+  onChangeEndTime(param:Date){
     this.endTime=param;
   }
 
@@ -133,6 +135,28 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   }
   onChangeNotes(param:string){
     this.notes=param;
+  }
+
+  AjmoNalog(){
+    
+    var nalog:NalogRada={
+      NalogType:this.type,
+      Status:"Draft",
+      PocetakRada:this.startTime,
+      KrajRada:this.endTime,
+      Svrha:this.purpose,
+      Beleske:this.notes,
+      Hitno:this.emergency,
+      Kompanija:this.company,
+      TelefonskiBroj:this.phoneNo
+
+    }
+    
+    console.log(JSON.stringify(nalog));
+
+    this.CrudService.createNalog(nalog).subscribe();
+
+
   }
 
 }

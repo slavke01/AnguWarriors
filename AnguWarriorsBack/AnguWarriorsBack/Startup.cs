@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+
 
 namespace AnguWarriorsBack
 {
@@ -28,8 +30,13 @@ namespace AnguWarriorsBack
         public void ConfigureServices(IServiceCollection services)
         {
 
-           services.AddCors();
-      
+            services.AddAutoMapper(typeof (Startup));
+
+            services.AddCors();
+
+          
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
                services.AddDbContext<AnguWarrDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("AnguWarrConnectionString")));

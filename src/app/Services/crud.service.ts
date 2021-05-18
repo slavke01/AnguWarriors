@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Incident } from '../app.module';
+import { Incident, NalogRada } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,6 +19,17 @@ export class CRUDService {
     const body = JSON.stringify(incident);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createIncident',
+      body,
+      this.httpOptions
+    );
+  }
+
+
+  createNalog(nalog:NalogRada):Observable<any>{
+
+    const body = JSON.stringify(nalog);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createNalog',
       body,
       this.httpOptions
     );

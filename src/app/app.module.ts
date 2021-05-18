@@ -208,3 +208,15 @@ export interface Incident{
   Pozivi:number;
   Voltage:number;
 }
+
+export interface NalogRada{
+  NalogType:string;
+  Status:string;
+  PocetakRada:Date;
+  KrajRada:Date;
+  Svrha:string;
+  Beleske:string;
+  Hitno:boolean;
+  Kompanija:string;
+  TelefonskiBroj:string;
+}

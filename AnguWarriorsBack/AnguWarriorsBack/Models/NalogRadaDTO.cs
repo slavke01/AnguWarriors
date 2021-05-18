@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AnguWarriorsBack.Models
 {
+
   public class NalogRadaDTO
   {
 
