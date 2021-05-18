@@ -14,7 +14,6 @@ using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
-
 namespace AnguWarriorsBack
 {
     public class Startup
@@ -29,15 +28,10 @@ namespace AnguWarriorsBack
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+          services.AddCors();
+          services.AddAutoMapper(typeof(Startup));
 
-            services.AddAutoMapper(typeof (Startup));
-
-            services.AddCors();
-
-          
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+               services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
                services.AddDbContext<AnguWarrDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("AnguWarrConnectionString")));
      

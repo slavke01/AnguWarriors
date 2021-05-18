@@ -26,7 +26,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   typeWork=null;
   startTime=null;
   endTime=null;
-  emergency=null;
+  emergency:boolean=false;
   company=null;
   phoneNo=null;
   dateTimeCreated=null;
@@ -34,7 +34,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   details=null;
   notes=null;
 
-  tipovi=["Planned work","Unplanned work"]
+  tipovi=["PLANIRANI","NEPLANIRANI"]
   tipoviWork=["work1","work2","work3"]
 
 
