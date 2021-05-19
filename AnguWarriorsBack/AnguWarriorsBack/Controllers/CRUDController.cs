@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AnguWarriorsBack.Models;
 using AutoMapper;
-using System.Web.Http.Cors;
+using Microsoft.AspNetCore.Cors;
 
 namespace AnguWarriorsBack.Controllers
 {
@@ -28,8 +28,8 @@ namespace AnguWarriorsBack.Controllers
        }
 
         [HttpPost("/api/crud/createNalog")]
-        //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-        public async Task<IActionResult> CreateNalog([FromBody] NalogRadaDTO nrdto)
+         [EnableCors("AllowAll")]
+         public async Task<IActionResult> CreateNalog([FromBody] NalogRadaDTO nrdto)
         {
 
           var a = mapper.Map<NalogRadaDTO, NalogRada>(nrdto);

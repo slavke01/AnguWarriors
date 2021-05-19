@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AnguWarriorsBack.Models;
 using AnguWarriorsBack.DataBase;
-using System.Web.Http.Cors;
 
 namespace AnguWarriorsBack.Controllers
 {

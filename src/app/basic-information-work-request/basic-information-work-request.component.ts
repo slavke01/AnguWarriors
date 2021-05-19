@@ -5,14 +5,12 @@ import { CRUDService } from '../Services/crud.service';
 @Component({
   selector: 'app-basic-information-work-request',
   templateUrl: './basic-information-work-request.component.html',
-  styleUrls: ['./basic-information-work-request.component.css']
+  styleUrls: ['./basic-information-work-request.component.css'],
 })
 export class BasicInformationWorkRequestComponent implements OnInit {
+  constructor(private CrudService: CRUDService) {}
 
-  constructor(private CrudService:CRUDService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   StartTimeCon = new FormControl('', [Validators.required]);
   EndTimeCon = new FormControl('', [Validators.required]);
   CreatedTimeCon = new FormControl('', [Validators.required]);
@@ -22,141 +20,126 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   DetailsCon = new FormControl('', [Validators.required]);
   NotesCon = new FormControl('', [Validators.required]);
 
-  type=null;
-  typeWork=null;
-  startTime=null;
-  endTime=null;
-  emergency:boolean=false;
-  company=null;
-  phoneNo=null;
-  dateTimeCreated=null;
-  purpose=null;
-  details=null;
-  notes=null;
+  type = null;
+  typeWork = null;
+  startTime = null;
+  endTime = null;
+  emergency: boolean = false;
+  company = null;
+  phoneNo = null;
+  dateTimeCreated = null;
+  purpose = null;
+  details = null;
+  notes = null;
 
-  tipovi=["PLANIRANI","NEPLANIRANI"]
-  tipoviWork=["work1","work2","work3"]
-
-
+  tipovi = ['PLANIRANI', 'NEPLANIRANI'];
+  tipoviWork = ['work1', 'work2', 'work3'];
 
   getErrorMessageStartTime() {
-    
     if (this.StartTimeCon.hasError('required')) {
       return 'You must Chose a starting date';
     }
-    return "";
+    return '';
   }
   getErrorMessageEndTime() {
-    
     if (this.EndTimeCon.hasError('required')) {
       return 'You must Chose an ending date';
     }
-    return "";
+    return '';
   }
   getErrorMessageCreatedTime() {
-    
     if (this.CreatedTimeCon.hasError('required')) {
       return 'You must Chose created date';
     }
-    return "";
+    return '';
   }
   getErrorMessagePhoneNo() {
-    
     if (this.PhoneNoCon.hasError('required')) {
       return 'You must enter a phone number';
     }
-    return "";
+    return '';
   }
   getErrorMessageCompany() {
-    
     if (this.CompanyCon.hasError('required')) {
       return 'You must enter a Company';
     }
-    return "";
+    return '';
   }
   getErrorMessagePurpose() {
-    
     if (this.PurposeCon.hasError('required')) {
       return 'You must enter a Purpose';
     }
-    return "";
+    return '';
   }
   getErrorMessageDetails() {
-    
     if (this.DetailsCon.hasError('required')) {
       return 'You must enter Details';
     }
-    return "";
+    return '';
   }
   getErrorMessageNotes() {
-    
     if (this.NotesCon.hasError('required')) {
       return 'You must enter Notes';
     }
-    return "";
+    return '';
   }
-  onChangeType(param:string){
-    this.type=param;
-  }
-
-  onChangeStartTime(param:Date){
-    this.startTime=param;
+  onChangeType(param: string) {
+    this.type = param;
   }
 
-  onChangeEndTime(param:Date){
-    this.endTime=param;
+  onChangeStartTime(param: Date) {
+    this.startTime = param;
   }
 
-  onChangeEmTrue(){
-    this.emergency=true;
+  onChangeEndTime(param: Date) {
+    this.endTime = param;
   }
 
-  onChangeEmFalse(){
-    this.emergency=false;
+  onChangeEmTrue() {
+    this.emergency = true;
   }
 
-  onChangeCompany(param:string){
-    this.company=param;
+  onChangeEmFalse() {
+    this.emergency = false;
   }
 
-  onChangePhoneNo(param:string){
-    this.phoneNo=param;
+  onChangeCompany(param: string) {
+    this.company = param;
   }
 
-  onChangeCreatedTime(param:string){
-    this.dateTimeCreated=param;
+  onChangePhoneNo(param: string) {
+    this.phoneNo = param;
   }
 
-  onChangePurpose(param:string){
-    this.purpose=param;
-  }
-  onChangeDetails(param:string){
-    this.details=param;
-  }
-  onChangeNotes(param:string){
-    this.notes=param;
+  onChangeCreatedTime(param: string) {
+    this.dateTimeCreated = param;
   }
 
-  AjmoNalog(){
-    
-    var nalog:NalogRada={
-      NalogType:this.type,
-      Status:"Draft",
-      PocetakRada:this.startTime,
-      KrajRada:this.endTime,
-      Svrha:this.purpose,
-      Beleske:this.notes,
-      Hitno:this.emergency,
-      Kompanija:this.company,
-      TelefonskiBroj:this.phoneNo
+  onChangePurpose(param: string) {
+    this.purpose = param;
+  }
+  onChangeDetails(param: string) {
+    this.details = param;
+  }
+  onChangeNotes(param: string) {
+    this.notes = param;
+  }
 
-    }
-    
+  AjmoNalog() {
+    var nalog: NalogRada = {
+      NalogType: this.type,
+      Status: 'Draft',
+      PocetakRada: this.startTime,
+      KrajRada: this.endTime,
+      Svrha: this.purpose,
+      Beleske: this.notes,
+      Hitno: this.emergency,
+      Kompanija: this.company,
+      TelefonskiBroj: this.phoneNo,
+    };
+
     console.log(JSON.stringify(nalog));
 
     this.CrudService.createNalog(nalog).subscribe();
-
-
   }
-
 }

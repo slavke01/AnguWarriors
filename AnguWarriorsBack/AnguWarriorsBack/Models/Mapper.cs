@@ -11,7 +11,7 @@ namespace AnguWarriorsBack.Models
   {
     public void AutoMapping()
     {
-      CreateMap<User, NalogRadaDTO>(); // means you want to map from User to UserDTO
+      CreateMap<NalogRadaDTO, NalogRada>(); // means you want to map from User to UserDTO
     }
   }
 }

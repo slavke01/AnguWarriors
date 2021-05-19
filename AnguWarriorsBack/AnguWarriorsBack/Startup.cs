@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
+//using AutoMapper;
 
 namespace AnguWarriorsBack
 {
@@ -28,8 +28,19 @@ namespace AnguWarriorsBack
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          services.AddCors();
-          services.AddAutoMapper(typeof(Startup));
+            services.AddCors();
+     // services.AddCors(options =>
+     // {
+       // options.AddPolicy("AllowAll",
+      //      builder =>
+      //      {
+        //      builder
+       //           .AllowAnyOrigin()
+       //           .AllowAnyMethod()
+       //           .AllowAnyHeader();
+        //    });
+    //  });
+           // services.AddAutoMapper(typeof(Startup));
 
                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
                services.AddDbContext<AnguWarrDBContext>(options =>
@@ -50,10 +61,13 @@ namespace AnguWarriorsBack
                
                 app.UseHsts();
             }
-
-      //app.UseHttpsRedirection();
-      app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
-
+            // app.UseCors("AllowAll"); 
+             
+             app.UseCors(options => options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowAnyOrigin());
+      app.UseHttpsRedirection();
       app.UseMvc();
         }
     }
