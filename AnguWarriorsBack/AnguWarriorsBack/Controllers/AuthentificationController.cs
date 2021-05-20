@@ -33,5 +33,13 @@ namespace AnguWarriorsBack.Controllers
               
           }
 
-    }
+
+         [HttpGet("/api/getUser/{username}")]
+          public async Task<IActionResult> GetUser([FromRoute]string username)
+          {
+            User retVal = await this._context.Users.FindAsync(username);
+            return Ok(retVal);
+         }
+
+  }
 }

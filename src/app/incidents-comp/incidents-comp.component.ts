@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Incident } from '../app.module';
+import { CRUDService } from '../Services/crud.service';
 
 export interface TableData {
   id: string;
@@ -88,6 +90,7 @@ const data:TableData[] = [
   styleUrls: ['./incidents-comp.component.css'],
 })
 export class IncidentsCompComponent implements AfterViewInit  {
+  podaci:Incident[]=[];
   displayedColumns: string[] = [
     'id',
     'startDate',
@@ -101,16 +104,26 @@ export class IncidentsCompComponent implements AfterViewInit  {
   @ViewChild(MatSort) sort: MatSort;
 
  
-  constructor() {
+  constructor(private crudService:CRUDService) {
 
     this.dataSource = new MatTableDataSource(data);
+    
+   
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    console.log(this.podaci);
+    this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
+      this.podaci=this.podaci.concat(podatak); 
+    });
+   
   }
+    ispisi(){
 
+      console.log(this.podaci);
+    }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

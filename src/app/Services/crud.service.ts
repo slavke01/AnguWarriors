@@ -35,6 +35,12 @@ export class CRUDService {
     );
   }
 
+  getIncidents(){
+
+    return this.http.get<Incident[]>(
+      this.baseURL + 'api/crud/getIncidents',
+      this.httpOptions);
+  }
 
 
 

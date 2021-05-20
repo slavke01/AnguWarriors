@@ -25,4 +25,13 @@ export class AuthentificationService {
       httpOptions
     );
   }
+
+  getUser(username:string){
+    
+    return this.http.get<User>(
+      this.baseURL + 'api/getUser/'+username,
+      this.httpOptions);
+  }
+
+
 }

@@ -79,6 +79,7 @@ C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsB
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.dll
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
+<<<<<<< HEAD
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.deps.json
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.json
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.dev.json
@@ -93,3 +94,6 @@ D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBac
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.dll
 D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
+=======
+C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csprojAssemblyReference.cache
+>>>>>>> 296d5e860dbc5f6c2885c461c618c782bad2e075
