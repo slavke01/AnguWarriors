@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class AuthentificationService {
   baseURL: string = 'https://localhost:44370/';
-
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json"}),
+  };
   constructor(private http: HttpClient) {}
 
   registerUser(user: User): Observable<any> {
@@ -19,7 +21,8 @@ export class AuthentificationService {
     const body = JSON.stringify(user);
     return this.http.post<any>(
       this.baseURL + 'api/register',
-      body
+      body,
+      httpOptions
     );
   }
 }

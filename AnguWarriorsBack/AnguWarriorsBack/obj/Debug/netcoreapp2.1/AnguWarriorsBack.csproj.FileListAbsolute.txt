@@ -79,3 +79,17 @@ C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsB
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.dll
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
 C:\Users\Slavisa\Desktop\AngularProj\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.deps.json
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.json
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.dev.json
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csprojAssemblyReference.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csproj.CoreCompileInputs.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cs
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfoInputs.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfo.cs
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+D:\cetvrta godina\Web 2\Projekat 7\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
