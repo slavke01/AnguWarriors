@@ -28,7 +28,6 @@ namespace AnguWarriorsBack.Controllers
        }
 
         [HttpPost("/api/crud/createNalog")]
-         
          public async Task<IActionResult> CreateNalog([FromBody] NalogRadaDTO nrdto)
         {
 
@@ -49,9 +48,17 @@ namespace AnguWarriorsBack.Controllers
            a.Svrha = nrdto.Svrha;
                  this._context.Nalozi.Add(a);
            await this._context.SaveChangesAsync();
-
           return Ok(a);
         }
+
+
+        [HttpGet("/api/crud/getIncidents")]
+        public async Task<IActionResult> GetIncidents() {
+             List<Incident> retVal = this._context.Incidents.ToList();
+             return Ok(retVal);
+        }
+
+      
 
   }
 }
