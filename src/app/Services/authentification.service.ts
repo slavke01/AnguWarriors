@@ -19,8 +19,7 @@ export class AuthentificationService {
     const body = JSON.stringify(user);
     return this.http.post<any>(
       this.baseURL + 'api/register',
-      body,
-      httpOptions
+      body
     );
   }
 }

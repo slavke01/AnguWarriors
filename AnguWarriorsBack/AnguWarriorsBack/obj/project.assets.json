@@ -13262,11 +13262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Slavisa\\Desktop\\Angular\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
+      "projectUniqueName": "C:\\Users\\Slavisa\\Desktop\\AngularProj\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
       "projectName": "AnguWarriorsBack",
-      "projectPath": "C:\\Users\\Slavisa\\Desktop\\Angular\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
+      "projectPath": "C:\\Users\\Slavisa\\Desktop\\AngularProj\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
       "packagesPath": "C:\\Users\\Slavisa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Slavisa\\Desktop\\Angular\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\obj\\",
+      "outputPath": "C:\\Users\\Slavisa\\Desktop\\AngularProj\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
