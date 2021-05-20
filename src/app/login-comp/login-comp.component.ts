@@ -31,8 +31,7 @@ export class LoginCompComponent implements OnInit {
 
 
   metodaNova(){
-    console.log(this.username);
-    console.log(this.password);
+
     this.router.navigate(['/home']);
   }
 

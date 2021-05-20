@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NalogRada } from '../app.module';
+import { CRUDService } from '../Services/crud.service';
 
 @Component({
   selector: 'app-work-request-comp',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkRequestCompComponent implements OnInit {
 
-  constructor() { }
+  podaci:NalogRada[]=[];
+
+  constructor(private crs:CRUDService) { }
 
   ngOnInit(): void {
+    this.crs.getNalozi().subscribe((podatak: NalogRada[])=>{
+      this.podaci=this.podaci.concat(podatak); 
+      console.log(this.podaci);
+    });
   }
 
+  
 }

@@ -43,6 +43,13 @@ export class CRUDService {
   }
 
 
+  getNalozi(){
+
+    return this.http.get<NalogRada[]>(
+      this.baseURL + 'api/crud/getNalozi',
+      this.httpOptions);
+  }
+
 
 
 }

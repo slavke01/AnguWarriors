@@ -58,7 +58,33 @@ namespace AnguWarriorsBack.Controllers
              return Ok(retVal);
         }
 
-      
+        [HttpGet("/api/crud/getNalozi")]
+        public async Task<IActionResult> GetNalozi()
+        {
+          List<NalogRada> naloziOriginal = this._context.Nalozi.ToList();
+          List<NalogRadaDTO> naloziNovi = new List<NalogRadaDTO>();
+
+          foreach(NalogRada nr in naloziOriginal)
+          {
+            NalogRadaDTO nrdto = new NalogRadaDTO();
+
+            nrdto.NalogType = nr.NalogType;
+            nrdto.Status = nr.Status;
+            nrdto.PocetakRada = nr.PocetakRada;
+            nrdto.KrajRada = nr.KrajRada;
+            nrdto.Svrha = nr.Svrha;
+            nrdto.Beleske = nr.Beleske;
+            nrdto.Hitno = nr.Hitno;
+            nrdto.Kompanija = nr.Kompanija;
+            nrdto.TelefonskiBroj = nr.TelefonskiBroj;
+
+            naloziNovi.Add(nrdto);
+
+          }
+
+
+          return Ok(naloziNovi);
+        }
 
   }
 }
