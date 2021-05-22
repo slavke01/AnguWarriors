@@ -2,128 +2,59 @@ import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'ol';
 import { Incident } from '../app.module';
 import { CRUDService } from '../Services/crud.service';
+import { of } from 'rxjs';
 
-export interface TableData {
-  id: string;
-  startDate: string;
-  phoneNo: string;
-  status: string;
-  adress: string;
-}
-const data:TableData[] = [
-  {
-    id: '1',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '2',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '3',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '4',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '5',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '6',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '7',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '8',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '9',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-  {
-    id: '10',
-    startDate: 'danas',
-    phoneNo: '123-123-123',
-    status: 'Pokvareno',
-    adress: 'Ftn',
-  },
-];
+
 @Component({
   selector: 'app-incidents-comp',
   templateUrl: './incidents-comp.component.html',
   styleUrls: ['./incidents-comp.component.css'],
 })
 export class IncidentsCompComponent implements AfterViewInit  {
-  podaci:Incident[]=[];
+  data:Incident[] = [];
+  x;
+  isDataLoaded=false;
   displayedColumns: string[] = [
-    'id',
-    'startDate',
-    'phoneNo',
-    'status',
-    'adress',
+    'ID',
+    'IncidentType',
+    'Prioritet',
+    'Confirmed',
+    'Status',
+    'ETA',
+    'ATA',
+    'ETR',
+    'VrijemeRada',
+    'AffectedPeople',
+    'Pozivi',
+    'Voltage'
   ];
-  dataSource: MatTableDataSource<TableData>;
+  dataSource: MatTableDataSource<Incident>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
  
   constructor(private crudService:CRUDService) {
-
-    this.dataSource = new MatTableDataSource(data);
+    this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
+      this.x=of(podatak);
+    });
+    
+    
     
    
   }
-
+ 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    console.log(this.podaci);
-    this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
-      this.podaci=this.podaci.concat(podatak); 
-    });
-   
+    //this.data=this.data.concat(podatak);
+    //this.dataSource = new MatTableDataSource(this.data);
+    //this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
+    //this.isDataLoaded=true;
   }
-    ispisi(){
 
-      console.log(this.podaci);
-    }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

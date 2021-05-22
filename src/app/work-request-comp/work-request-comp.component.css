@@ -1,0 +1,35 @@
+.buttons-div{
+
+    position: absolute;
+    
+    left: 200px;
+    top:50px;
+    
+    
+    }
+    .tabela-div{
+
+
+        position: absolute;
+        border: 3px gray;
+        border-style: solid;
+        top: 100px;
+        left: 200px;
+        width: 80%;
+        height: 500px;
+        margin-top: 20px;
+        }
+        table {
+            width: 100%;
+          
+          }
+          
+          .mat-form-field {
+            font-size: 14px;
+            width: 100%;
+          }
+          
+          td, th {
+            width: 7%;
+            
+          }

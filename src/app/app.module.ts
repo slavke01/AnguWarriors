@@ -146,24 +146,7 @@ import { HttpClientModule } from '@angular/common/http';
       {
         path: 'requests',
         component: WorkRequestCompComponent,
-        children: [
-          {
-            path: '',
-            component: BasicInformationWorkRequestComponent,
-          },
-          {
-            path: 'history',
-            component: StateChangesHistoryRequestComponent,
-          },
-          {
-            path: 'multimedia',
-            component: MultimediaAttachmentsNewRequestComponent,
-          },
-          {
-            path: 'equipment',
-            component: EquipmentNewRequestComponent,
-          }]
-
+        
 
 
 
@@ -172,6 +155,28 @@ import { HttpClientModule } from '@angular/common/http';
         path: 'map',
         component: MapComponentComponent,
       },
+      {
+          path:'newreq',
+          component:NewWorkRequestComponent,
+          children: [
+            {
+              path: '',
+              component: BasicInformationWorkRequestComponent,
+            },
+            {
+              path: 'history',
+              component: StateChangesHistoryRequestComponent,
+            },
+            {
+              path: 'multimedia',
+              component: MultimediaAttachmentsNewRequestComponent,
+            },
+            {
+              path: 'equipment',
+              component: EquipmentNewRequestComponent,
+            }]
+  
+      }
     ]),
     BrowserAnimationsModule,
   ],
