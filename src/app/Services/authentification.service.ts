@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { User } from '../app.module';
+import { Login, User } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,6 +24,15 @@ export class AuthentificationService {
       body,
       httpOptions
     );
+  }
+  login(login:Login){
+    const body = JSON.stringify(login);
+    return this.http.post<any>(
+      this.baseURL + 'api/login',
+      body,
+      this.httpOptions
+    );
+
   }
 
   getUser(username:string){

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import { AuthentificationService } from '../Services/authentification.service';
-import { User } from '../app.module';
+import { Login, User } from '../app.module';
 
 
 @Component({
@@ -14,6 +14,7 @@ export class LoginCompComponent implements OnInit {
   myUser=null;
   username=null;
   password=null;
+  invalidLogin:boolean;
   federer="assets/rfl.jpg";
   show=true;
   constructor(private router: Router, private ase: AuthentificationService) {
@@ -31,8 +32,21 @@ export class LoginCompComponent implements OnInit {
 
 
   metodaNova(){
+      var login:Login={
+          Username:this.username,
+          Password:this.password
+      }
+    var x = this.ase.login(login).subscribe(response=>{
+      const token = (<any>response).token;
+      localStorage.setItem("jwt", token);
+      this.invalidLogin = false;
+      console.log(token);
+      this.router.navigate(['/home']);
+    }, err => {
+      this.invalidLogin = true;
+    });
 
-    this.router.navigate(['/home']);
+   
   }
 
   onChangeUsername(param:string){

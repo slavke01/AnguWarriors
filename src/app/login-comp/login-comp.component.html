@@ -14,6 +14,7 @@
 
     <th>
       <div class="login">
+        
         <h1>Log In:</h1>
         <p>Username:</p>
         <input class="form-control"(input)="onChangeUsername($event.target.value)" type="text" />
@@ -22,18 +23,21 @@
           (input)="onChangePassword($event.target.value)"
           type="password"
         />
+        
         <div>
           <br/>
-          <button (click)="metodaNova()" class="btn btn-dark">
+          <button (click)="metodaNova()" class="btn btn-dark" style="margin-left: 5px;">
             Log In
           </button>
 
-          
+          <div *ngIf="invalidLogin" class="alert alert-danger" style="margin-top: 5px;">Invalid username or password.</div>
         </div>
+        <div style="position: absolute; top: 310px;">
         <label>Dont have an account?</label>
         <a routerLink="/register"> Register! </a>
-
-        <div style="margin-top: 60px;">
+        </div>
+        <div style="position:absolute; top: 340px;">
+        <div >
           <table>
             <tr>
               <th>
@@ -108,7 +112,7 @@
             </tr>
           </table>
         </div>
-
+      </div>
 
       </div>
     

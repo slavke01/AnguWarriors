@@ -12,7 +12,7 @@ import { of } from 'rxjs';
   templateUrl: './work-request-comp.component.html',
   styleUrls: ['./work-request-comp.component.css']
 })
-export class WorkRequestCompComponent implements AfterViewInit {
+export class WorkRequestCompComponent implements OnInit {
 
   data:NalogRada[]=[];
   
@@ -35,10 +35,10 @@ export class WorkRequestCompComponent implements AfterViewInit {
 
   constructor(private crs:CRUDService) { }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.crs.getNalozi().subscribe((podatak: NalogRada[])=>{
-      this.data=this.data.concat(podatak); 
-    this.dataSource = new MatTableDataSource(this.data);
+    this.data=this.data.concat(podatak); 
+    this.dataSource = new MatTableDataSource(podatak);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 

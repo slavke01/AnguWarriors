@@ -13,6 +13,12 @@ using Microsoft.Extensions.Options;
 using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using AnguWarriorsBack.Provider;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin;
+using Owin;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AnguWarriorsBack
 {
@@ -29,20 +35,31 @@ namespace AnguWarriorsBack
         public void ConfigureServices(IServiceCollection services)
         {
                services.AddCors();
-     // services.AddCors(options =>
-     // {
-       // options.AddPolicy("AllowAll",
-      //      builder =>
-      //      {
-        //      builder
-       //           .AllowAnyOrigin()
-       //           .AllowAnyMethod()
-       //           .AllowAnyHeader();
-        //    });
-    //  });
-            services.AddAutoMapper(typeof(Startup));
 
-               services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                services.AddAuthentication(opt => {
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                   opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                  .AddJwtBearer(options =>
+                  {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                         ValidateIssuer = true,
+                         ValidateAudience = true,
+                         ValidateLifetime = true,
+                         ValidateIssuerSigningKey = true,
+                         ValidIssuer = "http://localhost:44370",
+                         ValidAudience = "http://localhost:4200",
+                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("superSecretKey@345"))
+                    };
+                  });
+
+
+
+
+
+
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
                services.AddDbContext<AnguWarrDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("AnguWarrConnectionString")));
      
@@ -61,16 +78,14 @@ namespace AnguWarriorsBack
                
                 app.UseHsts();
             }
-      // app.UseCors("AllowAll"); 
+            //Ne dirati
             app.UseCors(builder =>
-           builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
+            builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
             );
-      //  app.UseCors(options => options.WithOrigins("http://localhost:4200")
-      //.AllowAnyMethod()
-      // .AllowAnyHeader()
-      //  .AllowAnyOrigin());
+
+      app.UseAuthentication();
       app.UseHttpsRedirection();
-      app.UseMvc();
+            app.UseMvc();
         }
     }
 }

@@ -225,3 +225,9 @@ export interface NalogRada{
   Kompanija:string;
   TelefonskiBroj:string;
 }
+
+
+export interface Login{
+  Username:string,
+  Password:string
+}

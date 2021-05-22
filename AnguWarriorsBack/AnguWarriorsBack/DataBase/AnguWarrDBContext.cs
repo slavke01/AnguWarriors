@@ -9,6 +9,8 @@ namespace AnguWarriorsBack.DataBase
   public class AnguWarrDBContext:DbContext
   {
 
+
+    public AnguWarrDBContext() : base() { }
     public AnguWarrDBContext(DbContextOptions<AnguWarrDBContext> options ):base(options){
 
     }

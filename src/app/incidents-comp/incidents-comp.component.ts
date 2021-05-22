@@ -40,6 +40,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
   constructor(private crudService:CRUDService) {
     this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
       this.x=of(podatak);
+      console.log(podatak);
     });
     
     
@@ -48,11 +49,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
   }
  
   ngAfterViewInit() {
-    //this.data=this.data.concat(podatak);
-    //this.dataSource = new MatTableDataSource(this.data);
-    //this.dataSource.paginator = this.paginator;
-    //this.dataSource.sort = this.sort;
-    //this.isDataLoaded=true;
+    
   }
 
   applyFilter(event: Event) {
