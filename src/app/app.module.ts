@@ -41,7 +41,11 @@ import { AuthentificationService} from "./Services/authentification.service"
 import { CRUDService } from "./Services/crud.service"
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './user-info/user-info.component';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuardService } from './Services/auth-guard.service';
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,18 +102,25 @@ import { UserInfoComponent } from './user-info/user-info.component';
       {
         path:'userInfo',
         component:UserInfoComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'incidents',
         component: IncidentsCompComponent,
+        canActivate: [AuthGuardService]
+
       },
       {
         path: 'home',
         component: DashboardCompComponent,
+        canActivate: [AuthGuardService]
+
       },
       {
         path: 'new',
         component: NewIncidentCompComponent,
+        canActivate: [AuthGuardService],
+
         children: [
           {
             path: '',
@@ -144,14 +155,20 @@ import { UserInfoComponent } from './user-info/user-info.component';
       {
         path: 'notifications',
         component: Notifications3CompComponent,
+        canActivate: [AuthGuardService]
+
       },
       {
         path: 'settings',
         component: SettingsCompComponent,
+        canActivate: [AuthGuardService]
+
       },
       {
         path: 'requests',
         component: WorkRequestCompComponent,
+        canActivate: [AuthGuardService]
+
         
 
 
@@ -160,10 +177,14 @@ import { UserInfoComponent } from './user-info/user-info.component';
       {
         path: 'map',
         component: MapComponentComponent,
+        canActivate: [AuthGuardService]
+
       },
       {
           path:'newreq',
           component:NewWorkRequestComponent,
+          canActivate: [AuthGuardService],
+
           children: [
             {
               path: '',
@@ -185,6 +206,13 @@ import { UserInfoComponent } from './user-info/user-info.component';
       }
     ]),
     BrowserAnimationsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:44370"],
+        blacklistedRoutes: []
+      }
+    })
   ],
   providers: [
     AuthentificationService,
