@@ -10,9 +10,13 @@ export class AuthGuardService {
   }
   canActivate() {
     const token = localStorage.getItem("jwt");
+    console.log(this.jwtHelper.decodeToken(token));
     if (token && !this.jwtHelper.isTokenExpired(token)){
       return true;
     }
+   
+    
+
     this.router.navigate(["/"]);
     return false;
   }

@@ -59,7 +59,7 @@ namespace AnguWarriorsBack
 
 
 
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+               services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
                services.AddDbContext<AnguWarrDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("AnguWarrConnectionString")));
      
@@ -83,8 +83,8 @@ namespace AnguWarriorsBack
             builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
             );
 
-      app.UseAuthentication();
-      app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -56,13 +56,17 @@ namespace AnguWarriorsBack.Controllers
 
       if (korisnik.Password == user.Password)
       {
-
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Username),
+            //new Claim(ClaimTypes.Role, "Manager") 
+        };
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
         var tokeOptions = new JwtSecurityToken(
             issuer: "http://localhost:44370",
             audience: "http://localhost:4200",
-            claims: new List<Claim>(),
+            claims: claims,
             expires: DateTime.Now.AddMinutes(2),
             signingCredentials: signinCredentials
         );

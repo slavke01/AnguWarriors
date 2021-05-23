@@ -22,26 +22,26 @@ const data: TableData[] = [
   },{
     id: '6',
     reason: 'danas',
-    hazard: 'heh',
+    hazard: 'heh4',
     comment: 'Cao',
     
   },
   {
     id: '4',
     reason: 'danas',
-    hazard: 'heh',
+    hazard: 'heh3',
     comment: 'Cao',
     
   },{
     id: '9',
     reason: 'danas',
-    hazard: 'heh',
+    hazard: 'heh2',
     comment: 'Cao',
     
   },{
     id: '11',
     reason: 'danas',
-    hazard: 'heh',
+    hazard: 'heh1',
     comment: 'Cao',
     
   },{
@@ -79,5 +79,12 @@ export class IncidentCallsCompComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }

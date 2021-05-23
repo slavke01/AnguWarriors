@@ -35,9 +35,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MapComponentComponent } from './map-component/map-component.component';
 import { MatInputModule } from "@angular/material/input"
-import {MatIconModule} from "@angular/material/icon"
-import {ReactiveFormsModule} from "@angular/forms"
-import { AuthentificationService} from "./Services/authentification.service"
+import { MatIconModule} from "@angular/material/icon"
+import { ReactiveFormsModule } from "@angular/forms"
+import { AuthentificationService } from "./Services/authentification.service"
 import { CRUDService } from "./Services/crud.service"
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './user-info/user-info.component';
