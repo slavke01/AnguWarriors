@@ -26,3 +26,17 @@ C:\Users\Slavisa\Desktop\AnguWarr\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack
 C:\Users\Slavisa\Desktop\AnguWarr\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
 C:\Users\Slavisa\Desktop\AnguWarr\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.dll
 C:\Users\Slavisa\Desktop\AnguWarr\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.deps.json
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.json
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.runtimeconfig.dev.json
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\bin\Debug\netcoreapp2.1\AnguWarriorsBack.pdb
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csprojAssemblyReference.cache
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.csproj.CoreCompileInputs.cache
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cache
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorAssemblyInfo.cs
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfoInputs.cache
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.AssemblyInfo.cs
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.RazorTargetAssemblyInfo.cache
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.dll
+D:\web2\AnguWarriors\AnguWarriorsBack\AnguWarriorsBack\obj\Debug\netcoreapp2.1\AnguWarriorsBack.pdb

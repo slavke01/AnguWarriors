@@ -11,5 +11,8 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  logOut() {
+    localStorage.removeItem("jwt");
+    
+ }
 }
