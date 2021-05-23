@@ -40,6 +40,7 @@ import {ReactiveFormsModule} from "@angular/forms"
 import { AuthentificationService} from "./Services/authentification.service"
 import { CRUDService } from "./Services/crud.service"
 import { HttpClientModule } from '@angular/common/http';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { HttpClientModule } from '@angular/common/http';
     MultimediaAttachmentsNewRequestComponent,
     EquipmentNewRequestComponent,
     NewCallDialogTableComponent,
-    MapComponentComponent
+    MapComponentComponent,
+    UserInfoComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -92,6 +94,10 @@ import { HttpClientModule } from '@angular/common/http';
       {
         path: 'register',
         component: RegCompComponent,
+      },
+      {
+        path:'userInfo',
+        component:UserInfoComponent,
       },
       {
         path: 'incidents',

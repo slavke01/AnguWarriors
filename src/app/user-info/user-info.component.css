@@ -1,0 +1,12 @@
+.userInfo-comp{
+
+    position: absolute;
+    left: 550px;
+    top: 20px;
+    width: 300px;
+    padding-left: 25px;
+    border-radius: 35px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+    }
