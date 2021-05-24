@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { equals } from 'ol/extent';
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { User } from '../app.module';
-import { AuthentificationService } from '../Services/authentification.service';
+import { AngularMaterialModule } from '../../angular-material/angular-material.module';
+import { User } from '../../app.module';
+import { AuthentificationService } from '../../Services/authentification.service';
 @Component({
   selector: 'app-reg-comp',
   templateUrl: './reg-comp.component.html',

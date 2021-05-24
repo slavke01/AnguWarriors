@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'ol';
-import { NalogRada } from '../app.module';
-import { CRUDService } from '../Services/crud.service';
+import { NalogRada } from '../../app.module';
+import { CRUDService } from '../../Services/crud.service';
 import { of } from 'rxjs';
 
 @Component({

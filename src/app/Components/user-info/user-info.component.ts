@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from '../app.module';
-import { AuthentificationService } from '../Services/authentification.service';
+import { User } from '../../app.module';
+import { AuthentificationService } from '../../Services/authentification.service';
 
 @Component({
   selector: 'app-user-info',
