@@ -272,10 +272,10 @@ export interface Login{
   Password:string
 }
 export interface Elementi{
-  Id:string,
-  Naziv:string,
-  ElementType:string,
-  Adress:string,
-  Longitude:string,
-  Latitude:string
+  id:string,
+  naziv:string,
+  elementType:string,
+  adress:string,
+  longitude:string,
+  latitude:string
 }

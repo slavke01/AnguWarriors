@@ -68,12 +68,12 @@ export class NewElementCompComponent implements OnInit {
 
     dodajElement(){
       var element:Elementi={
-        Id:this.id,
-        Naziv:this.name,
-        ElementType:this.type,
-        Adress:this.adress,
-        Longitude:this.Lon,
-        Latitude:this.Lat
+        id:this.id,
+        naziv:this.name,
+        elementType:this.type,
+        adress:this.adress,
+        longitude:this.Lon,
+        latitude:this.Lat
     }
       console.log(element);
       this.crudService.createElement(element).subscribe();

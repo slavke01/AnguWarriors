@@ -67,37 +67,48 @@ export class MapComponentComponent implements OnInit {
       
     });
 
+    
+
     this.cs.getElements().subscribe((podatak:Elementi[])=>{this.iglice=this.iglice.concat(podatak);
        
-      for (let i=0; i<this.iglice.length ;i++){
-        let x=parseFloat(this.iglice[i].Longitude)
-        let y=parseFloat(this.iglice[i].Latitude)
+      
+
+      for (var igla of this.iglice){
         
+        
+
+        let x=parseFloat(igla.longitude);
+        let y=parseFloat(igla.latitude);
+
+      
         let ff =new Feature({
           geometry: new Point(olProj.fromLonLat([x,y]))
         })
-  
-        //console.log(ff);
         
         this.ficuri.push(ff);
-        
+
       }
 
-      console.log(this.ficuri);
+      
+      
+
+      var layer = new VectorLayer({
+        source: new VectorSource({
+          features:this.ficuri
+          ,
+        }),
+        style: stil,
+      });
+  
+      
+
+      this.map.addLayer(layer);
 
     })
 
     
 
-    var layer = new VectorLayer({
-      source: new VectorSource({
-        features:this.ficuri 
-        ,
-      }),
-      style: stil,
-    });
-
-    this.map.addLayer(layer);
+    
 
     
   }
