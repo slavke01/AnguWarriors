@@ -43,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './Components/user-info/user-info.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './Services/auth-guard.service';
+import { NewElementCompComponent } from './Components/new-element-comp/new-element-comp.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -74,7 +75,8 @@ export function tokenGetter() {
     EquipmentNewRequestComponent,
     NewCallDialogTableComponent,
     MapComponentComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    NewElementCompComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -181,6 +183,10 @@ export function tokenGetter() {
 
       },
       {
+          path:"newelement",
+          component:NewElementCompComponent,
+      },
+      {
           path:'newreq',
           component:NewWorkRequestComponent,
           canActivate: [AuthGuardService],
@@ -264,4 +270,12 @@ export interface NalogRada{
 export interface Login{
   Username:string,
   Password:string
+}
+export interface Elementi{
+  Id:string,
+  Naziv:string,
+  ElementType:string,
+  Adress:string,
+  Longitude:string,
+  Latitude:string
 }

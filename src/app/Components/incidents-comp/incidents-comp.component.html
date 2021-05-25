@@ -39,7 +39,7 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8" >
-    <table mat-table  [dataSource]="x | async" matSort>
+    <table mat-table  [dataSource]="dataSource" matSort>
       <!-- ID Column -->
       <ng-container matColumnDef="ID">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>

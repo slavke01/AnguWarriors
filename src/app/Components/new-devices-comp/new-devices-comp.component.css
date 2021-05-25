@@ -4,7 +4,7 @@
   border-style: solid;
   top: 50px;
 
-  width: 85%;
+  width: 95%;
 
   margin-top: 20px;
 }
@@ -19,5 +19,5 @@ table {
 
 td,
 th {
-  width: 25%;
+  width: 20%;
 }

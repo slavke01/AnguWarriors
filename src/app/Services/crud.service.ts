@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Incident, NalogRada } from '../app.module';
+import { Elementi, Incident, NalogRada } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -35,13 +35,29 @@ export class CRUDService {
     );
   }
 
+  createElement(element:Elementi):Observable<any>{
+    const body = JSON.stringify(element);
+    console.log(body);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createElement',
+      body,
+      this.httpOptions
+    );
+  }
+
+
   getIncidents(){
 
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncidents',
       this.httpOptions);
   }
+  getElements(){
 
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getElements',
+      this.httpOptions);
+  }
 
   getNalozi(){
 

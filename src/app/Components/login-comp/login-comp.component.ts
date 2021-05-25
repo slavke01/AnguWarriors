@@ -45,8 +45,6 @@ export class LoginCompComponent implements OnInit {
     }, err => {
       this.invalidLogin = true;
     });
-
-   
   }
 
   onChangeUsername(param:string){

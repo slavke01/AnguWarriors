@@ -18,19 +18,21 @@ namespace AnguWarriorsBack.Models
         [Required]
         public string Adress { get; set; }
         [Required]
-        public string Koordinate { get; set; } //Ovo mozda nije string ali neka stoji za sad
+        public string Longitude { get; set; } //Ovo mozda nije string ali neka stoji za sad
+        [Required]
+        public string Latitude { get; set; }
         [Required]
         public TipElementa ElementType { get; set; }
 
 
         public Element() { }
-        public Element(TipElementa el,string id,string naziv,string adresa,string koord) {
+        public Element(TipElementa el,string id,string naziv,string adresa,string lon,string lat) {
             this.ElementType = el;
             this.ID = id;
             this.Naziv = naziv;
             this.Adress = adresa;
-            this.Koordinate = koord;
-
+            this.Longitude = lon;
+            this.Latitude = lat;
         }
     }
 }

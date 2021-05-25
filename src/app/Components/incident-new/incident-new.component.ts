@@ -49,25 +49,25 @@ export class IncidentNewComponent implements OnInit {
     return '';
   }
   getErrorMessageDescription() {
-    if (this.StatusCon.hasError('required')) {
+    if (this.DescriptionCon.hasError('required')) {
       return 'You must enter Description';
     }
     return '';
   }
   getErrorMessageAffectedCustomers() {
-    if (this.StatusCon.hasError('required')) {
+    if (this.AffCusCon.hasError('required')) {
       return 'You must enter Description';
     }
     return '';
   }
   getErrorMessageCalls() {
-    if (this.StatusCon.hasError('required')) {
+    if (this.CallsCon.hasError('required')) {
       return 'You must enter Calls';
     }
     return '';
   }
   getErrorMessageVoltage() {
-    if (this.StatusCon.hasError('required')) {
+    if (this.VoltageCon.hasError('required')) {
       return 'You must enter Voltage';
     }
     return '';

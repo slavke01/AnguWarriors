@@ -16,7 +16,6 @@ namespace AnguWarriorsBack.Controllers
   public class CRUDController : ControllerBase
   {
     private readonly AnguWarrDBContext _context;
-    private readonly IMapper mapper;
     public CRUDController(AnguWarrDBContext _context) { this._context = _context; }
 
     [HttpPost("/api/crud/createIncident")]
@@ -27,6 +26,15 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok();
     }
+
+    [HttpPost("/api/crud/createElement")]
+    public async Task<IActionResult> CreateElement([FromBody] Element element) {
+
+      this._context.Elements.Add(element);
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
 
     [HttpPost("/api/crud/createNalog")]
     [Authorize]
@@ -61,6 +69,15 @@ namespace AnguWarriorsBack.Controllers
       List<Incident> retVal = this._context.Incidents.ToList();
       return Ok(retVal);
     }
+
+    [HttpGet("/api/crud/getElements")]
+    public async Task<IActionResult> GetElements()
+    {
+      List<Element> retVal = this._context.Elements.ToList();
+      return Ok(retVal);
+    }
+
+
 
     [HttpGet("/api/crud/getNalozi")]
     [Authorize]

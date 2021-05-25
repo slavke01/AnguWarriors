@@ -2,59 +2,12 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Elementi } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
 
-export interface TableData {
-  id: string;
-  name: string;
-  type: string;
-  coordinates: string;
-  adress: string;
-}
 
-const data: TableData[] = [
-  {
-    id: '1',
-    name: 'danas',
-    type: 'heh',
-    coordinates: 'Cao',
-    adress: 'Ftn',
-  },
-  {
-    id: '2',
-    name: 'danas',
-    type: 'Tv',
-    coordinates: 'Blizu',
-    adress: 'Ftn',
-  },
-  {
-    id: '3',
-    name: 'danas',
-    type: 'rucka',
-    coordinates: 'tu negdje',
-    adress: 'Ftn',
-  },
-  {
-    id: '4',
-    name: 'danas',
-    type: 'brava',
-    coordinates: 'Nije blizu',
-    adress: 'Ftn',
-  },
-  {
-    id: '5',
-    name: 'danas',
-    type: 'prekidac',
-    coordinates: 'bas daleko',
-    adress: 'Ftn',
-  },
-  {
-    id: '6',
-    name: 'danas',
-    type: 'osigurac',
-    coordinates: 'daleko',
-    adress: 'Ftn',
-  },
-];
+
+const data: Elementi[] = [];
 
 @Component({
   selector: 'app-new-devices-comp',
@@ -62,25 +15,37 @@ const data: TableData[] = [
   styleUrls: ['./new-devices-comp.component.css'],
 })
 export class NewDevicesCompComponent implements AfterViewInit {
-  constructor() {
-    this.dataSource = new MatTableDataSource(data);
+  constructor(private crudService:CRUDService) {
+    //this.dataSource = new MatTableDataSource(data);
   }
   displayedColumns: string[] = [
     'id',
     'name',
     'type',
-    'coordinates',
+    'lon',
+    'lat',
     'adress',
   ];
-  dataSource: MatTableDataSource<TableData>;
+  dataSource: MatTableDataSource<Elementi>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.crudService.getElements().subscribe((podatak: Elementi[])=>{
+      this.dataSource = new MatTableDataSource(podatak);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    
+    });
   }
 
+
+
+
+
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

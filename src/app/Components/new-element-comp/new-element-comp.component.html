@@ -1,0 +1,149 @@
+<div class="bg">
+  <table>
+    <tr>
+      <th>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Element Id</mat-label>
+              <input
+                matInput
+                (input)="onChangeId($event.target.value)"
+                placeholder="Element ID"
+                [formControl]="ElementID"
+                required
+              />
+              <mat-error *ngIf="ElementID.invalid">{{
+                getErrorMessageId()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Element Name</mat-label>
+              <input
+                matInput
+                (input)="onChangeName($event.target.value)"
+                placeholder="Element Name"
+                [formControl]="ElementName"
+                required
+              />
+              <mat-error *ngIf="ElementName.invalid">{{
+                getErrorMessageName()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+      </th>
+
+      <th>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Element Adress</mat-label>
+              <input
+                matInput
+                (input)="onChangeAdress($event.target.value)"
+                placeholder="Element Adress"
+                [formControl]="ElementAdress"
+                required
+              />
+              <mat-error *ngIf="ElementAdress.invalid">{{
+                getErrorMessageAdress()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+      </th>
+    </tr>
+
+    <tr>
+      <th>
+        <div>
+          <mat-form-field
+            appearance="outline"
+            style="margin-left: 15px; width: 200px"
+          >
+            <mat-label>Type</mat-label>
+            <mat-select [(ngModel)]="type" name="type">
+              <mat-option *ngFor="let opcija of niz" [value]="opcija">
+                {{ opcija }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Element Longitude</mat-label>
+              <input
+                matInput
+                (input)="onChangeLon($event.target.value)"
+                placeholder="Element Longitude"
+                [formControl]="ElementLon"
+                required
+              />
+              <mat-error *ngIf="ElementLon.invalid">{{
+                getErrorMessageLon()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+      </th>
+      <th>
+        <div>
+          <p>
+            <mat-form-field
+              appearance="outline"
+              style="margin-left: 15px; width: 200px"
+            >
+              <mat-label>Element Latitude</mat-label>
+              <input
+                matInput
+                (input)="onChangeLat($event.target.value)"
+                placeholder="Element Latitude"
+                [formControl]="ElementLat"
+                required
+              />
+              <mat-error *ngIf="ElementLat.invalid">{{
+                getErrorMessageLat()
+              }}</mat-error>
+              <!--mat-hint>Hint</mat-hint-->
+            </mat-form-field>
+          </p>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <button
+        (click)="dodajElement()"
+        class="btn btn-dark"
+        style="position:absolute; left:300px"
+      >
+        Log In
+      </button>
+    </tr>
+  </table>
+</div>

@@ -21,23 +21,28 @@
       <!-- Progress Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.naziv }}</td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-        <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.elementType }}</td>
       </ng-container>
 
       <!-- Color Column -->
-      <ng-container matColumnDef="coordinates">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Koordinate</th>
+      <ng-container matColumnDef="lon">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Longitude</th>
         <td mat-cell *matCellDef="let row">
-          {{ row.coordinates }}
+          {{ row.longitude }}
         </td>
       </ng-container>
-
+      <ng-container matColumnDef="lat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Latitude</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.latitude }}
+        </td>
+      </ng-container>
       <ng-container matColumnDef="adress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Adress</th>
         <td mat-cell *matCellDef="let row" >
