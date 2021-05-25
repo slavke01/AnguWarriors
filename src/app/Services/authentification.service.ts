@@ -37,7 +37,7 @@ export class AuthentificationService {
 
   getUser(username:string){
     
-    return this.http.get<User>(
+    return this.http.get<any>(
       this.baseURL + 'api/getUser/'+username,
       this.httpOptions);
   }
