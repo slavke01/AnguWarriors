@@ -10,16 +10,32 @@ import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import { Fill, Stroke, Circle, Style } from 'ol/style';
+import { CRUDService } from 'src/app/Services/crud.service';
+import { Elementi } from '../../app.module';
 @Component({
   selector: 'app-map-component',
   templateUrl: './map-component.component.html',
   styleUrls: ['./map-component.component.css'],
 })
 export class MapComponentComponent implements OnInit {
-  constructor() {}
+  constructor(private cs:CRUDService) {
+
+    
+
+
+  }
   map;
+  iglice:Elementi[]=[]
+  ficuri:Feature[]=[]
+
 
   ngOnInit(): void {
+
+
+    
+    
+  
+
     var fill = new Fill({
       color: 'rgba(224,61,170,0.7)',
     });
@@ -48,27 +64,41 @@ export class MapComponentComponent implements OnInit {
         center: olProj.fromLonLat([19.8335, 45.2671]),
         zoom: 12,
       }),
+      
     });
+
+    this.cs.getElements().subscribe((podatak:Elementi[])=>{this.iglice=this.iglice.concat(podatak);
+       
+      for (let i=0; i<this.iglice.length ;i++){
+        let x=parseFloat(this.iglice[i].Longitude)
+        let y=parseFloat(this.iglice[i].Latitude)
+        
+        let ff =new Feature({
+          geometry: new Point(olProj.fromLonLat([x,y]))
+        })
+  
+        //console.log(ff);
+        
+        this.ficuri.push(ff);
+        
+      }
+
+      console.log(this.ficuri);
+
+    })
+
+    
+
     var layer = new VectorLayer({
       source: new VectorSource({
-        features: [
-          new Feature({
-            geometry: new Point(olProj.fromLonLat([19.8295, 45.2631])),
-          }),
-          new Feature({
-            geometry: new Point(olProj.fromLonLat([19.8319, 45.2621])),
-          }),
-          new Feature({
-            geometry: new Point(olProj.fromLonLat([19.8395, 45.2661])),
-          }),
-          new Feature({
-            geometry: new Point(olProj.fromLonLat([19.8320, 45.2600])),
-          }),
-        ],
+        features:this.ficuri 
+        ,
       }),
       style: stil,
     });
 
     this.map.addLayer(layer);
+
+    
   }
 }
