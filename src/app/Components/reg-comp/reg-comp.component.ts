@@ -136,14 +136,14 @@ export class RegCompComponent implements OnInit {
  
     
       var user: User = {
-        Username: this.username,
-        Password: this.password,
-        FirstName: this.firstName,
-        LastName: this.lastName,
-        DatumRodjenja: this.dateOfBirth,
-        Adress: this.address,
-        EMail: this.emailAddress,
-        UserType:"CLAN"
+        username: this.username,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        datumRodjenja: this.dateOfBirth,
+        adress: this.address,
+        eMail: this.emailAddress,
+        userType:"CLAN"
       };
     
  

@@ -35,7 +35,33 @@ namespace AnguWarriorsBack.Controllers
       return Ok();
     }
 
+    [HttpPost("api/crud/createPlan")]
+    public async Task<IActionResult> CreatePlan([FromBody] PlanRadaDTO plandto) {
 
+      PlanRada plan = new PlanRada();
+
+      plan.Beleske = plandto.Beleske;
+      plan.CreatedBy = plandto.CreatedBy;
+      plan.CreatedOn = DateTime.Now;
+      plan.Detalji = plandto.Detalji;
+      plan.DocumentType = plandto.DocumentType;
+      plan.Ekipa = "neka";
+      plan.IdIncidenta = "neki";
+      plan.IdNalogaRada = "neki";
+      plan.IdPlana = plandto.IdPlana;
+      plan.Kompanija = plandto.Kompanija;
+      plan.KrajRada = plandto.KrajRada;
+      plan.PocetakRada = plandto.PocetakRada;
+      plan.Status = plandto.Status;
+      plan.Svrha = plandto.Svrha;
+      plan.TelefonskiBroj = plandto.TelefonskiBroj;
+      plan.Ulica = plandto.Ulica;
+
+      this._context.Planovi.Add(plan);
+      await this._context.SaveChangesAsync();
+
+      return Ok();
+    }
     [HttpPost("/api/crud/createNalog")]
     [Authorize]
     public async Task<IActionResult> CreateNalog([FromBody] NalogRadaDTO nrdto)
@@ -58,7 +84,7 @@ namespace AnguWarriorsBack.Controllers
       a.Svrha = nrdto.Svrha;
       this._context.Nalozi.Add(a);
       await this._context.SaveChangesAsync();
-      return Ok(a);
+      return Ok();
     }
 
 
@@ -108,5 +134,33 @@ namespace AnguWarriorsBack.Controllers
       return Ok(naloziNovi);
     }
 
+    [HttpGet("/api/crud/getPlanovi")]
+    public async Task<IActionResult> GetPlanovi() {
+
+      List<PlanRada> planoviOrg = this._context.Planovi.ToList();
+      List<PlanRadaDTO> planoviDTO = new List<PlanRadaDTO>();
+
+      foreach (PlanRada p in planoviOrg) {
+        PlanRadaDTO temp = new PlanRadaDTO();
+        temp.Beleske = p.Beleske;
+        temp.CreatedBy = p.CreatedBy;
+        temp.Detalji = p.Detalji;
+        temp.DocumentType = p.DocumentType;
+        temp.IdPlana = p.IdPlana;
+        temp.Kompanija = p.Kompanija;
+        temp.KrajRada = p.KrajRada;
+        temp.PocetakRada = p.PocetakRada;
+        temp.Status = p.Status;
+        temp.Svrha = p.Svrha;
+        temp.TelefonskiBroj = p.TelefonskiBroj;
+        temp.Ulica = p.Ulica;
+
+        planoviDTO.Add(temp);
+      }
+
+
+
+      return Ok(planoviDTO);
+    }
   }
 }

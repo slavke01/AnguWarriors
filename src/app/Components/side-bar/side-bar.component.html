@@ -36,9 +36,9 @@
 </li>
 <li>
     <div class="akoBasMora">
-        <a routerLink="/register">
+        <a routerLink="/switching">
       <img class="slicica-sidebar" src="assets/phone-512.webp" alt="" />
-      <span class="title">Telefon </span></a>
+      <span class="title">Switching Plans </span></a>
     </div>
 </li>
 <li>
@@ -93,4 +93,17 @@
     </div>
 </li>
   </ul>
+</div>
+
+
+<div class="personal">
+
+  <a (click)="showPersonal()">
+    <img class="slicica-sidebar" style="width:70px;height:70px" src="assets/u2.png" alt="" />
+    <span class="title">User Info</span></a>
+    <div class="info" *ngIf="show">
+
+      <app-user-info></app-user-info>
+    </div>
+
 </div>

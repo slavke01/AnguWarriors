@@ -8,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   constructor() { }
-
+  show:boolean=false;
   ngOnInit(): void {
   }
   logOut() {
     localStorage.removeItem("jwt");
     
+ }
+ showPersonal(){
+
+  this.show=!this.show;
+  console.log(this.show)
  }
 }

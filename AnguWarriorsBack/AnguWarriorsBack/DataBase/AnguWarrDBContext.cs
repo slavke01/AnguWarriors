@@ -19,5 +19,6 @@ namespace AnguWarriorsBack.DataBase
            public DbSet<Element> Elements { get; set; }
            public DbSet<Incident> Incidents { get; set; }
            public DbSet<NalogRada> Nalozi { get; set; }
+           public DbSet<PlanRada> Planovi { get; set; }
   }
 }

@@ -79,3 +79,24 @@ margin-left: 10px;
     white-space: nowrap;
 
 }
+
+
+.personal{
+    position: absolute;
+    width: 150px;
+    height: 75px;
+    top: 5px;
+    right: 5px;
+
+    background: gainsboro;
+border: 4px lightgray;
+border-style: outset;
+
+}
+.info{
+    position: absolute;
+    right: 650px;
+    width: 200px;
+    height: 400px;
+
+}

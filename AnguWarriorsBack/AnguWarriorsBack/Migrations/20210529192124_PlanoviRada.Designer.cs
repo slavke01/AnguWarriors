@@ -4,14 +4,16 @@ using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnguWarriorsBack.Migrations
 {
     [DbContext(typeof(AnguWarrDBContext))]
-    partial class AnguWarrDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210529192124_PlanoviRada")]
+    partial class PlanoviRada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

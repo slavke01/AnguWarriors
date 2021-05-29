@@ -44,6 +44,9 @@ import { UserInfoComponent } from './Components/user-info/user-info.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { NewElementCompComponent } from './Components/new-element-comp/new-element-comp.component';
+import { PlanRadaComponent } from './Components/plan-rada/plan-rada.component';
+import { NewPlanRadaComponent } from './Components/new-plan-rada/new-plan-rada.component';
+import { BasicPlanRadaComponent } from './Components/basic-plan-rada/basic-plan-rada.component';
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -76,7 +79,10 @@ export function tokenGetter() {
     NewCallDialogTableComponent,
     MapComponentComponent,
     UserInfoComponent,
-    NewElementCompComponent
+    NewElementCompComponent,
+    PlanRadaComponent,
+    NewPlanRadaComponent,
+    BasicPlanRadaComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -170,11 +176,11 @@ export function tokenGetter() {
         path: 'requests',
         component: WorkRequestCompComponent,
         canActivate: [AuthGuardService]
-
-        
-
-
-
+      },
+      {
+          path:'switching',
+          component:PlanRadaComponent,
+          canActivate: [AuthGuardService]
       },
       {
         path: 'map',
@@ -182,6 +188,19 @@ export function tokenGetter() {
         canActivate: [AuthGuardService]
 
       },
+      {
+        path: 'newswitch',
+        component:  NewPlanRadaComponent ,
+        canActivate: [AuthGuardService],
+        children: [
+          {
+            path: '',
+            component: BasicPlanRadaComponent,
+          },
+          
+        ]
+      },
+
       {
           path:"newelement",
           component:NewElementCompComponent,
@@ -229,14 +248,14 @@ export function tokenGetter() {
 export class AppModule {}
 
 export interface User{
-  Username:string;
-  Password:string;
-  FirstName:string;
-  LastName:string;
-  EMail:string;
-  Adress:string;
-  DatumRodjenja:Date;
-  UserType:string;
+  username:string;
+  password:string;
+  firstName:string;
+  lastName:string;
+  eMail:string;
+  adress:string;
+  datumRodjenja:Date;
+  userType:string;
 }
 
 export interface Incident{
@@ -278,4 +297,20 @@ export interface Elementi{
   adress:string,
   longitude:string,
   latitude:string
+}
+
+export interface PlanRada{
+  idPlana:string;
+  documentType:string;
+  status:string;
+  pocetakRada:Date;
+  krajRada:Date;
+  svrha:string;
+  beleske:string;
+  detalji:string;
+  ulica:string;
+  kompanija:string;
+  telefonskiBroj:string;
+  createdBy:string;
+
 }
