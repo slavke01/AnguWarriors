@@ -32,7 +32,7 @@ export class UserInfoComponent implements OnInit {
       this.authService.getUser(username).subscribe((podatak: UserHelp)=>{
           this.korisnik=podatak;
       console.log(this.korisnik)
-
+      
       });
   }
   

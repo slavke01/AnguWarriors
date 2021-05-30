@@ -74,7 +74,7 @@ namespace AnguWarriorsBack.Controllers
       a.KrajRada = nrdto.KrajRada;
       a.CreatedTime = DateTime.Now;
       a.CreatedBy = "pera";
-      a.IdNaloga = Guid.NewGuid().ToString();
+      a.IdNaloga = nrdto.IdNaloga;
       a.IdIncidenta = Guid.NewGuid().ToString();
       a.Ulica = "random";
       a.Kompanija = nrdto.Kompanija;
@@ -96,6 +96,56 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+    [HttpPost("/api/crud/deleteIncident/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteIncident([FromRoute] string id)
+    {
+      Incident retVal = await this._context.Incidents.FindAsync(id);
+      if (retVal != null)
+      {
+        this._context.Incidents.Remove(retVal);
+        await this._context.SaveChangesAsync();
+
+        return Ok();
+      }
+      else {
+        return BadRequest();
+      }
+    }
+    [HttpPost("/api/crud/deleteNalog/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteWork([FromRoute] string id)
+    {
+      NalogRada retVal = await this._context.Nalozi.FindAsync(id);
+      if (retVal != null)
+      {
+        this._context.Nalozi.Remove(retVal);
+        await this._context.SaveChangesAsync();
+
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+    [HttpPost("/api/crud/deleteSwitching/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteSwitch([FromRoute] string id)
+    {
+      PlanRada retVal = await this._context.Planovi.FindAsync(id);
+      if (retVal != null)
+      {
+        this._context.Planovi.Remove(retVal);
+        await this._context.SaveChangesAsync();
+
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
     [HttpGet("/api/crud/getElements")]
     public async Task<IActionResult> GetElements()
     {
@@ -115,7 +165,7 @@ namespace AnguWarriorsBack.Controllers
       foreach (NalogRada nr in naloziOriginal)
       {
         NalogRadaDTO nrdto = new NalogRadaDTO();
-
+        nrdto.IdNaloga = nr.IdNaloga;
         nrdto.NalogType = nr.NalogType;
         nrdto.Status = nr.Status;
         nrdto.PocetakRada = nr.PocetakRada;

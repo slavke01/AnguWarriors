@@ -6,6 +6,7 @@ import { Observable } from 'ol';
 import { Incident } from '../../app.module';
 import { CRUDService } from '../../Services/crud.service';
 import { of } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { of } from 'rxjs';
 export class IncidentsCompComponent implements AfterViewInit  {
   data:Incident[] = [];
   x;
+  showDelete=false;
   isDataLoaded=false;
   displayedColumns: string[] = [
     'ID',
@@ -30,6 +32,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
     'AffectedPeople',
     'Pozivi',
     'Voltage'
+   
   ];
   dataSource: MatTableDataSource<Incident>;
 
@@ -37,7 +40,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
   @ViewChild(MatSort) sort: MatSort;
 
  
-  constructor(private crudService:CRUDService) {
+  constructor(private crudService:CRUDService,private jwtHelper: JwtHelperService) {
     this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
       this.data=this.data.concat(podatak); 
       this.dataSource = new MatTableDataSource(podatak);
@@ -45,9 +48,15 @@ export class IncidentsCompComponent implements AfterViewInit  {
       this.dataSource.sort = this.sort;
     
     });
-    
-    
-    
+    const token = localStorage.getItem("jwt");
+    var x =this.jwtHelper.decodeToken(token);
+    var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        if(role=="Admin"){
+          this.displayedColumns.push('Delete');
+          this.showDelete=true;
+
+
+        }
    
   }
  
@@ -55,7 +64,12 @@ export class IncidentsCompComponent implements AfterViewInit  {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  deleteRow(id:string){
+    console.log(id)
+    this.crudService.deleteIncident(id).subscribe();
+    window.location.reload();
+  }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

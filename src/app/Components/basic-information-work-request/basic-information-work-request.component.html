@@ -107,8 +107,29 @@
         
         <th>
         
-                <label for="" style="margin-left: 15px;">Incident: &nbsp;</label>
-                <label for="">INC1</label>
+          
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>ID</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeId($event.target.value)"
+                      placeholder="ID"
+                      [formControl]="IdCon"
+                      required
+                    />
+                    <mat-error *ngIf="IdCon.invalid">{{
+                      getErrorMessageId()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+        
             
         </th>
     </tr>

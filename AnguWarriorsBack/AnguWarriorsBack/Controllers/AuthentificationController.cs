@@ -30,7 +30,6 @@ namespace AnguWarriorsBack.Controllers
 
 
     [HttpPost("/api/register")]
-    // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public async Task<IActionResult> RegisterUser([FromBody] User user)
     {
       this._context.Users.Add(user);
@@ -58,7 +57,11 @@ namespace AnguWarriorsBack.Controllers
       {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Name, user.Username)
+        };
+            if (korisnik.UserType==TipKorisnika.ADMIN) {
+            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+
             //new Claim(ClaimTypes.Role, "Manager") 
         };
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));

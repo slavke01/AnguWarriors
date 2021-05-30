@@ -11,6 +11,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   constructor(private CrudService: CRUDService) {}
 
   ngOnInit(): void {}
+  IdCon = new FormControl('', [Validators.required]);
   StartTimeCon = new FormControl('', [Validators.required]);
   EndTimeCon = new FormControl('', [Validators.required]);
   CreatedTimeCon = new FormControl('', [Validators.required]);
@@ -31,13 +32,19 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   purpose = null;
   details = null;
   notes = null;
-
+  id=null;
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
       return 'You must Chose a starting date';
+    }
+    return '';
+  }
+  getErrorMessageId() {
+    if (this.IdCon.hasError('required')) {
+      return 'You must enter an ID';
     }
     return '';
   }
@@ -118,6 +125,9 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   onChangePurpose(param: string) {
     this.purpose = param;
   }
+  onChangeId(param: string) {
+    this.id = param;
+  }
   onChangeDetails(param: string) {
     this.details = param;
   }
@@ -127,6 +137,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
 
   AjmoNalog() {
     var nalog: NalogRada = {
+      Id:this.id,
       NalogType: this.type,
       Status: 'Draft',
       PocetakRada: this.startTime,

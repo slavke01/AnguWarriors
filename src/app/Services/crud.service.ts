@@ -75,7 +75,24 @@ export class CRUDService {
       this.baseURL + 'api/crud/getNalozi',
       this.httpOptions);
   }
-  
+  deleteIncident(id:string){
+    
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteIncident/'+id,
+      this.httpOptions);
+  }
+  deleteNalogRada(id:string){
+    
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteNalog/'+id,
+      this.httpOptions);
+  }
+  deletePlanRada(id:string){
+    
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteSwitching/'+id,
+      this.httpOptions);
+  }
   getPlanovi(){
     return this.http.get<PlanRada[]>(
       this.baseURL + 'api/crud/getPlanovi',

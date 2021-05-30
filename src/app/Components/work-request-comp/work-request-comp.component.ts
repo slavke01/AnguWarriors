@@ -6,6 +6,7 @@ import { Observable } from 'ol';
 import { NalogRada } from '../../app.module';
 import { CRUDService } from '../../Services/crud.service';
 import { of } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-work-request-comp',
@@ -17,6 +18,7 @@ export class WorkRequestCompComponent implements OnInit {
   data:NalogRada[]=[];
   
   displayedColumns: string[] = [
+    'Id',
     'NalogType',
     'Status',
     'PocetakRada',
@@ -29,11 +31,11 @@ export class WorkRequestCompComponent implements OnInit {
   ];
 
   dataSource: MatTableDataSource<NalogRada>;
-
+  showDelete=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private crs:CRUDService) { }
+  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
     this.crs.getNalozi().subscribe((podatak: NalogRada[])=>{
@@ -41,8 +43,22 @@ export class WorkRequestCompComponent implements OnInit {
     this.dataSource = new MatTableDataSource(podatak);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
+     
     });
+    const token = localStorage.getItem("jwt");
+    var x =this.jwtHelper.decodeToken(token);
+    var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        if(role=="Admin"){
+          this.displayedColumns.push('Delete');
+          this.showDelete=true;
+
+
+        }
+  }
+  deleteRow(id:string){
+    console.log(id)
+    this.crs.deleteNalogRada(id).subscribe();
+    window.location.reload();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

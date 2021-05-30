@@ -82,7 +82,7 @@ export function tokenGetter() {
     NewElementCompComponent,
     PlanRadaComponent,
     NewPlanRadaComponent,
-    BasicPlanRadaComponent
+    BasicPlanRadaComponent,
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -189,6 +189,11 @@ export function tokenGetter() {
 
       },
       {
+        path: 'testing',
+        component:NewPlanRadaComponent ,
+        
+      },
+      {
         path: 'newswitch',
         component:  NewPlanRadaComponent ,
         canActivate: [AuthGuardService],
@@ -274,6 +279,7 @@ export interface Incident{
 }
 
 export interface NalogRada{
+  Id:string;
   NalogType:string;
   Status:string;
   PocetakRada:Date;
