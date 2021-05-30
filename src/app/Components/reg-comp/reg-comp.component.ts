@@ -143,7 +143,8 @@ export class RegCompComponent implements OnInit {
         datumRodjenja: this.dateOfBirth,
         adress: this.address,
         eMail: this.emailAddress,
-        userType:"CLAN"
+        userType:"CLAN",
+        approved:false
       };
     
  

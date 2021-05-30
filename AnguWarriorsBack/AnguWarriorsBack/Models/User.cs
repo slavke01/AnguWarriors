@@ -34,7 +34,8 @@ namespace AnguWarriorsBack.Models
         public string EMail { get; set; }
         [Required]
         public TipKorisnika UserType { get; set; }
-
+        [Required]
+        public bool Approved { get; set; }
 
         public User() { }
         /*

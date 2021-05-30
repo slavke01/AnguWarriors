@@ -12,6 +12,7 @@ export interface UserHelp{
   adress:string;
   datumRodjenja:Date;
   userType:string;
+  approved:boolean;
   }
 
 @Component({
@@ -21,7 +22,7 @@ export interface UserHelp{
 })
 export class UserInfoComponent implements OnInit {
 
-  korisnik:UserHelp={firstName:"www",lastName:"",password:"",adress:"",userType:"",datumRodjenja:new Date(),username:"",eMail:""};
+  korisnik:UserHelp={firstName:"www",lastName:"",password:"",adress:"",userType:"",datumRodjenja:new Date(),username:"",eMail:"",approved:false};
   x:string="djurdja";
   constructor(private jwtHelper: JwtHelperService,private authService:AuthentificationService) 
   { 

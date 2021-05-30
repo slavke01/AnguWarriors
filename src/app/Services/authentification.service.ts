@@ -35,6 +35,25 @@ export class AuthentificationService {
 
   }
 
+  getUnaproved(){
+    return this.http.get<any>(
+      this.baseURL + 'api/getUnapproved',
+      this.httpOptions);
+
+  }
+
+    decline(username:string){
+      return this.http.post<any>(
+        this.baseURL + 'api/decline/'+username,
+        this.httpOptions);
+
+    }
+    approve(username:string){
+      return this.http.post<any>(
+        this.baseURL + 'api/approve/'+username,
+        this.httpOptions);
+
+    }
   getUser(username:string){
     
     return this.http.get<any>(

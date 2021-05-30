@@ -47,6 +47,9 @@ import { NewElementCompComponent } from './Components/new-element-comp/new-eleme
 import { PlanRadaComponent } from './Components/plan-rada/plan-rada.component';
 import { NewPlanRadaComponent } from './Components/new-plan-rada/new-plan-rada.component';
 import { BasicPlanRadaComponent } from './Components/basic-plan-rada/basic-plan-rada.component';
+import { AdminCompComponent } from './Components/admin-comp/admin-comp.component';
+import { ApproveUserComponent } from './Components/approve-user/approve-user.component';
+
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -83,6 +86,8 @@ export function tokenGetter() {
     PlanRadaComponent,
     NewPlanRadaComponent,
     BasicPlanRadaComponent,
+    AdminCompComponent,
+    ApproveUserComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -190,7 +195,7 @@ export function tokenGetter() {
       },
       {
         path: 'testing',
-        component:NewPlanRadaComponent ,
+        component:ApproveUserComponent ,
         
       },
       {
@@ -261,6 +266,7 @@ export interface User{
   adress:string;
   datumRodjenja:Date;
   userType:string;
+  approved:boolean;
 }
 
 export interface Incident{

@@ -52,39 +52,93 @@ namespace AnguWarriorsBack.Controllers
         return BadRequest("There is no user with this Username!!!");
 
       }
-
-      if (korisnik.Password == user.Password)
-      {
-        var claims = new List<Claim>
+      if (korisnik.Approved==true) {
+        if (korisnik.Password == user.Password)
+        {
+          var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.Username)
         };
-            if (korisnik.UserType==TipKorisnika.ADMIN) {
+          if (korisnik.UserType == TipKorisnika.ADMIN) {
             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
 
             //new Claim(ClaimTypes.Role, "Manager") 
-        };
-        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-        var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-        var tokeOptions = new JwtSecurityToken(
-            issuer: "http://localhost:44370",
-            audience: "http://localhost:4200",
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(2),
-            signingCredentials: signinCredentials
-        );
-        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-        return Ok(new { Token = tokenString });
+          };
+          var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+          var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+          var tokeOptions = new JwtSecurityToken(
+              issuer: "http://localhost:44370",
+              audience: "http://localhost:4200",
+              claims: claims,
+              expires: DateTime.Now.AddMinutes(10),
+              signingCredentials: signinCredentials
+          );
+          var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+          return Ok(new { Token = tokenString });
 
+        }
+        else {
+
+          return Unauthorized();
+
+        }
       }
-      else {
+      else
+      {
 
         return Unauthorized();
 
       }
 
-
     }
+
+    [HttpGet("/api/getUnapproved")]
+    public async Task<IActionResult> GetUnapproved([FromRoute]string username)
+    {
+      List<User> temp =this._context.Users.ToList();
+      List<User> retVal = new List<User>();
+      foreach (User u in temp) {
+        if (u.Approved == false) {
+          retVal.Add(u);
+        }
+      }
+
+
+      return Ok(retVal);
+    }
+
+    [HttpPost("api/approve/{username}")]
+    public async Task<IActionResult> Approve([FromRoute] string username) {
+
+      User korisnik = await this._context.Users.FindAsync(username);
+
+      if (korisnik == null)
+      {
+        return BadRequest("There is no user with this Username!!!");
+
+      }
+      this._context.Attach(korisnik);
+      korisnik.Approved = true;
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
+    [HttpPost("api/decline/{username}")]
+    public async Task<IActionResult> Decline([FromRoute] string username)
+    {
+      User korisnik = await this._context.Users.FindAsync(username);
+
+      if (korisnik == null)
+      {
+        return BadRequest("There is no user with this Username!!!");
+
+      }
+
+      this._context.Users.Remove(korisnik);
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
 
     [HttpGet("/api/getUser/{username}")]
     public async Task<IActionResult> GetUser([FromRoute]string username)
