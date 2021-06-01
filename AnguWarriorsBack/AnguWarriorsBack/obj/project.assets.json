@@ -13445,23 +13445,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Slavisa\\.nuget\\packages\\": {},
+    "C:\\Users\\HP\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Slavisa\\Desktop\\Angu\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
+      "projectUniqueName": "D:\\cetvrta godina\\Web 2\\Projekat10\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
       "projectName": "AnguWarriorsBack",
-      "projectPath": "C:\\Users\\Slavisa\\Desktop\\Angu\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
-      "packagesPath": "C:\\Users\\Slavisa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Slavisa\\Desktop\\Angu\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\obj\\",
+      "projectPath": "D:\\cetvrta godina\\Web 2\\Projekat10\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\AnguWarriorsBack.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "D:\\cetvrta godina\\Web 2\\Projekat10\\AnguWarriors\\AnguWarriorsBack\\AnguWarriorsBack\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Slavisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

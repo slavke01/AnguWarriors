@@ -11,7 +11,7 @@ import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import { Fill, Stroke, Circle, Style } from 'ol/style';
 import { CRUDService } from 'src/app/Services/crud.service';
-import { Elementi } from '../../app.module';
+import { Elementi } from '../../../app.module';
 @Component({
   selector: 'app-map-component',
   templateUrl: './map-component.component.html',

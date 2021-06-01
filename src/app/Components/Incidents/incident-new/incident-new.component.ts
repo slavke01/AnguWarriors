@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 //import { stat } from 'node:fs';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Incident } from '../../app.module';
-import { CRUDService } from '../../Services/crud.service';
+import { Incident } from '../../../app.module';
+import { CRUDService } from '../../../Services/crud.service';
 @Component({
   selector: 'app-incident-new',
   templateUrl: './incident-new.component.html',

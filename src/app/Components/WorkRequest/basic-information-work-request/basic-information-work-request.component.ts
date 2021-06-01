@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { NalogRada } from '../../app.module';
-import { CRUDService } from '../../Services/crud.service';
+import { NalogRada } from '../../../app.module';
+import { CRUDService } from '../../../Services/crud.service';
 @Component({
   selector: 'app-basic-information-work-request',
   templateUrl: './basic-information-work-request.component.html',

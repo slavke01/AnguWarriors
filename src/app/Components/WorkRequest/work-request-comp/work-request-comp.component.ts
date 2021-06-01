@@ -3,50 +3,47 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'ol';
-import { Incident } from '../../app.module';
-import { CRUDService } from '../../Services/crud.service';
+import { NalogRada } from '../../../app.module';
+import { CRUDService } from '../../../Services/crud.service';
 import { of } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
 @Component({
-  selector: 'app-incidents-comp',
-  templateUrl: './incidents-comp.component.html',
-  styleUrls: ['./incidents-comp.component.css'],
+  selector: 'app-work-request-comp',
+  templateUrl: './work-request-comp.component.html',
+  styleUrls: ['./work-request-comp.component.css']
 })
-export class IncidentsCompComponent implements AfterViewInit  {
-  data:Incident[] = [];
-  x;
-  showDelete=false;
-  isDataLoaded=false;
-  displayedColumns: string[] = [
-    'ID',
-    'IncidentType',
-    'Prioritet',
-    'Confirmed',
-    'Status',
-    'ETA',
-    'ATA',
-    'ETR',
-    'VrijemeRada',
-    'AffectedPeople',
-    'Pozivi',
-    'Voltage'
-   
-  ];
-  dataSource: MatTableDataSource<Incident>;
+export class WorkRequestCompComponent implements OnInit {
 
+  data:NalogRada[]=[];
+  
+  displayedColumns: string[] = [
+    'Id',
+    'NalogType',
+    'Status',
+    'PocetakRada',
+    'KrajRada',
+    'Svrha',
+    'Beleske',
+    'Hitno',
+    'Kompanija',
+    'TelefonskiBroj'
+  ];
+
+  dataSource: MatTableDataSource<NalogRada>;
+  showDelete=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
- 
-  constructor(private crudService:CRUDService,private jwtHelper: JwtHelperService) {
-    this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
-      this.data=this.data.concat(podatak); 
-      this.dataSource = new MatTableDataSource(podatak);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    
+  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService) { }
+
+  ngOnInit(): void {
+    this.crs.getNalozi().subscribe((podatak: NalogRada[])=>{
+    this.data=this.data.concat(podatak); 
+    this.dataSource = new MatTableDataSource(podatak);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+     
     });
     const token = localStorage.getItem("jwt");
     var x =this.jwtHelper.decodeToken(token);
@@ -57,19 +54,12 @@ export class IncidentsCompComponent implements AfterViewInit  {
 
 
         }
-   
-  }
- 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
   deleteRow(id:string){
     console.log(id)
-    this.crudService.deleteIncident(id).subscribe();
+    this.crs.deleteNalogRada(id).subscribe();
     window.location.reload();
   }
-  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -78,5 +68,5 @@ export class IncidentsCompComponent implements AfterViewInit  {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  
 }

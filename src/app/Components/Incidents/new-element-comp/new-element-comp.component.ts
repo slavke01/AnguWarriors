@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CRUDService } from 'src/app/Services/crud.service';
-import { Elementi } from '../../app.module';
+import { Elementi } from '../../../app.module';
 @Component({
   selector: 'app-new-element-comp',
   templateUrl: './new-element-comp.component.html',
