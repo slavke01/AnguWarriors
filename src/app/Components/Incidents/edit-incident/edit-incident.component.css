@@ -1,0 +1,41 @@
+.left{
+
+    position: absolute;
+}
+
+.mid{
+    position: absolute;
+    left: 250px;    
+
+}
+
+.right{
+    left: 500px;
+    position: absolute;
+}
+.btn{
+
+position:absolute;
+top :400px;
+left :300px;
+}
+
+.confi{
+position: absolute;
+top:76px;
+left :69px;
+
+}
+.bg{
+
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    width: 800px;
+    height: 400px;
+    padding-left: 25px;
+    border-radius: 35px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+    }

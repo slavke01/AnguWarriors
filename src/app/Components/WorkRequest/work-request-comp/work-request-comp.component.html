@@ -22,7 +22,7 @@
       
       <ng-container matColumnDef="Id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Naloga</th>
-        <td mat-cell *matCellDef="let row">{{ row.idNaloga }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
       </ng-container>
 
       <ng-container matColumnDef="NalogType">
@@ -82,7 +82,13 @@
       <ng-container matColumnDef="Delete" *ngIf="showDelete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
         <td mat-cell *matCellDef="let row" >
-              <button class="btn btn-secondary" (click)="deleteRow(row.idNaloga)" >Obrisi</button>
+              <button class="btn btn-secondary" (click)="deleteRow(row.id)" >Obrisi</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Edit" *ngIf="showEdit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+        <td mat-cell *matCellDef="let row" >
+              <button class="btn btn-secondary" (click)="editRow(row.id)" >Edit</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

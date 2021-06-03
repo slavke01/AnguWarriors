@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PlanRada } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
@@ -29,9 +30,10 @@ export class PlanRadaComponent implements OnInit {
   ];
   dataSource: MatTableDataSource<PlanRada>;
   showDelete=false;
+  showEdit=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService) { }
+  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService,private router:Router) { }
 
   ngOnInit(): void {
     this.crs.getPlanovi().subscribe((podatak: PlanRada[])=>{
@@ -46,14 +48,19 @@ export class PlanRadaComponent implements OnInit {
       var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
           if(role=="Admin"){
             this.displayedColumns.push('Delete');
+            this.displayedColumns.push('Edit');
             this.showDelete=true;
-
+            this.showEdit=true;
           }
   }
   deleteRow(id:string){
     console.log(id)
     this.crs.deletePlanRada(id).subscribe();
     window.location.reload();
+  }
+  editRow(id:string){
+
+    this.router.navigate(['editplan'], { state: { example: id } });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

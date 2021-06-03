@@ -7,6 +7,7 @@ import { NalogRada } from '../../../app.module';
 import { CRUDService } from '../../../Services/crud.service';
 import { of } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-work-request-comp',
@@ -32,10 +33,11 @@ export class WorkRequestCompComponent implements OnInit {
 
   dataSource: MatTableDataSource<NalogRada>;
   showDelete=false;
+  showEdit=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService) { }
+  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService,private router:Router) { }
 
   ngOnInit(): void {
     this.crs.getNalozi().subscribe((podatak: NalogRada[])=>{
@@ -50,8 +52,9 @@ export class WorkRequestCompComponent implements OnInit {
     var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         if(role=="Admin"){
           this.displayedColumns.push('Delete');
+          this.displayedColumns.push('Edit');
           this.showDelete=true;
-
+          this.showEdit=true;
 
         }
   }
@@ -59,6 +62,11 @@ export class WorkRequestCompComponent implements OnInit {
     console.log(id)
     this.crs.deleteNalogRada(id).subscribe();
     window.location.reload();
+  }
+  editRow(id:string){
+
+    this.router.navigate(['editnalog'], { state: { example: id } });
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

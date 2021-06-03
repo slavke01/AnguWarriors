@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NalogRada } from '../../../app.module';
-import { CRUDService } from '../../../Services/crud.service';
-@Component({
-  selector: 'app-basic-information-work-request',
-  templateUrl: './basic-information-work-request.component.html',
-  styleUrls: ['./basic-information-work-request.component.css'],
-})
-export class BasicInformationWorkRequestComponent implements OnInit {
-  constructor(private CrudService: CRUDService,private router:Router) {}
+import { NalogRada } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
 
-  ngOnInit(): void {}
+@Component({
+  selector: 'app-update-nalog-rada',
+  templateUrl: './update-nalog-rada.component.html',
+  styleUrls: ['./update-nalog-rada.component.css']
+})
+export class UpdateNalogRadaComponent implements OnInit {
   IdCon = new FormControl('', [Validators.required]);
   StartTimeCon = new FormControl('', [Validators.required]);
   EndTimeCon = new FormControl('', [Validators.required]);
@@ -37,6 +35,20 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
   dozvola:boolean=false;
+
+model:NalogRada={
+  id:',',
+  nalogType:'',
+  status:'',
+  pocetakRada:new Date(),
+  krajRada:new Date(),
+  svrha:'',
+  beleske:'',
+  hitno:false,
+  kompanija:'',
+  telefonskiBroj:''
+}
+
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
@@ -148,7 +160,26 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     this.notes = param;
     this.KlikDozvola();
   }
+  constructor(private CrudService:CRUDService,private router:Router) {
+    let id = this.router.getCurrentNavigation().extras.state.example;
+    this.CrudService.getNalog(id).subscribe((data:NalogRada)=>{
+      this.model=data;
+      this.id=data.id;
+      this.type=data.nalogType;
+      this.startTime=data.pocetakRada;
+      this.endTime=data.krajRada;
+      this.purpose=data.svrha;
+      this.notes=data.beleske;
+      this.emergency=data.hitno;
+      this.company=data.kompanija;
+      this.phoneNo=data.telefonskiBroj;
 
+
+    });
+   }
+
+  ngOnInit(): void {
+  }
   AjmoNalog() {
     var nalog: NalogRada = {
       id:this.id,
@@ -164,8 +195,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     };
 
     console.log(JSON.stringify(nalog));
-
-    this.CrudService.createNalog(nalog).subscribe();
+    this.CrudService.updateNalog(nalog).subscribe();
     this.router.navigate(['requests']);
   }
 

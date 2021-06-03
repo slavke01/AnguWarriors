@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-//import { stat } from 'node:fs';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Incident } from '../../../app.module';
-import { CRUDService } from '../../../Services/crud.service';
+import { Incident } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
+
 @Component({
-  selector: 'app-incident-new',
-  templateUrl: './incident-new.component.html',
-  styleUrls: ['./incident-new.component.css'],
+  selector: 'app-edit-incident',
+  templateUrl: './edit-incident.component.html',
+  styleUrls: ['./edit-incident.component.css'],
 })
-export class IncidentNewComponent implements OnInit {
-  IncIDCon = new FormControl('', [Validators.required]);
+export class EditIncidentComponent implements OnInit {
   StatusCon = new FormControl('', [Validators.required]);
   DescriptionCon = new FormControl('', [Validators.required]);
   AffCusCon = new FormControl('', [Validators.required]);
@@ -29,19 +28,28 @@ export class IncidentNewComponent implements OnInit {
   status = null;
   eta = null;
   ata = null;
-  affectedCustomers:number = null;
+  affectedCustomers: number = null;
+  outageTime = null;
   etr = null;
-  calls:number = null;
-  voltage:number = null;
+  calls: number = null;
+  voltage: number = null;
   scheduledTime = null;
-  dozvola:boolean=false;
+  dozvola: boolean = false;
 
-  getErrorMessageIncID() {
-    if (this.IncIDCon.hasError('required')) {
-      return 'You must enter Incident ID';
-    }
-    return '';
-  }
+  model: Incident = {
+    id: '',
+    prioritet: 0,
+    incidentType: '',
+    confirmed: false,
+    status: '',
+    eta: new Date(),
+    ata: new Date(),
+    etr:new Date(),
+    vrijemeRada:new Date(),
+    affectedPeople:0,
+    pozivi:0,
+    voltage:0
+  };
   getErrorMessageStatus() {
     if (this.StatusCon.hasError('required')) {
       return 'You must enter Status';
@@ -56,7 +64,7 @@ export class IncidentNewComponent implements OnInit {
   }
   getErrorMessageAffectedCustomers() {
     if (this.AffCusCon.hasError('required')) {
-      return 'You must enter Description';
+      return 'You must enter Affected Customers';
     }
     return '';
   }
@@ -122,12 +130,9 @@ export class IncidentNewComponent implements OnInit {
     this.KlikDozvola();
   }
 
- 
-
   onChangeEta(param: Date) {
     this.eta = param;
     this.KlikDozvola();
-
   }
 
   onChangeAta(param: Date) {
@@ -140,6 +145,10 @@ export class IncidentNewComponent implements OnInit {
     this.KlikDozvola();
   }
 
+  onChangeOutageTime(param: Date) {
+    this.outageTime = param;
+    this.KlikDozvola();
+  }
 
   onChangeEtr(param: Date) {
     this.etr = param;
@@ -160,7 +169,26 @@ export class IncidentNewComponent implements OnInit {
     this.scheduledTime = param;
     this.KlikDozvola();
   }
-  constructor(  private router: Router,private crudService:CRUDService) {}
+  constructor(private router: Router, private crud: CRUDService) {
+    let id = this.router.getCurrentNavigation().extras.state.example;
+    this.crud.getIncident(id).subscribe((data: Incident) => {
+      this.model=data;
+
+      this.incId=data.id;
+      this.type=data.incidentType;
+    
+      this.isChecked=data.confirmed;
+      this.status=data.status;
+      this.eta=data.eta;
+      this.ata=data.ata;
+      this.etr=data.etr
+      this.scheduledTime=data.vrijemeRada;
+      this.affectedCustomers=data.affectedPeople;
+      this.calls=data.pozivi;
+      this.voltage=data.voltage;
+
+    });
+  }
 
   ngOnInit(): void {}
   gotovoFja() {
@@ -179,23 +207,25 @@ export class IncidentNewComponent implements OnInit {
       voltage: this.voltage,
     };
     console.log(JSON.stringify(incident));
-    this.crudService.createIncident(incident).subscribe();
-    
+    this.crud.updateIncident(incident).subscribe();
+    this.router.navigate(['incidents']);
   }
-
-
-KlikDozvola(){
-
-  if(this.incId!=null && this.type!=null && this.status!=null && this.eta!=null &&this.ata!=null && this.etr!=null && this.scheduledTime!=null
-    && this.affectedCustomers!=null && this.calls!=null && this.voltage!=null )
-  {
-    this.dozvola=true;
+  KlikDozvola() {
+    if (
+      this.incId != null &&
+      this.type != null &&
+      this.status != null &&
+      this.eta != null &&
+      this.ata != null &&
+      this.etr != null &&
+      this.scheduledTime != null &&
+      this.affectedCustomers != null &&
+      this.calls != null &&
+      this.voltage != null
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
+    }
   }
-  else
-  {
-    this.dozvola=false;
-  }
-}
-
-  
 }

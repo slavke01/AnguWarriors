@@ -74,7 +74,7 @@ namespace AnguWarriorsBack.Controllers
       a.KrajRada = nrdto.KrajRada;
       a.CreatedTime = DateTime.Now;
       a.CreatedBy = "pera";
-      a.IdNaloga = nrdto.IdNaloga;
+      a.IdNaloga = nrdto.Id;
       a.IdIncidenta = Guid.NewGuid().ToString();
       a.Ulica = "random";
       a.Kompanija = nrdto.Kompanija;
@@ -96,6 +96,154 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+    [HttpGet("/api/crud/getIncident/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetIncident([FromRoute] string id)
+    {
+      Incident retVal = await this._context.Incidents.FindAsync(id);
+      if (retVal != null)
+      {
+     
+        return Ok(retVal);
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+
+    [HttpPost("api/crud/updateIncident")]
+    public async Task<IActionResult> UpdateIncident([FromBody] Incident inc) {
+
+      Incident retVal = await this._context.Incidents.FindAsync(inc.ID);
+      if (retVal != null)
+      {
+        this._context.Attach(retVal);
+        retVal.ETR = inc.ETR;
+        retVal.ATA = inc.ATA;
+        retVal.ETA = inc.ETA;
+        retVal.AffectedPeople = inc.AffectedPeople;
+        retVal.Confirmed = inc.Confirmed;
+        retVal.IncidentType = inc.IncidentType;
+        retVal.Voltage = inc.Voltage;
+        retVal.VrijemeRada = inc.VrijemeRada;
+        retVal.Status = inc.Status;
+        retVal.Pozivi = inc.Pozivi;
+        await this._context.SaveChangesAsync();
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+    [HttpGet("/api/crud/getPlan/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetPlan([FromRoute] string id)
+    {
+      PlanRada retVal = await this._context.Planovi.FindAsync(id);
+      if (retVal != null)
+      {
+        PlanRadaDTO nrdto = new PlanRadaDTO();
+        nrdto.IdPlana = retVal.IdPlana;
+        nrdto.Kompanija = retVal.Kompanija;
+        nrdto.KrajRada = retVal.KrajRada;
+        nrdto.PocetakRada = retVal.PocetakRada;
+        nrdto.Status = retVal.Status;
+        nrdto.Svrha = retVal.Svrha;
+        nrdto.TelefonskiBroj = retVal.TelefonskiBroj;
+        nrdto.Ulica = retVal.Ulica;
+        nrdto.Beleske = retVal.Beleske;
+        nrdto.CreatedBy = retVal.CreatedBy;
+        nrdto.Detalji = retVal.Detalji;
+        nrdto.DocumentType = retVal.DocumentType;
+
+        return Ok(nrdto);
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+    [HttpPost("api/crud/updatePlan")]
+    public async Task<IActionResult> UpdatePlan([FromBody] PlanRadaDTO nrdto)
+    {
+
+      PlanRada retVal = await this._context.Planovi.FindAsync(nrdto.IdPlana);
+      if (retVal != null)
+      {
+        this._context.Attach(retVal);
+        retVal.IdPlana = nrdto.IdPlana;
+        retVal.Kompanija = nrdto.Kompanija;
+        retVal.KrajRada = nrdto.KrajRada;
+        retVal.PocetakRada = nrdto.PocetakRada;
+        retVal.Status = nrdto.Status;
+        retVal.Svrha = nrdto.Svrha;
+        retVal.TelefonskiBroj = nrdto.TelefonskiBroj;
+        retVal.Ulica = nrdto.Ulica;
+        retVal.Beleske = nrdto.Beleske;
+        retVal.CreatedBy = nrdto.CreatedBy;
+        retVal.Detalji = nrdto.Detalji;
+        retVal.DocumentType = nrdto.DocumentType;
+        await this._context.SaveChangesAsync();
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+
+    [HttpGet("/api/crud/getNalog/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetNalog([FromRoute] string id)
+    {
+      NalogRada retVal = await this._context.Nalozi.FindAsync(id);
+      if (retVal != null)
+      {
+        NalogRadaDTO nrdto = new NalogRadaDTO();
+        nrdto.Beleske = retVal.Beleske;
+        nrdto.Hitno = retVal.Hitno;
+        nrdto.Id = retVal.IdNaloga;
+        nrdto.Kompanija = retVal.Kompanija;
+        nrdto.KrajRada = retVal.KrajRada;
+        nrdto.NalogType = retVal.NalogType;
+        nrdto.PocetakRada = retVal.PocetakRada;
+        nrdto.Status = retVal.Status;
+        nrdto.Svrha = retVal.Svrha;
+        nrdto.TelefonskiBroj = retVal.TelefonskiBroj;
+        return Ok(nrdto);
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+    [HttpPost("api/crud/updateNalog")]
+    public async Task<IActionResult> UpdateNalog([FromBody] NalogRadaDTO nrdto)
+    {
+      NalogRada retVal = await this._context.Nalozi.FindAsync(nrdto.Id);
+      if (retVal != null)
+      {
+        this._context.Attach(retVal);
+        retVal.Beleske = nrdto.Beleske;
+        retVal.Hitno = nrdto.Hitno;
+        retVal.IdNaloga = nrdto.Id;
+        retVal.Kompanija = nrdto.Kompanija;
+        retVal.KrajRada = nrdto.KrajRada;
+        retVal.NalogType = nrdto.NalogType;
+        retVal.PocetakRada = nrdto.PocetakRada;
+        retVal.Status = nrdto.Status;
+        retVal.Svrha = nrdto.Svrha;
+        retVal.TelefonskiBroj = nrdto.TelefonskiBroj;
+        await this._context.SaveChangesAsync();
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
     [HttpPost("/api/crud/deleteIncident/{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteIncident([FromRoute] string id)
@@ -129,6 +277,8 @@ namespace AnguWarriorsBack.Controllers
         return BadRequest();
       }
     }
+
+
     [HttpPost("/api/crud/deleteSwitching/{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteSwitch([FromRoute] string id)
@@ -165,7 +315,7 @@ namespace AnguWarriorsBack.Controllers
       foreach (NalogRada nr in naloziOriginal)
       {
         NalogRadaDTO nrdto = new NalogRadaDTO();
-        nrdto.IdNaloga = nr.IdNaloga;
+        nrdto.Id = nr.IdNaloga;
         nrdto.NalogType = nr.NalogType;
         nrdto.Status = nr.Status;
         nrdto.PocetakRada = nr.PocetakRada;

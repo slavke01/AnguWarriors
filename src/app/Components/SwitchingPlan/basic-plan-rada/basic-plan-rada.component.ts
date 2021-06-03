@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PlanRada } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
@@ -35,7 +36,7 @@ export class BasicPlanRadaComponent implements OnInit {
   idplana = '';
   dozvola:boolean=false;
 
-  constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService) { }
+  constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -154,7 +155,7 @@ export class BasicPlanRadaComponent implements OnInit {
       createdBy:username
     };
     this.CrudService.createPlan(plan).subscribe();
-
+    this.router.navigate(['switching']);
   }
 
   KlikDozvola(){

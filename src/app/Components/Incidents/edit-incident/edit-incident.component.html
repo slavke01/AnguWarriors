@@ -1,7 +1,4 @@
-
-
-<h1>Napravi incident molim te</h1>
-
+<div class="bg"> 
 <table>
   <tr>
     <th>
@@ -17,14 +14,12 @@
                 matInput
                 (input)="onChangeIncId($event.target.value)"
                 placeholder="Incident ID"
-                [formControl]="IncIDCon"
-                required
-              
+
+                
+                disabled 
+                value="{{model.id}}"
               />
-              <mat-error *ngIf="IncIDCon.invalid">{{
-                getErrorMessageIncID()
-              }}</mat-error>
-              <!--mat-hint>Hint</mat-hint-->
+            
             </mat-form-field>
           </p>
         </div>
@@ -46,7 +41,7 @@
             <th>
               <div class="confi" style="margin-left: 75px">
                 <p>Confirmed:</p>
-                <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle>
+                <mat-slide-toggle [(ngModel)]="model.confirmed"></mat-slide-toggle>
               </div>
             </th>
           </tr>
@@ -64,6 +59,7 @@
                 placeholder="Status"
                 [formControl]="StatusCon"
                 required
+                value="{{model.status}}"
               />
               <mat-error *ngIf="StatusCon.invalid">{{
                 getErrorMessageStatus()
@@ -91,6 +87,7 @@
               [matDatepicker]="picker1"
               [formControl]="ETACon"
               required
+              value="{{model.eta}}"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -115,6 +112,7 @@
               [matDatepicker]="picker2"
               [formControl]="ATACon"
               required
+              value="{{model.ata}}"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -140,6 +138,7 @@
                 placeholder="Affected Customers"
                 [formControl]="AffCusCon"
                 required
+                value="{{model.affectedPeople}}"
               />
               <mat-error *ngIf="AffCusCon.invalid">{{
                 getErrorMessageAffectedCustomers()
@@ -149,7 +148,6 @@
           </p>
         </div>
 
-        
       </div>
     </th>
 
@@ -167,6 +165,7 @@
               [matDatepicker]="picker3"
               [formControl]="ETRCon"
               required
+              value="{{model.etr}}"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -192,6 +191,7 @@
                 placeholder="Calls"
                 [formControl]="CallsCon"
                 required
+                value="{{model.pozivi}}"
               />
               <mat-error *ngIf="CallsCon.invalid">{{
                 getErrorMessageCalls()
@@ -214,6 +214,7 @@
                 placeholder="Voltage"
                 [formControl]="VoltageCon"
                 required
+                value="{{model.voltage}}"
               />
               <mat-error *ngIf="VoltageCon.invalid">{{
                 getErrorMessageVoltage()
@@ -235,6 +236,7 @@
               [matDatepicker]="picker4"
               [formControl]="SchTimeCon"
               required
+              value="{{model.vrijemeRada}}"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -256,5 +258,8 @@
 </table>
 <div>
   <br />
-  <button class="btn btn-dark" (click)="gotovoFja()" [disabled]="!dozvola">Done</button>
+  <button class="btn btn-dark" (click)="gotovoFja()" >Done</button>
 </div>
+</div>
+
+<app-side-bar></app-side-bar>

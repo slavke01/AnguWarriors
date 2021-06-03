@@ -7,6 +7,7 @@ import { Incident } from '../../../app.module';
 import { CRUDService } from '../../../Services/crud.service';
 import { of } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
   data:Incident[] = [];
   x;
   showDelete=false;
+  showEdit=false;
   isDataLoaded=false;
   displayedColumns: string[] = [
     'ID',
@@ -40,7 +42,7 @@ export class IncidentsCompComponent implements AfterViewInit  {
   @ViewChild(MatSort) sort: MatSort;
 
  
-  constructor(private crudService:CRUDService,private jwtHelper: JwtHelperService) {
+  constructor(private crudService:CRUDService,private jwtHelper: JwtHelperService,private router:Router) {
     this.crudService.getIncidents().subscribe((podatak: Incident[])=>{
       this.data=this.data.concat(podatak); 
       this.dataSource = new MatTableDataSource(podatak);
@@ -53,8 +55,9 @@ export class IncidentsCompComponent implements AfterViewInit  {
     var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         if(role=="Admin"){
           this.displayedColumns.push('Delete');
+          this.displayedColumns.push('Edit');
           this.showDelete=true;
-
+          this.showEdit=true;
 
         }
    
@@ -69,7 +72,10 @@ export class IncidentsCompComponent implements AfterViewInit  {
     this.crudService.deleteIncident(id).subscribe();
     window.location.reload();
   }
-  
+  editRow(id:string){
+
+    this.router.navigate(['editincident'], { state: { example: id } });
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -8,7 +8,7 @@ namespace AnguWarriorsBack.Models
 
   public class NalogRadaDTO
   {
-    public string IdNaloga { get; set; }
+    public string Id { get; set; }
     public TipRada NalogType { get; set; }
     public string Status { get; set; }
     public DateTime PocetakRada { get; set; }

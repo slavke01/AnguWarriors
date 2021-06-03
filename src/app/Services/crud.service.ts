@@ -55,7 +55,53 @@ export class CRUDService {
     );
   }
 
+  getIncident(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getIncident/'+id,
+      this.httpOptions);
 
+
+  }
+  updateIncident(incident:Incident){
+    const body = JSON.stringify(incident);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/updateIncident',
+      body,
+      this.httpOptions
+    );
+
+
+  }
+  getPlan(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getPlan/'+id,
+      this.httpOptions);
+
+  }
+  updatePlan(plan:PlanRada){
+    const body = JSON.stringify(plan);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/updatePlan',
+      body,
+      this.httpOptions
+    );
+  }
+  getNalog(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getNalog/'+id,
+      this.httpOptions);
+
+  }
+  updateNalog(nalog:NalogRada){
+    const body = JSON.stringify(nalog);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/updateNalog',
+      body,
+      this.httpOptions
+    );
+
+
+  }
   getIncidents(){
 
     return this.http.get<any>(

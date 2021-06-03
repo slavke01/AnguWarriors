@@ -160,6 +160,7 @@ export class RegCompComponent implements OnInit {
 
         
         this.authService.registerUser(user).subscribe();
+        this.router.navigate(["/"]);
   }
 
   KlikDozvola(){

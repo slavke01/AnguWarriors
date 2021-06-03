@@ -1,0 +1,230 @@
+<div class="bg">
+<table>
+    <tr>
+        <th>
+            <div>
+                <mat-form-field appearance="outline" style="margin-left: 15px; width: 200px">
+                  <mat-label>Type</mat-label>
+                  <mat-select [(ngModel)]="type" name="type">
+                    <mat-option *ngFor="let opcija of tipovi" [value]="opcija">
+                      {{opcija}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+          </th>
+    </tr>
+
+    <tr>
+        <th>
+            
+            <label style="margin-left: 15px;">Emergency:&nbsp; </label>
+            <mat-slide-toggle [(ngModel)]="emergency"></mat-slide-toggle>
+              
+        </th>
+    </tr>
+
+    <tr>
+          <th>
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Company</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeCompany($event.target.value)"
+                      placeholder="Company"
+                      [formControl]="CompanyCon"
+                      required
+                      value="{{model.kompanija}}"
+                    />
+                    <mat-error *ngIf="CompanyCon.invalid">{{
+                      getErrorMessageCompany()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+          </th>
+
+          
+    </tr>
+
+    <tr>
+        <th>
+            <div>
+                <mat-form-field
+                  appearance="outline"
+                  style="margin-left: 15px; width: 200px"
+                >
+                  <mat-label>Start Date/Time</mat-label>
+                  <input
+                    matInput
+                    (dateInput)="onChangeStartTime($event.target.value)"
+                    [matDatepicker]="picker1"
+                    [formControl]="StartTimeCon"
+                    required
+                    value="{{model.pocetakRada}}"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                  <mat-error *ngIf="StartTimeCon.invalid">{{
+                    getErrorMessageStartTime()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+
+        </th>
+        
+        <th>
+        
+          
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>ID</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeId($event.target.value)"
+                      placeholder="ID"
+                      disabled
+                      value="{{model.id}}"
+                    />
+                    <mat-error *ngIf="IdCon.invalid">{{
+                      getErrorMessageId()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+        
+            
+        </th>
+    </tr>
+
+    <tr>
+        <th>
+            <div>
+                <mat-form-field
+                  appearance="outline"
+                  style="margin-left: 15px; width: 200px"
+                >
+                  <mat-label>End Date/Time</mat-label>
+                  <input
+                    matInput
+                    (dateInput)="onChangeEndTime($event.target.value)"
+                    [matDatepicker]="picker2"
+                    [formControl]="EndTimeCon"
+                    required
+                    value="{{model.krajRada}}"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker2"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <mat-error *ngIf="EndTimeCon.invalid">{{
+                    getErrorMessageEndTime()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+        </th>
+
+        <th>
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Phone No.</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangePhoneNo($event.target.value)"
+                      placeholder="Phone No."
+                      [formControl]="PhoneNoCon"
+                      required
+                      value="{{model.telefonskiBroj}}"
+                    />
+                    <mat-error *ngIf="PhoneNoCon.invalid">{{
+                      getErrorMessagePhoneNo()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+        </th>
+        
+    </tr>
+   
+    <tr>
+        <th>
+        <div>
+            <p>
+              <mat-form-field
+                appearance="outline"
+                style="margin-left: 15px; width: 200px"
+              >
+                <mat-label>Purpose</mat-label>
+                <input
+                  matInput
+                  (input)="onChangePurpose($event.target.value)"
+                  placeholder="Purpose"
+                  [formControl]="PurposeCon"
+                  required
+                  value="{{model.svrha}}"
+                />
+                <mat-error *ngIf="PurposeCon.invalid">{{
+                  getErrorMessagePurpose()
+                }}</mat-error>
+                <!--mat-hint>Hint</mat-hint-->
+              </mat-form-field>
+            </p>
+          </div>
+        </th>
+        <th>
+            <div>
+                <p>
+                  <mat-form-field
+                    appearance="outline"
+                    style="margin-left: 15px; width: 200px"
+                  >
+                    <mat-label>Notes</mat-label>
+                    <input
+                      matInput
+                      (input)="onChangeNotes($event.target.value)"
+                      placeholder="Notes"
+                      [formControl]="NotesCon"
+                      required
+                      value="{{model.beleske}}"
+                    />
+                    <mat-error *ngIf="NotesCon.invalid">{{
+                      getErrorMessageNotes()
+                    }}</mat-error>
+                    <!--mat-hint>Hint</mat-hint-->
+                  </mat-form-field>
+                </p>
+              </div>
+        </th>
+        
+        
+    </tr>
+
+</table>
+
+<div>
+  <button (click)="AjmoNalog()" style="margin-left: 300px;" class="btn btn-dark" [disabled]="!dozvola" >Done</button>
+
+</div>
+
+</div>
+<app-side-bar></app-side-bar>

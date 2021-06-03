@@ -49,6 +49,9 @@ import { NewPlanRadaComponent } from './Components/SwitchingPlan/new-plan-rada/n
 import { BasicPlanRadaComponent } from './Components/SwitchingPlan/basic-plan-rada/basic-plan-rada.component';
 import { AdminCompComponent } from './Components/AuthAndAuto/admin-comp/admin-comp.component';
 import { ApproveUserComponent } from './Components/AuthAndAuto/approve-user/approve-user.component';
+import { EditIncidentComponent } from './Components/Incidents/edit-incident/edit-incident.component';
+import { UpdateNalogRadaComponent } from './Components/WorkRequest/update-nalog-rada/update-nalog-rada.component';
+import { UpdatePlanRadaComponent } from './Components/SwitchingPlan/update-plan-rada/update-plan-rada.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -87,7 +90,10 @@ export function tokenGetter() {
     NewPlanRadaComponent,
     BasicPlanRadaComponent,
     AdminCompComponent,
-    ApproveUserComponent
+    ApproveUserComponent,
+    EditIncidentComponent,
+    UpdateNalogRadaComponent,
+    UpdatePlanRadaComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -194,9 +200,17 @@ export function tokenGetter() {
 
       },
       {
-        path: 'testing',
-        component:ApproveUserComponent ,
+        path: 'editincident',
+        component:EditIncidentComponent ,
         
+      },
+      {
+        path:'editnalog',
+        component: UpdateNalogRadaComponent,
+      },
+      {
+        path:'editplan',
+        component: UpdatePlanRadaComponent,
       },
       {
         path: 'newswitch',
@@ -270,33 +284,32 @@ export interface User{
 }
 
 export interface Incident{
-  ID:string;
-  IncidentType:string;
-  Prioritet:number;
-  Confirmed:boolean;
-  Status:string;
-  ETA:Date;
-  ATA:Date;
-  ETR:Date;
-  VrijemeRada:Date;
-  AffectedPeople:number;
-  Pozivi:number;
-  Voltage:number;
+  id:string;
+  incidentType:string;
+  prioritet:number;
+  confirmed:boolean;
+  status:string;
+  eta:Date;
+  ata:Date;
+  etr:Date;
+  vrijemeRada:Date;
+  affectedPeople:number;
+  pozivi:number;
+  voltage:number;
 }
 
 export interface NalogRada{
-  Id:string;
-  NalogType:string;
-  Status:string;
-  PocetakRada:Date;
-  KrajRada:Date;
-  Svrha:string;
-  Beleske:string;
-  Hitno:boolean;
-  Kompanija:string;
-  TelefonskiBroj:string;
+  id:string;
+  nalogType:string;
+  status:string;
+  pocetakRada:Date;
+  krajRada:Date;
+  svrha:string;
+  beleske:string;
+  hitno:boolean;
+  kompanija:string;
+  telefonskiBroj:string;
 }
-
 
 export interface Login{
   Username:string,
@@ -324,10 +337,8 @@ export interface PlanRada{
   kompanija:string;
   telefonskiBroj:string;
   createdBy:string;
-
 }
 export interface changePassword{
-
 username:string;
 oldPassword:string;
 newPassword:string;

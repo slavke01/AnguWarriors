@@ -1,0 +1,13 @@
+.bg{
+
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    width: 600px;
+    height: 530px;
+    padding-left: 25px;
+    border-radius: 35px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+    }
