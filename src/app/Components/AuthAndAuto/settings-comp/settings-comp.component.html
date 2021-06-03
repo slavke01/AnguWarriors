@@ -1,16 +1,82 @@
 
 <div style="position: absolute; margin-left: 150px; margin-top: 50px;">
-    <label  for="">Stara lozinka:</label>
-    <input style="width: 200px; height: 30px;" class="form-control" type="text">
+    <div>
+        <mat-form-field appearance="outline" style="width: 230px;">
+          <mat-label>Enter your old password</mat-label>
+          <input
+            matInput
+            (input)="onChangeOldPassword($event.target.value)"
+            [type]="hide ? 'password' : 'text'"
+            [formControl]="oldpasswordCon"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="oldpasswordCon.invalid">{{
+            getErrorMessageOldPassword()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
 
-    <label for="">Nova lozinka:</label>
-    <input style="width: 200px; height: 30px;" class="form-control" type="text">
+      <div>
+        <mat-form-field appearance="outline" style="width: 230px;">
+          <mat-label>Enter your new password</mat-label>
+          <input
+            matInput
+            (input)="onChangeNewPassword($event.target.value)"
+            [type]="hide ? 'password' : 'text'"
+            [formControl]="newpasswordCon"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="newpasswordCon.invalid">{{
+            getErrorMessageNewPassword()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
 
-    <label for="">Potvrda nove lozinke:</label>
-    <input style="width: 200px; height: 30px;" class="form-control" type="text">
+      <div>
+        <mat-form-field appearance="outline" style="width: 230px;">
+          <mat-label>Repeat your password</mat-label>
+          <input
+            matInput
+            (input)="onChangeRepeatPassword($event.target.value)"
+            [type]="hide ? 'password' : 'text'"
+            [formControl]="repeatpasswordCon"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="repeatpasswordCon.invalid">{{
+            getErrorMessageRepeatPassword()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
 
     <br/>
-    <button class="btn btn-dark">Done</button>
+    <button class="btn btn-dark" (click)="submit()">Done</button>
 
 </div>
 

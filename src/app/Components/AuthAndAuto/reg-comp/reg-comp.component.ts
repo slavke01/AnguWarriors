@@ -57,7 +57,7 @@ export class RegCompComponent implements OnInit {
     return '';
   }
   getErrorMessagePassword() {
-    if (this.usernameCon.hasError('required')) {
+    if (this.passwordCon.hasError('required')) {
       return 'You must enter your password';
     }
     return '';

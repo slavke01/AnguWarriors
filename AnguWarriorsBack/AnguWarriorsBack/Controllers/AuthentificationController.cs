@@ -46,13 +46,13 @@ namespace AnguWarriorsBack.Controllers
         return BadRequest("Invalid client request");
       }
 
-        User korisnik = await this._context.Users.FindAsync(user.Username);
+      User korisnik = await this._context.Users.FindAsync(user.Username);
 
-      if (korisnik==null) {
+      if (korisnik == null) {
         return BadRequest("There is no user with this Username!!!");
 
       }
-      if (korisnik.Approved==true) {
+      if (korisnik.Approved == true) {
         if (korisnik.Password == user.Password)
         {
           var claims = new List<Claim>
@@ -95,7 +95,7 @@ namespace AnguWarriorsBack.Controllers
     [HttpGet("/api/getUnapproved")]
     public async Task<IActionResult> GetUnapproved([FromRoute]string username)
     {
-      List<User> temp =this._context.Users.ToList();
+      List<User> temp = this._context.Users.ToList();
       List<User> retVal = new List<User>();
       foreach (User u in temp) {
         if (u.Approved == false) {
@@ -106,6 +106,38 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok(retVal);
     }
+
+
+    [HttpPost("/api/changepassword")]
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO data){
+      User korisnik = await this._context.Users.FindAsync(data.Username);
+
+      if (korisnik == null)
+      {
+        return BadRequest("There is no user with this Username!!!");
+
+      }
+
+      if (korisnik.Password == data.OldPassword)
+      {
+        this._context.Attach(korisnik);
+        korisnik.Password = data.NewPassword;
+        await this._context.SaveChangesAsync();
+        return Ok();
+
+      }
+      else {
+
+        return BadRequest("Incorect Password.");
+      }
+    
+
+
+
+
+    }
+
+
 
     [HttpPost("api/approve/{username}")]
     public async Task<IActionResult> Approve([FromRoute] string username) {

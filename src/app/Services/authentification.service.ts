@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Login, User } from '../app.module';
+import { changePassword, Login, User } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -60,6 +60,16 @@ export class AuthentificationService {
       this.baseURL + 'api/getUser/'+username,
       this.httpOptions);
   }
+  changePassword(data:changePassword){
+    const body = JSON.stringify(data);
+    return this.http.post<any>(
+      this.baseURL + 'api/changepassword',
+      body,
+      this.httpOptions
+    );
 
+
+
+  }
 
 }
