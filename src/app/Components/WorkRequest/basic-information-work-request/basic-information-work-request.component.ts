@@ -21,20 +21,21 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   DetailsCon = new FormControl('', [Validators.required]);
   NotesCon = new FormControl('', [Validators.required]);
 
-  type = null;
-  typeWork = null;
+  type = '';
+  typeWork = '';
   startTime = null;
   endTime = null;
   emergency: boolean = false;
-  company = null;
-  phoneNo = null;
-  dateTimeCreated = null;
-  purpose = null;
-  details = null;
-  notes = null;
-  id=null;
+  company = '';
+  phoneNo = '';
+  dateTimeCreated ='';
+  purpose = '';
+  details = '';
+  notes = '';
+  id='';
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
+  dozvola:boolean=false;
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
@@ -92,47 +93,59 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   }
   onChangeType(param: string) {
     this.type = param;
+    this.KlikDozvola();
   }
 
   onChangeStartTime(param: Date) {
     this.startTime = param;
+    this.KlikDozvola();
   }
 
   onChangeEndTime(param: Date) {
     this.endTime = param;
+    this.KlikDozvola();
   }
 
   onChangeEmTrue() {
     this.emergency = true;
+    this.KlikDozvola();
   }
 
   onChangeEmFalse() {
     this.emergency = false;
+    this.KlikDozvola();
   }
 
   onChangeCompany(param: string) {
     this.company = param;
+    this.KlikDozvola();
   }
 
   onChangePhoneNo(param: string) {
     this.phoneNo = param;
+    this.KlikDozvola();
   }
 
   onChangeCreatedTime(param: string) {
     this.dateTimeCreated = param;
+    this.KlikDozvola();
   }
 
   onChangePurpose(param: string) {
     this.purpose = param;
+    this.KlikDozvola();
   }
   onChangeId(param: string) {
     this.id = param;
+    this.KlikDozvola();
   }
   onChangeDetails(param: string) {
     this.details = param;
+    this.KlikDozvola();
   }
   onChangeNotes(param: string) {
     this.notes = param;
+    this.KlikDozvola();
   }
 
   AjmoNalog() {
@@ -152,5 +165,18 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     console.log(JSON.stringify(nalog));
 
     this.CrudService.createNalog(nalog).subscribe();
+  }
+
+  KlikDozvola(){
+
+    if(this.id!='' && this.startTime!=null && this.endTime!=null &&this.purpose!='' && this.notes!=''
+       && this.emergency!=null && this.company!='' && this.phoneNo!='')
+    {
+      this.dozvola=true;
+    }
+    else
+    {
+      this.dozvola=false;
+    }
   }
 }

@@ -26,13 +26,14 @@ export class BasicPlanRadaComponent implements OnInit {
   typeWork = null;
   startTime = null;
   endTime = null;
-  company = null;
-  phoneNo = null;
-  purpose = null;
-  details = null;
-  notes = null;
-  ulica = null;
-  idplana = null;
+  company = '';
+  phoneNo = '';
+  purpose = '';
+  details = '';
+  notes = '';
+  ulica = '';
+  idplana = '';
+  dozvola:boolean=false;
 
   constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService) { }
 
@@ -97,33 +98,42 @@ export class BasicPlanRadaComponent implements OnInit {
 
   onChangeStartTime(param: Date) {
     this.startTime = param;
+    this.KlikDozvola();
   }
 
   onChangeEndTime(param: Date) {
     this.endTime = param;
+    this.KlikDozvola();
   }
   onChangeUlica(param: string) {
     this.ulica = param;
+    this.KlikDozvola();
   }
   onChangeCompany(param: string) {
     this.company = param;
+    this.KlikDozvola();
   }
   onChangeID(param: string) {
     this.idplana = param;
+    this.KlikDozvola();
   }
   onChangePhoneNo(param: string) {
     this.phoneNo = param;
+    this.KlikDozvola();
   }
   onChangePurpose(param: string) {
     this.purpose = param;
+    this.KlikDozvola();
   }
   onChangeDetails(param: string) {
     this.details = param;
+    this.KlikDozvola();
   }
   onChangeNotes(param: string) {
     this.notes = param;
+    this.KlikDozvola();
   }
-
+  
 
   submit(){
     const token = localStorage.getItem("jwt");
@@ -145,6 +155,18 @@ export class BasicPlanRadaComponent implements OnInit {
     };
     this.CrudService.createPlan(plan).subscribe();
 
+  }
 
+  KlikDozvola(){
+
+    if(this.idplana!='' && this.startTime!=null && this.endTime!=null && this.purpose!='' &&this.notes!='' && this.company!=''
+       && this.phoneNo!='' && this.details!='' && this.ulica!='')
+    {
+      this.dozvola=true;
+    }
+    else
+    {
+      this.dozvola=false;
+    }
   }
 }

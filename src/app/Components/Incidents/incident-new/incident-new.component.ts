@@ -36,6 +36,8 @@ export class IncidentNewComponent implements OnInit {
   calls:number = null;
   voltage:number = null;
   scheduledTime = null;
+  dozvola:boolean=false;
+
   getErrorMessageIncID() {
     if (this.IncIDCon.hasError('required')) {
       return 'You must enter Incident ID';
@@ -110,49 +112,63 @@ export class IncidentNewComponent implements OnInit {
   }
   onChangeIncId(param: string) {
     this.incId = param;
+    this.KlikDozvola();
   }
 
   onChangeType(param: string) {
     this.type = param;
+    this.KlikDozvola();
   }
   onChangeStatus(param: string) {
     this.status = param;
+    this.KlikDozvola();
   }
 
   onChangeDesc(param: string) {
     this.desc = param;
+    this.KlikDozvola();
+
   }
 
   onChangeEta(param: Date) {
     this.eta = param;
+    this.KlikDozvola();
+
   }
 
   onChangeAta(param: Date) {
     this.ata = param;
+    this.KlikDozvola();
   }
 
   onChangeAffectedCustomers(param: number) {
     this.affectedCustomers = param;
+    this.KlikDozvola();
   }
 
   onChangeOutageTime(param: Date) {
     this.outageTime = param;
+    this.KlikDozvola();
   }
 
   onChangeEtr(param: Date) {
     this.etr = param;
+    this.KlikDozvola();
   }
 
   onChangeCalls(param: number) {
     this.calls = param;
+    this.KlikDozvola();
   }
 
   onChangeVoltage(param: number) {
     this.voltage = param;
+    this.KlikDozvola();
   }
 
   onChangeScheduledTime(param: Date) {
     this.scheduledTime = param;
+    this.KlikDozvola();
   }
   constructor(  private router: Router,private crudService:CRUDService) {}
 
@@ -176,6 +192,20 @@ export class IncidentNewComponent implements OnInit {
 
     this.crudService.createIncident(incident).subscribe();
   }
+
+
+KlikDozvola(){
+
+  if(this.incId!=null && this.type!=null && this.status!=null && this.eta!=null &&this.ata!=null && this.etr!=null && this.scheduledTime!=null
+    && this.affectedCustomers!=null && this.calls!=null && this.voltage!=null )
+  {
+    this.dozvola=true;
+  }
+  else
+  {
+    this.dozvola=false;
+  }
+}
 
   
 }

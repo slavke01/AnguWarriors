@@ -23,6 +23,7 @@ export class NewElementCompComponent implements OnInit {
   Lon: string = '';
   Lat: string = '';
   type: string = this.niz[0];
+  dozvola:boolean=false;
 
   constructor(private crudService:CRUDService) {}
 
@@ -81,24 +82,42 @@ export class NewElementCompComponent implements OnInit {
     }
   onChangeId(param: string) {
     this.id = param;
+    this.KlikDozvola();
   }
 
   onChangeType(param: string) {
     this.type = param;
+    this.KlikDozvola();
   }
   onChangeName(param: string) {
     this.name = param;
+    this.KlikDozvola();
   }
 
   onChangeAdress(param: string) {
     this.adress = param;
+    this.KlikDozvola();
   }
 
   onChangeLon(param: string) {
     this.Lon = param;
+    this.KlikDozvola();
   }
 
   onChangeLat(param: string) {
     this.Lat = param;
+    this.KlikDozvola();
+  }
+
+  KlikDozvola(){
+
+    if(this.id!='' && this.type!='' && this.name!='' && this.adress!='' &&this.Lon!='' && this.Lat!='')
+    {
+      this.dozvola=true;
+    }
+    else
+    {
+      this.dozvola=false;
+    }
   }
 }

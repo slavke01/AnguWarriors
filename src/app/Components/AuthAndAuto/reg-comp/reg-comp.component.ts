@@ -19,15 +19,17 @@ export class RegCompComponent implements OnInit {
   usernameCon = new FormControl('', [Validators.required]);
   passwordCon = new FormControl('', [Validators.required]);
   repeatpasswordCon = new FormControl('', [Validators.required]);
-  firstName: string = null;
-  lastName: string = null;
+  firstName: string = '';
+  lastName: string = '';
   dateOfBirth: Date = null;
-  address: string = null;
-  emailAddress: string = null;
-  username: string = null;
-  password: string = null;
-  repeatpassword: string = null;
+  address: string = '';
+  emailAddress: string = '';
+  username: string = '';
+  password: string = '';
+  repeatpassword: string = '';
   hide = true;
+  dozvola:boolean=false;
+
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -86,26 +88,32 @@ export class RegCompComponent implements OnInit {
 
   onChangeFirstName(param: string) {
     this.firstName = param;
+    this.KlikDozvola();
   }
 
   onChangeLastName(param: string) {
     this.lastName = param;
+    this.KlikDozvola();
   }
 
   onChangeDateOfBirth(param: Date) {
     this.dateOfBirth = param;
+    this.KlikDozvola();
   }
 
   onChangeAddress(param: string) {
     this.address = param;
+    this.KlikDozvola();
   }
 
   onChangeEmailAddress(param: string) {
     this.emailAddress = param;
+    this.KlikDozvola();
   }
 
   onChangeUsername(param: string) {
     this.username = param;
+    this.KlikDozvola();
   }
 
   onChangePassword(param: string) {
@@ -147,10 +155,23 @@ export class RegCompComponent implements OnInit {
         approved:false
       };
     
- 
-        console.log(user);
-  
 
+        console.log(user); 
+
+        
         this.authService.registerUser(user).subscribe();
+  }
+
+  KlikDozvola(){
+
+    if(this.username!='' && this.password!='' && this.firstName!='' && this.lastName!='' &&this.dateOfBirth!=null && this.address!=''
+       && this.emailAddress!='' && this.repeatpassword!='')
+    {
+      this.dozvola=true;
+    }
+    else
+    {
+      this.dozvola=false;
+    }
   }
 }
