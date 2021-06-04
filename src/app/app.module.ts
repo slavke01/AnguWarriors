@@ -217,9 +217,10 @@ export function tokenGetter() {
         path:'safety',
         component: SafetyDocStartComponent,
         canActivate:[AuthGuardService]
+        
       },
       {
-        path:'safetyDocNew',
+        path:'safetydocnew',
         component: SafetyDocBasicInfoComponent,
       },
       {
