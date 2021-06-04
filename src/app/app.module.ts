@@ -52,6 +52,9 @@ import { ApproveUserComponent } from './Components/AuthAndAuto/approve-user/appr
 import { EditIncidentComponent } from './Components/Incidents/edit-incident/edit-incident.component';
 import { UpdateNalogRadaComponent } from './Components/WorkRequest/update-nalog-rada/update-nalog-rada.component';
 import { UpdatePlanRadaComponent } from './Components/SwitchingPlan/update-plan-rada/update-plan-rada.component';
+import { SafetyDocStartComponent } from './components/SafetyDocs/safety-doc-start/safety-doc-start.component';
+import { SafetyDocBasicInfoComponent } from './Components/SafetyDocs/safety-doc-basic-info/safety-doc-basic-info.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -93,7 +96,9 @@ export function tokenGetter() {
     ApproveUserComponent,
     EditIncidentComponent,
     UpdateNalogRadaComponent,
-    UpdatePlanRadaComponent
+    UpdatePlanRadaComponent,
+    SafetyDocStartComponent,
+    SafetyDocBasicInfoComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -207,6 +212,14 @@ export function tokenGetter() {
       {
         path:'editnalog',
         component: UpdateNalogRadaComponent,
+      },
+      {
+        path:'safety',
+        component: SafetyDocStartComponent,
+      },
+      {
+        path:'safetyDocNew',
+        component: SafetyDocBasicInfoComponent,
       },
       {
         path:'editplan',
@@ -342,4 +355,16 @@ export interface changePassword{
 username:string;
 oldPassword:string;
 newPassword:string;
+}
+
+export interface SafetyDoc{
+
+  id:string;
+  status:string;
+  detalji:string;
+  beleske:string;
+  telefonskiBroj:string;
+  createdBy:string;
+  safetyType:string;
+
 }

@@ -1,0 +1,83 @@
+<div class="buttons-div">
+    
+    <a
+    href="/newSafetyDoc"
+    class="btn btn-outline-dark"
+    role="button"
+    aria-pressed="true"
+    style="width: 100px; height: 50px; margin-right: 50px"
+    >New</a
+  >
+</div>
+
+
+<div class="tabela-div">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    <div class="mat-elevation-z8" >
+      <table mat-table  [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id:</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status:</th>
+            <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+          </ng-container>
+
+        <ng-container matColumnDef="Detalji">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Detalji:</th>
+            <td mat-cell *matCellDef="let row">{{ row.detalji }}</td>
+            </ng-container>
+  
+        <ng-container matColumnDef="Beleske">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Beleske:</th>
+                <td mat-cell *matCellDef="let row">{{ row.beleske }}</td>
+              </ng-container>
+
+        <ng-container matColumnDef="TelefonskiBroj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefonski broj:</th>
+                <td mat-cell *matCellDef="let row">{{ row.telefonskiBroj }}</td>
+              </ng-container>
+
+        <ng-container matColumnDef="CreatedBy">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Created by:</th>
+                <td mat-cell *matCellDef="let row">{{ row.createdBy }}</td>
+              </ng-container>
+
+        <ng-container matColumnDef="SafetyType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Safety type:</th>
+                <td mat-cell *matCellDef="let row">{{ row.createdBy }}</td>
+              </ng-container>
+
+        <ng-container matColumnDef="Delete" *ngIf="showDelete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+          <td mat-cell *matCellDef="let row" >
+                <button class="btn btn-secondary" (click)="deleteRow(row.id)" >Obrisi</button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Edit" *ngIf="showEdit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+          <td mat-cell *matCellDef="let row" >
+                <button class="btn btn-secondary" (click)="editRow(row.id)" >Edit</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5 , 10]"></mat-paginator>
+    </div>
+  
+  </div>
