@@ -37,6 +37,28 @@ namespace AnguWarriorsBack.Controllers
       return Ok();
     }
 
+    [HttpPost("/api/crud/createSafetyDocument")]
+    public async Task<IActionResult> CreateSafetyDoc([FromBody] SafetyDocDTO sdDTO)
+    {
+
+      SafetyDoc sdPravi = new SafetyDoc();
+      sdPravi.Id = sdDTO.Id;
+      sdPravi.Status = sdDTO.Status;
+      sdPravi.Detalji = sdDTO.Detalji;
+      sdPravi.Beleske = sdDTO.Beleske;
+      sdPravi.CreatedBy = sdDTO.CreatedBy;
+      sdPravi.SafetyType = sdDTO.SafetyType;
+      sdPravi.TelefonskiBroj = sdDTO.TelefonskiBroj;
+
+      sdPravi.IdNalogaRada = "cao";
+      sdPravi.Ekipa = "nasa ekipa";
+
+
+      this._context.SafetyDocuments.Add(sdPravi);
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
     [HttpPost("api/crud/createPlan")]
     public async Task<IActionResult> CreatePlan([FromBody] PlanRadaDTO plandto) {
 
@@ -98,6 +120,32 @@ namespace AnguWarriorsBack.Controllers
     {
       List<Incident> retVal = this._context.Incidents.ToList();
       return Ok(retVal);
+    }
+
+    [HttpGet("/api/crud/getSafetyDocument")]
+    [Authorize]
+    public async Task<IActionResult> GetSafetyDocuments()
+    {
+      List<SafetyDoc> retVal = this._context.SafetyDocuments.ToList();
+
+      List<SafetyDocDTO> retValZaPrikaz = new List<SafetyDocDTO>();
+
+      foreach (SafetyDoc sd in retVal)
+      {
+        SafetyDocDTO sdFake = new SafetyDocDTO();
+        sdFake.Id = sd.Id;
+        sdFake.Status = sd.Status;
+        sdFake.Detalji = sd.Detalji;
+        sdFake.Beleske = sd.Beleske;
+        sdFake.CreatedBy = sd.CreatedBy;
+        sdFake.SafetyType = sd.SafetyType;
+        sdFake.TelefonskiBroj = sd.TelefonskiBroj;
+
+        retValZaPrikaz.Add(sdFake);
+      }
+
+
+      return Ok(retValZaPrikaz);
     }
 
     [HttpGet("/api/crud/getIncident/{id}")]
@@ -307,6 +355,28 @@ namespace AnguWarriorsBack.Controllers
         return BadRequest();
       }
     }
+
+    [HttpPost("/api/crud/deleteSafetyDoc/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteSafetyDoc([FromRoute] string id)
+    {
+      SafetyDoc retVal = await this._context.SafetyDocuments.FindAsync(id);
+      if (retVal != null)
+      {
+        this._context.SafetyDocuments.Remove(retVal);
+        await this._context.SaveChangesAsync();
+
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+
+
+
+
     [HttpGet("/api/crud/getElements")]
     public async Task<IActionResult> GetElements()
     {

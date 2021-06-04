@@ -52,7 +52,7 @@ import { ApproveUserComponent } from './Components/AuthAndAuto/approve-user/appr
 import { EditIncidentComponent } from './Components/Incidents/edit-incident/edit-incident.component';
 import { UpdateNalogRadaComponent } from './Components/WorkRequest/update-nalog-rada/update-nalog-rada.component';
 import { UpdatePlanRadaComponent } from './Components/SwitchingPlan/update-plan-rada/update-plan-rada.component';
-import { SafetyDocStartComponent } from './components/SafetyDocs/safety-doc-start/safety-doc-start.component';
+import { SafetyDocStartComponent } from './Components/SafetyDocs/safety-doc-start/safety-doc-start.component';
 import { SafetyDocBasicInfoComponent } from './Components/SafetyDocs/safety-doc-basic-info/safety-doc-basic-info.component';
 
 
@@ -216,6 +216,7 @@ export function tokenGetter() {
       {
         path:'safety',
         component: SafetyDocStartComponent,
+        canActivate:[AuthGuardService]
       },
       {
         path:'safetyDocNew',

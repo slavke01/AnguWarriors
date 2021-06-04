@@ -1,29 +1,48 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AnguWarriorsBack.Models
 {
+    [Table("SafetyDocuments")]
     public class SafetyDoc
     {
-
-        public string IdSafety { get; set; }
-        public TipRada SafetyType { get; set; }
-        public string Status { get; set; }
-        public string CreatedBy { get; set; }
-        public string IdNalogaRada { get; set; }
-        public string Ekipa { get; set; } // Uzimamo iz naloga za rad
-        public string Detalji { get; set; }
-        public string Beleske { get; set; }
-        public string TelefonskiBroj { get; set; }
-        public DateTime CreatedOn { get; set; }
+        [Key]
+        public string Id { get; set; }
+    [Required]
+    public TipRada SafetyType { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Status { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string CreatedBy { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string IdNalogaRada { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Ekipa { get; set; } // Uzimamo iz naloga za rad
+    [Required]
+    [StringLength(255)]
+    public string Detalji { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Beleske { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string TelefonskiBroj { get; set; }
+    [Required]
+    public DateTime CreatedOn { get; set; }
 
 
         public SafetyDoc() { }
         public SafetyDoc(string id,TipRada tip, string status, string createdby,string idnalogarada,string ekipa,string detalji,string beleske,string telefon,DateTime createdon) {
 
-            this.IdSafety = id;
+            this.Id = id;
             this.SafetyType = tip;
             this.Status = status;
             this.CreatedBy = createdby;

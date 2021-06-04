@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Elementi, Incident, NalogRada, PlanRada } from '../app.module';
+import { Elementi, Incident, NalogRada, PlanRada, SafetyDoc } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,6 +19,16 @@ export class CRUDService {
     const body = JSON.stringify(incident);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createIncident',
+      body,
+      this.httpOptions
+    );
+  }
+
+  createSafetyDocument(sd:SafetyDoc):Observable<any>{
+
+    const body = JSON.stringify(sd);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createSafetyDocument',
       body,
       this.httpOptions
     );
@@ -59,9 +69,14 @@ export class CRUDService {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncident/'+id,
       this.httpOptions);
-
-
   }
+
+  getSafetyDocuments(){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getSafetyDocument',
+      this.httpOptions);
+  }
+
   updateIncident(incident:Incident){
     const body = JSON.stringify(incident);
     return this.http.post<any>(
@@ -149,6 +164,15 @@ export class CRUDService {
       this.baseURL + 'api/crud/deleteIncident/'+id,
       this.httpOptions);
   }
+
+  deleteSafetyDoc(id:string){
+    
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteSafetyDoc/'+id,
+      this.httpOptions);
+  }
+
+
   deleteNalogRada(id:string){
     
     return this.http.post<any>(

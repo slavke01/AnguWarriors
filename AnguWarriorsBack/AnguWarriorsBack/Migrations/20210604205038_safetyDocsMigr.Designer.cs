@@ -4,14 +4,16 @@ using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnguWarriorsBack.Migrations
 {
     [DbContext(typeof(AnguWarrDBContext))]
-    partial class AnguWarrDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210604205038_safetyDocsMigr")]
+    partial class safetyDocsMigr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,7 +242,7 @@ namespace AnguWarriorsBack.Migrations
 
             modelBuilder.Entity("AnguWarriorsBack.Models.SafetyDoc", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("IdSafety")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Beleske")
@@ -275,7 +277,7 @@ namespace AnguWarriorsBack.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdSafety");
 
                     b.ToTable("SafetyDocuments");
                 });

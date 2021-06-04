@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SafetyDoc } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
 
 @Component({
   selector: 'app-safety-doc-basic-info',
@@ -28,9 +29,12 @@ export class SafetyDocBasicInfoComponent implements OnInit {
 
   dozvola:boolean = false;
 
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(private crs:CRUDService,private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
+
+   
+
   }
 
   onChangeSdId(param: string) {
@@ -101,7 +105,7 @@ export class SafetyDocBasicInfoComponent implements OnInit {
 
     console.log(JSON.stringify(saf));
 
-    //this.CrudService.createNalog(nalog).subscribe();
+    this.crs.createSafetyDocument(saf).subscribe();
     //this.router.navigate(['requests']);
   }
 

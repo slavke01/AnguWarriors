@@ -40,6 +40,17 @@ export class SafetyDocStartComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+    this.crs.getSafetyDocuments().subscribe((podatak: SafetyDoc[])=>{
+      this.data=this.data.concat(podatak); 
+      this.dataSource = new MatTableDataSource(podatak);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+       
+      });
+
+
+
     const token = localStorage.getItem("jwt");
     var x =this.jwtHelper.decodeToken(token);
     var role = x["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
@@ -59,7 +70,7 @@ export class SafetyDocStartComponent implements OnInit {
 
   deleteRow(id:string){
     console.log(id)
-    //this.crs.deleteNalogRada(id).subscribe();
+    this.crs.deleteSafetyDoc(id).subscribe();
     window.location.reload();
   }
   editRow(id:string){
