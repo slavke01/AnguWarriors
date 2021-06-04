@@ -34,7 +34,7 @@ export class UpdatePlanRadaComponent implements OnInit {
   ulica = '';
   idplana = '';
   dozvola:boolean=false;
-
+  poruke:string[]=[]
   model:PlanRada={
     idPlana:'',
     documentType:'',
@@ -67,7 +67,11 @@ export class UpdatePlanRadaComponent implements OnInit {
 
 
     });
+      this.crudService.getPlanChanges(id).subscribe((data:string[])=>{
 
+this.poruke=data;
+
+      });
   }
 
   ngOnInit(): void {

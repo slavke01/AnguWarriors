@@ -4,14 +4,16 @@ using AnguWarriorsBack.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnguWarriorsBack.Migrations
 {
     [DbContext(typeof(AnguWarrDBContext))]
-    partial class AnguWarrDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210604121359_IncidentState")]
+    partial class IncidentState
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,22 +147,6 @@ namespace AnguWarriorsBack.Migrations
                     b.ToTable("Nalog");
                 });
 
-            modelBuilder.Entity("AnguWarriorsBack.Models.NalogRadaChanges", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("IdIncidenta")
-                        .IsRequired();
-
-                    b.Property<string>("Message")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NalogRadaChanges");
-                });
-
             modelBuilder.Entity("AnguWarriorsBack.Models.PlanRada", b =>
                 {
                     b.Property<string>("IdPlana")
@@ -220,22 +206,6 @@ namespace AnguWarriorsBack.Migrations
                     b.HasKey("IdPlana");
 
                     b.ToTable("Planovi");
-                });
-
-            modelBuilder.Entity("AnguWarriorsBack.Models.PlanRadaChanges", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("IdIncidenta")
-                        .IsRequired();
-
-                    b.Property<string>("Message")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlanRadaChanges");
                 });
 
             modelBuilder.Entity("AnguWarriorsBack.Models.User", b =>

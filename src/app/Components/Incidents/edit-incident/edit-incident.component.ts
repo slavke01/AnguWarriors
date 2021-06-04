@@ -35,7 +35,7 @@ export class EditIncidentComponent implements OnInit {
   voltage: number = null;
   scheduledTime = null;
   dozvola: boolean = false;
-
+  poruke:string[]=[];
   model: Incident = {
     id: '',
     prioritet: 0,
@@ -186,6 +186,12 @@ export class EditIncidentComponent implements OnInit {
       this.affectedCustomers=data.affectedPeople;
       this.calls=data.pozivi;
       this.voltage=data.voltage;
+
+    });
+
+    this.crud.getIncidentChanges(id).subscribe((data:string[])=>{
+
+     this.poruke=data;
 
     });
   }

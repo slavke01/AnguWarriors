@@ -92,6 +92,28 @@ export class CRUDService {
       this.httpOptions);
 
   }
+
+  getIncidentChanges(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getIncidentChanges/'+id,
+      this.httpOptions);
+
+  }
+
+  getNalogChanges(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getWorkChanges/'+id,
+      this.httpOptions);
+
+  }
+  getPlanChanges(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getPlanChanges/'+id,
+      this.httpOptions);
+
+  }
+
+  
   updateNalog(nalog:NalogRada){
     const body = JSON.stringify(nalog);
     return this.http.post<any>(

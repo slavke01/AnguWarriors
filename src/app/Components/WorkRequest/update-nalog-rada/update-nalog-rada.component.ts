@@ -35,7 +35,7 @@ export class UpdateNalogRadaComponent implements OnInit {
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
   dozvola:boolean=false;
-
+  poruke:string[]=[]
 model:NalogRada={
   id:',',
   nalogType:'',
@@ -175,6 +175,11 @@ model:NalogRada={
       this.phoneNo=data.telefonskiBroj;
 
 
+    });
+
+
+    this.CrudService.getNalogChanges(id).subscribe((data:string[])=>{
+    this.poruke=data;
     });
    }
 

@@ -22,6 +22,8 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> CreateIncident([FromBody] Incident incident)
     {
       this._context.Incidents.Add(incident);
+      this._context.IncidentChanges.Add(new IncidentChangesMessage(incident.ID, "Dodato :" + DateTime.Now.ToString()));
+
       await this._context.SaveChangesAsync();
 
       return Ok();
@@ -56,7 +58,7 @@ namespace AnguWarriorsBack.Controllers
       plan.Svrha = plandto.Svrha;
       plan.TelefonskiBroj = plandto.TelefonskiBroj;
       plan.Ulica = plandto.Ulica;
-
+      this._context.PlanRadaChanges.Add(new PlanRadaChanges(plan.IdPlana, "Dodato :" + DateTime.Now.ToString()));
       this._context.Planovi.Add(plan);
       await this._context.SaveChangesAsync();
 
@@ -83,6 +85,8 @@ namespace AnguWarriorsBack.Controllers
       a.TelefonskiBroj = nrdto.TelefonskiBroj;
       a.Svrha = nrdto.Svrha;
       this._context.Nalozi.Add(a);
+      this._context.NalogRadaChanges.Add(new NalogRadaChanges(a.IdNaloga, "Dodato :" + DateTime.Now.ToString()));
+
       await this._context.SaveChangesAsync();
       return Ok();
     }
@@ -129,6 +133,9 @@ namespace AnguWarriorsBack.Controllers
         retVal.VrijemeRada = inc.VrijemeRada;
         retVal.Status = inc.Status;
         retVal.Pozivi = inc.Pozivi;
+
+
+        this._context.IncidentChanges.Add(new IncidentChangesMessage(retVal.ID,"Izmjenjeno :"+DateTime.Now.ToString()));
         await this._context.SaveChangesAsync();
         return Ok();
       }
@@ -185,6 +192,8 @@ namespace AnguWarriorsBack.Controllers
         retVal.CreatedBy = nrdto.CreatedBy;
         retVal.Detalji = nrdto.Detalji;
         retVal.DocumentType = nrdto.DocumentType;
+        this._context.PlanRadaChanges.Add(new PlanRadaChanges(retVal.IdPlana, "Updated :" + DateTime.Now.ToString()));
+
         await this._context.SaveChangesAsync();
         return Ok();
       }
@@ -236,6 +245,8 @@ namespace AnguWarriorsBack.Controllers
         retVal.Status = nrdto.Status;
         retVal.Svrha = nrdto.Svrha;
         retVal.TelefonskiBroj = nrdto.TelefonskiBroj;
+        this._context.NalogRadaChanges.Add(new NalogRadaChanges(retVal.IdNaloga, "Updated :" + DateTime.Now.ToString()));
+
         await this._context.SaveChangesAsync();
         return Ok();
       }
@@ -361,6 +372,66 @@ namespace AnguWarriorsBack.Controllers
 
 
       return Ok(planoviDTO);
+    }
+    [HttpGet("/api/crud/getIncidentChanges/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetIncidentChanges([FromRoute] string id) {
+
+      List<IncidentChangesMessage> temp = this._context.IncidentChanges.ToList();
+      List<string> retVal = new List<string>();
+
+      foreach (IncidentChangesMessage i in temp) {
+
+        if (i.IdIncidenta == id) {
+          retVal.Add(i.Message);
+        }
+
+      }
+
+      return Ok(retVal);
+    }
+
+
+    [HttpGet("/api/crud/getWorkChanges/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetWorkChanges([FromRoute] string id)
+    {
+
+      List<NalogRadaChanges> temp = this._context.NalogRadaChanges.ToList();
+      List<string> retVal = new List<string>();
+
+      foreach (NalogRadaChanges i in temp)
+      {
+
+        if (i.IdIncidenta == id)
+        {
+          retVal.Add(i.Message);
+        }
+
+      }
+
+      return Ok(retVal);
+    }
+
+    [HttpGet("/api/crud/getPlanChanges/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetPlanChanges([FromRoute] string id)
+    {
+
+      List<PlanRadaChanges> temp = this._context.PlanRadaChanges.ToList();
+      List<string> retVal = new List<string>();
+
+      foreach (PlanRadaChanges i in temp)
+      {
+
+        if (i.IdIncidenta == id)
+        {
+          retVal.Add(i.Message);
+        }
+
+      }
+
+      return Ok(retVal);
     }
   }
 }

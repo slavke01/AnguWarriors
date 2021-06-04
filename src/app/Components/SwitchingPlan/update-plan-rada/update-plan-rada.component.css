@@ -1,0 +1,26 @@
+.changes {
+    position: absolute;
+    left: 1000px;
+    top: 20px;
+    width: 400px;
+    height: 400px;
+    padding-left: 25px;
+    padding-top: 15px;
+    border-radius: 35px;
+    padding-right: 25px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+  }
+  .bg {
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    width: 1000px;
+    height: 530px;
+    padding-left: 25px;
+    border-radius: 35px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+  }
