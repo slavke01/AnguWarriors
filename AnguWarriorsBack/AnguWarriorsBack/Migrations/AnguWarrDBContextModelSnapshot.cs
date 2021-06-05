@@ -280,6 +280,22 @@ namespace AnguWarriorsBack.Migrations
                     b.ToTable("SafetyDocuments");
                 });
 
+            modelBuilder.Entity("AnguWarriorsBack.Models.SafetyDocChanges", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("IdIncidenta")
+                        .IsRequired();
+
+                    b.Property<string>("Message")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SafetyDocCHanges");
+                });
+
             modelBuilder.Entity("AnguWarriorsBack.Models.User", b =>
                 {
                     b.Property<string>("Username")

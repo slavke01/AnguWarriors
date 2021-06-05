@@ -54,6 +54,8 @@ import { UpdateNalogRadaComponent } from './Components/WorkRequest/update-nalog-
 import { UpdatePlanRadaComponent } from './Components/SwitchingPlan/update-plan-rada/update-plan-rada.component';
 import { SafetyDocStartComponent } from './Components/SafetyDocs/safety-doc-start/safety-doc-start.component';
 import { SafetyDocBasicInfoComponent } from './Components/SafetyDocs/safety-doc-basic-info/safety-doc-basic-info.component';
+import { SafetyDocMenuComponent } from './Components/SafetyDocs/safety-doc-menu/safety-doc-menu.component';
+import { UpdateSafetydocComponent } from './Components/SafetyDocs/update-safetydoc/update-safetydoc.component';
 
 
 export function tokenGetter() {
@@ -98,7 +100,9 @@ export function tokenGetter() {
     UpdateNalogRadaComponent,
     UpdatePlanRadaComponent,
     SafetyDocStartComponent,
-    SafetyDocBasicInfoComponent
+    SafetyDocBasicInfoComponent,
+    SafetyDocMenuComponent,
+    UpdateSafetydocComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -214,6 +218,10 @@ export function tokenGetter() {
         component: UpdateNalogRadaComponent,
       },
       {
+        path:'editsafety',
+        component: UpdateSafetydocComponent,
+      },
+      {
         path:'safety',
         component: SafetyDocStartComponent,
         canActivate:[AuthGuardService]
@@ -221,7 +229,17 @@ export function tokenGetter() {
       },
       {
         path:'safetydocnew',
-        component: SafetyDocBasicInfoComponent,
+        component: SafetyDocMenuComponent,
+        children:[
+          {
+            path:'',
+            component: SafetyDocBasicInfoComponent,
+            canActivate:[AuthGuardService]
+            
+          },
+
+
+        ]
       },
       {
         path:'editplan',
@@ -360,7 +378,6 @@ newPassword:string;
 }
 
 export interface SafetyDoc{
-
   id:string;
   status:string;
   detalji:string;

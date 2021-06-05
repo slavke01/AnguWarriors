@@ -40,13 +40,11 @@ export class SafetyDocStartComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.crs.getSafetyDocuments().subscribe((podatak: SafetyDoc[])=>{
       this.data=this.data.concat(podatak); 
       this.dataSource = new MatTableDataSource(podatak);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-       
       });
 
 
@@ -75,7 +73,7 @@ export class SafetyDocStartComponent implements OnInit {
   }
   editRow(id:string){
 
-    this.router.navigate(['editnalog'], { state: { example: id } });
+    this.router.navigate(['editsafety'], { state: { example: id } });
 
   }
 

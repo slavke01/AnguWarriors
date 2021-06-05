@@ -71,9 +71,15 @@ export class CRUDService {
       this.httpOptions);
   }
 
+  getSafetyDoc(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getSafety/'+id,
+      this.httpOptions);
+  }
+
   getSafetyDocuments(){
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getSafetyDocument',
+      this.baseURL + 'api/crud/getSafetyDocuments',
       this.httpOptions);
   }
 
@@ -84,8 +90,14 @@ export class CRUDService {
       body,
       this.httpOptions
     );
-
-
+  }
+  updateSafetyDoc(sd:SafetyDoc){
+    const body = JSON.stringify(sd);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/updateSafety',
+      body,
+      this.httpOptions
+    );
   }
   getPlan(id:string){
     return this.http.get<any>(
@@ -112,23 +124,24 @@ export class CRUDService {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncidentChanges/'+id,
       this.httpOptions);
-
   }
 
   getNalogChanges(id:string){
     return this.http.get<any>(
       this.baseURL + 'api/crud/getWorkChanges/'+id,
       this.httpOptions);
-
   }
   getPlanChanges(id:string){
     return this.http.get<any>(
       this.baseURL + 'api/crud/getPlanChanges/'+id,
       this.httpOptions);
-
   }
 
-  
+  getSafetyChanges(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getSafetyChanges/'+id,
+      this.httpOptions);
+  }
   updateNalog(nalog:NalogRada){
     const body = JSON.stringify(nalog);
     return this.http.post<any>(

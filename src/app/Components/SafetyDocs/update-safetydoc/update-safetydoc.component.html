@@ -1,0 +1,154 @@
+
+<div class="bg">
+    <table>
+      <tr>
+          <th>
+              <div class="left">
+                  <div>
+                    <p>
+                      <mat-form-field
+                        appearance="outline"
+                        style="margin-left: 15px; width: 200px"
+                      >
+                        <mat-label>Safety Document ID</mat-label>
+                        <input
+                          matInput
+                          (input)="onChangeSdId($event.target.value)"
+                          placeholder="SafetyDocument ID"
+                          disabled
+                          value="{{model.id}}"
+                        />
+                        <mat-error *ngIf="SdID.invalid">{{
+                          getErrorMessageSdID()
+                        }}</mat-error>
+                        <!--mat-hint>Hint</mat-hint-->
+                      </mat-form-field>
+                    </p>
+                  </div>
+              </div>
+          </th>
+          <th>
+              <div class="left">
+                  <div>
+                    <p>
+                      <mat-form-field
+                        appearance="outline"
+                        style="margin-left: 15px; width: 200px"
+                      >
+                        <mat-label>Safety Document Details</mat-label>
+                        <input
+                          matInput
+                          (input)="onChangeSdDetalji($event.target.value)"
+                          placeholder="Safety Document Details"
+                          [formControl]="SdDetalji"
+                          required
+                          value="{{model.detalji}}"
+                        />
+                        <mat-error *ngIf="SdDetalji.invalid">{{
+                          getErrorMessageSdDetalji()
+                        }}</mat-error>
+                        <!--mat-hint>Hint</mat-hint-->
+                      </mat-form-field>
+                    </p>
+                  </div>
+              </div>
+          </th>
+      </tr>
+      <tr>
+          <th>
+              <div class="left">
+                  <div>
+                    <p>
+                      <mat-form-field
+                        appearance="outline"
+                        style="margin-left: 15px; width: 200px"
+                      >
+                        <mat-label>Safety Document Beleska</mat-label>
+                        <input
+                          matInput
+                          (input)="onChangeSdBeleska($event.target.value)"
+                          placeholder="SafetyDocument Beleska"
+                          [formControl]="SdBeleska"
+                          required
+                          value="{{model.beleske}}"
+                        />
+                        <mat-error *ngIf="SdBeleska.invalid">{{
+                          getErrorMessageSdBeleska()
+                        }}</mat-error>
+                        <!--mat-hint>Hint</mat-hint-->
+                      </mat-form-field>
+                    </p>
+                  </div>
+              </div>
+          </th>
+          <th>
+              <div class="left">
+                  <div>
+                    <p>
+                      <mat-form-field
+                        appearance="outline"
+                        style="margin-left: 15px; width: 200px"
+                      >
+                        <mat-label>Safety Document Telefonski broj</mat-label>
+                        <input
+                          matInput
+                          (input)="onChangeSdTelefonskiBroj($event.target.value)"
+                          placeholder="SafetyDocument Telefonski broj"
+                          [formControl]="SdTelefonskiBroj"
+                          required
+                          value="{{model.telefonskiBroj}}"
+                        />
+                        <mat-error *ngIf="SdTelefonskiBroj.invalid">{{
+                          getErrorMessageSdTelefonskiBroj()
+                        }}</mat-error>
+                        <!--mat-hint>Hint</mat-hint-->
+                      </mat-form-field>
+                    </p>
+                  </div>
+              </div>
+          </th>
+      </tr>
+      <tr>
+          <th>
+              <div>
+                  <mat-form-field appearance="outline" style="margin-left: 15px; width: 200px">
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="type" name="type">
+                      <mat-option *ngFor="let opcija of tipovi" [value]="opcija">
+                        {{opcija}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+            </th>
+      </tr>
+  </table>
+  
+  <div>
+      <button (click)="AjmoSafetyDoc()" style="margin-left: 300px;" class="btn btn-dark" [disabled]="!dozvola" >Done</button>
+    
+    </div>
+  </div>
+  
+  <div class="changes">
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>History of State Changes</th>
+            
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let x of poruke">
+              <td>{{x}}</td>
+              
+          </tr>
+      </tbody>
+  </table>
+  
+  
+  </div>
+
+  <app-side-bar></app-side-bar>
+  
+  

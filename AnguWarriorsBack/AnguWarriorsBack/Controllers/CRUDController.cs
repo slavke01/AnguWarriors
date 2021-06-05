@@ -53,7 +53,7 @@ namespace AnguWarriorsBack.Controllers
       sdPravi.IdNalogaRada = "cao";
       sdPravi.Ekipa = "nasa ekipa";
 
-
+      this._context.SafetyDocChanges.Add(new SafetyDocChanges(sdPravi.Id, "Dodato :" + DateTime.Now.ToString()));
       this._context.SafetyDocuments.Add(sdPravi);
       await this._context.SaveChangesAsync();
       return Ok();
@@ -122,7 +122,7 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
-    [HttpGet("/api/crud/getSafetyDocument")]
+    [HttpGet("/api/crud/getSafetyDocuments")]
     [Authorize]
     public async Task<IActionResult> GetSafetyDocuments()
     {
@@ -355,7 +355,56 @@ namespace AnguWarriorsBack.Controllers
         return BadRequest();
       }
     }
+    [HttpGet("/api/crud/getSafety/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetSafetyDoc([FromRoute] string id)
+    {
+      SafetyDoc sd = await this._context.SafetyDocuments.FindAsync(id);
+      if (sd != null)
+      {
+        SafetyDocDTO sddto = new SafetyDocDTO();
+        sddto.Id = sd.Id;
+        sddto.Status = sd.Status;
+        sddto.Detalji = sd.Detalji;
+        sddto.Beleske = sd.Beleske;
+        sddto.CreatedBy = sd.CreatedBy;
+        sddto.SafetyType = sd.SafetyType;
+        sddto.TelefonskiBroj = sd.TelefonskiBroj;
 
+        return Ok(sddto);
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
+
+    [HttpPost("api/crud/updateSafety")]
+    public async Task<IActionResult> UpdateSafety([FromBody] SafetyDocDTO sddto)
+    {
+
+      SafetyDoc retVal = await this._context.SafetyDocuments.FindAsync(sddto.Id);
+      if (retVal != null)
+      {
+        this._context.Attach(retVal);
+      
+        retVal.Status = sddto.Status;
+        retVal.Detalji = sddto.Detalji;
+        retVal.Beleske = sddto.Beleske;
+        retVal.CreatedBy = sddto.CreatedBy;
+        retVal.SafetyType = sddto.SafetyType;
+        retVal.TelefonskiBroj = sddto.TelefonskiBroj;
+
+
+        this._context.SafetyDocChanges.Add(new SafetyDocChanges(retVal.Id, "Izmjenjeno :" + DateTime.Now.ToString()));
+        await this._context.SaveChangesAsync();
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
     [HttpPost("/api/crud/deleteSafetyDoc/{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteSafetyDoc([FromRoute] string id)
@@ -443,6 +492,9 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok(planoviDTO);
     }
+
+
+
     [HttpGet("/api/crud/getIncidentChanges/{id}")]
     [Authorize]
     public async Task<IActionResult> GetIncidentChanges([FromRoute] string id) {
@@ -460,7 +512,26 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok(retVal);
     }
+    [HttpGet("/api/crud/getSafetyChanges/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetSafetyChanges([FromRoute] string id)
+    {
 
+      List<SafetyDocChanges> temp = this._context.SafetyDocChanges.ToList();
+      List<string> retVal = new List<string>();
+
+      foreach (SafetyDocChanges i in temp)
+      {
+
+        if (i.IdIncidenta == id)
+        {
+          retVal.Add(i.Message);
+        }
+
+      }
+
+      return Ok(retVal);
+    }
 
     [HttpGet("/api/crud/getWorkChanges/{id}")]
     [Authorize]

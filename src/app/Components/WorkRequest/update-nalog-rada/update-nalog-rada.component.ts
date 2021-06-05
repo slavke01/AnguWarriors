@@ -36,7 +36,7 @@ export class UpdateNalogRadaComponent implements OnInit {
   tipoviWork = ['work1', 'work2', 'work3'];
   dozvola:boolean=false;
   poruke:string[]=[]
-model:NalogRada={
+  model:NalogRada={
   id:',',
   nalogType:'',
   status:'',
@@ -201,7 +201,10 @@ model:NalogRada={
 
     console.log(JSON.stringify(nalog));
     this.CrudService.updateNalog(nalog).subscribe();
-    this.router.navigate(['requests']);
+    setTimeout(() => {
+      this.router.navigate(['requests']);
+    }, 300);
+   
   }
 
   KlikDozvola(){

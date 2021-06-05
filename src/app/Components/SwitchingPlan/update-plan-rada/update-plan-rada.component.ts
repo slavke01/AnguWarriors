@@ -187,7 +187,10 @@ this.poruke=data;
       createdBy:username
     };
     this.crudService.updatePlan(plan).subscribe();
-    this.router.navigate(['switching']);
+    setTimeout(() => {
+      this.router.navigate(['switching']);
+    }, 300);
+   
   }
   KlikDozvola(){
 

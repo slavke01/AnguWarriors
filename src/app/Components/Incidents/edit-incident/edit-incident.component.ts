@@ -214,7 +214,10 @@ export class EditIncidentComponent implements OnInit {
     };
     console.log(JSON.stringify(incident));
     this.crud.updateIncident(incident).subscribe();
-    this.router.navigate(['incidents']);
+    setTimeout(() => {
+      this.router.navigate(['incidents']);
+    }, 300);
+    
   }
   KlikDozvola() {
     if (

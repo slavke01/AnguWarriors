@@ -24,5 +24,6 @@ namespace AnguWarriorsBack.DataBase
            public DbSet<NalogRadaChanges> NalogRadaChanges { get; set; }
            public DbSet<PlanRadaChanges> PlanRadaChanges { get; set; }
            public DbSet<SafetyDoc> SafetyDocuments { get; set; }
+           public DbSet<SafetyDocChanges> SafetyDocChanges { get; set; }
     }
 }
