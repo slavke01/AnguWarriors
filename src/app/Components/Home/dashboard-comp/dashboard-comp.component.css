@@ -1,5 +1,5 @@
 .dash-model-incindents{
-    height: 300px;
+    height: 60px;
     width: 300px;
     border: solid;
     border-color: lightgray;
@@ -10,7 +10,7 @@
 
 
 .dash-model-work-plans{
-    height: 300px;
+    height: 60px;
     width: 300px;
     border: solid;
     border-color: lightgray;
@@ -20,7 +20,7 @@
 }
 
 .dash-model-safety-docs{
-    height: 300px;
+    height: 60px;
     width: 300px;
     border: solid;
     border-color: lightgray;
@@ -33,19 +33,19 @@
 .dash-model-incident-charts{
     position: absolute;
     width: 700px;
-    height: 400px;
+    height: 430px;
     border: solid;
     border-color: lightgray;
     margin-left: 100px;
-    margin-top: 500px;
+    margin-top: 300px;
 }
 
 .dash-model-documents-charts{
     position: absolute;
     width: 300px;
-    height: 400px;
+    height: 430px;
     border: solid;
     border-color: lightgray;
     margin-left: 900px;
-    margin-top: 500px;
+    margin-top: 300px;
 }

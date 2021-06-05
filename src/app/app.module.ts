@@ -139,6 +139,12 @@ export function tokenGetter() {
 
       },
       {
+        path: 'approve',
+        component: ApproveUserComponent,
+        canActivate: [AuthGuardService]
+      },
+
+      {
         path: 'home',
         component: DashboardCompComponent,
         canActivate: [AuthGuardService]

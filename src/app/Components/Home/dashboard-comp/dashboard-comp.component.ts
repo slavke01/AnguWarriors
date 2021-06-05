@@ -16,8 +16,11 @@ export class DashboardCompComponent implements OnInit {
   chartDatasetsPie: Array<any>=[{data:[],label:""}]
   chartDatasetsLine: Array<any>=[{data:[],label:""},{data:[],label:""}]
 
+  numbers:number[]=[]
+
   constructor(private crs:CRUDService) {
 
+    this.crs.getNumber().subscribe((sve:number[])=>{this.numbers=sve;})
     this.crs.getAllByUsername().subscribe((sve:number[])=>{this.nizSvegaISvacega=sve; console.log(sve);  this.chartDatasetsPie= [
       { data: sve, label: 'Pregled:' }
     ];});

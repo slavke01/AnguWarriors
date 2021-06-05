@@ -807,5 +807,22 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok(retVal);
     }
+
+
+    [HttpGet("/api/crud/getNumberIncidents")]
+    
+    public async Task<IActionResult> GetNumberIncidents()
+    {
+      int incidenti = this._context.Incidents.ToList().Count;
+      int planRada = this._context.Nalozi.ToList().Count;
+      int safetyDo = this._context.SafetyDocuments.ToList().Count;
+      List<int> lista = new List<int>();
+
+      lista.Add(incidenti);
+      lista.Add(planRada);
+      lista.Add(safetyDo);
+
+      return Ok(lista);
+    }
   }
 }

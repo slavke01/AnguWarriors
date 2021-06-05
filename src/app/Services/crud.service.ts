@@ -185,6 +185,13 @@ export class CRUDService {
       this.baseURL + 'api/crud/getNalozi',
       this.httpOptions);
   }
+
+  getNumber(){
+    return this.http.get<number[]>(
+      this.baseURL + 'api/crud/getNumberIncidents',
+      this.httpOptions);
+  }
+
   deleteIncident(id:string){
     
     return this.http.post<any>(
