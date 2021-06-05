@@ -18,7 +18,7 @@ namespace AnguWarriorsBack.Models
     public bool Hitno { get; set; }
     public string Kompanija { get; set; }
     public string TelefonskiBroj { get; set; }
-
+    public string IdIncidenta { get; set; }
     public NalogRadaDTO() { }
 
   }

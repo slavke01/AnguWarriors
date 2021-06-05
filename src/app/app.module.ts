@@ -59,7 +59,8 @@ import { UpdateSafetydocComponent } from './Components/SafetyDocs/update-safetyd
 import { AllUsersComponent } from './Components/AuthAndAuto/all-users/all-users.component';
 import { CrewComponentComponent } from './Components/AuthAndAuto/crew-component/crew-component.component';
 import { NewCrewComponentComponent } from './Components/AuthAndAuto/new-crew-component/new-crew-component.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { WorkReqDialogComponent } from './Components/WorkRequest/work-req-dialog/work-req-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -108,7 +109,8 @@ export function tokenGetter() {
     UpdateSafetydocComponent,
     AllUsersComponent,
     CrewComponentComponent,
-    NewCrewComponentComponent
+    NewCrewComponentComponent,
+    WorkReqDialogComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule,DragDropModule],
@@ -378,6 +380,7 @@ export interface Incident{
   affectedPeople:number;
   pozivi:number;
   voltage:number;
+
 }
 
 export interface NalogRada{
@@ -391,6 +394,7 @@ export interface NalogRada{
   hitno:boolean;
   kompanija:string;
   telefonskiBroj:string;
+  idIncidenta:string
 }
 
 export interface Login{
@@ -425,7 +429,11 @@ username:string;
 oldPassword:string;
 newPassword:string;
 }
+export interface DialogData{
 
+id:string;
+
+}
 export interface SafetyDoc{
   id:string;
   status:string;

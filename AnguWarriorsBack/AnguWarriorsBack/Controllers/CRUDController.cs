@@ -99,7 +99,7 @@ namespace AnguWarriorsBack.Controllers
       a.CreatedTime = DateTime.Now;
       a.CreatedBy = "pera";
       a.IdNaloga = nrdto.Id;
-      a.IdIncidenta = Guid.NewGuid().ToString();
+      a.IdIncidenta = nrdto.IdIncidenta;
       a.Ulica = "random";
       a.Kompanija = nrdto.Kompanija;
       a.Hitno = nrdto.Hitno;

@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NalogRada } from '../../../app.module';
 import { CRUDService } from '../../../Services/crud.service';
+import { WorkReqDialogComponent } from '../work-req-dialog/work-req-dialog.component';
 @Component({
   selector: 'app-basic-information-work-request',
   templateUrl: './basic-information-work-request.component.html',
   styleUrls: ['./basic-information-work-request.component.css'],
 })
 export class BasicInformationWorkRequestComponent implements OnInit {
-  constructor(private CrudService: CRUDService,private router:Router) {}
+  constructor(
+    private CrudService: CRUDService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
   IdCon = new FormControl('', [Validators.required]);
@@ -21,7 +27,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   PurposeCon = new FormControl('', [Validators.required]);
   DetailsCon = new FormControl('', [Validators.required]);
   NotesCon = new FormControl('', [Validators.required]);
-
+  idInc = '';
   type = '';
   typeWork = '';
   startTime = null;
@@ -29,14 +35,14 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   emergency: boolean = false;
   company = '';
   phoneNo = '';
-  dateTimeCreated ='';
+  dateTimeCreated = '';
   purpose = '';
   details = '';
   notes = '';
-  id='';
+  id = '';
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
-  dozvola:boolean=false;
+  dozvola: boolean = false;
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
@@ -151,7 +157,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
 
   AjmoNalog() {
     var nalog: NalogRada = {
-      id:this.id,
+      id: this.id,
       nalogType: this.type,
       status: 'Draft',
       pocetakRada: this.startTime,
@@ -161,24 +167,45 @@ export class BasicInformationWorkRequestComponent implements OnInit {
       hitno: this.emergency,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
+      idIncidenta:this.idInc,
     };
 
     console.log(JSON.stringify(nalog));
 
     this.CrudService.createNalog(nalog).subscribe();
-    this.router.navigate(['requests']);
+    setTimeout(() => {
+      this.router.navigate(['requests']);
+    }, 300);
   }
 
-  KlikDozvola(){
+  KlikDozvola() {
+    if (
+      this.id != '' &&
+      this.startTime != null &&
+      this.endTime != null &&
+      this.purpose != '' &&
+      this.notes != '' &&
+      this.emergency != null &&
+      this.company != '' &&
+      this.phoneNo != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
+    }
+  }
 
-    if(this.id!='' && this.startTime!=null && this.endTime!=null &&this.purpose!='' && this.notes!=''
-       && this.emergency!=null && this.company!='' && this.phoneNo!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
-    }
+  otvoriDialog(): void {
+    const dialogRef = this.dialog.open(WorkReqDialogComponent, {
+      width: '700px',
+      height: '400px',
+      data: { id: this.idInc },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.idInc = result["result"];
+      console.log(this.idInc);
+    });
   }
 }

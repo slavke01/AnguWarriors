@@ -32,6 +32,7 @@ export class UpdateNalogRadaComponent implements OnInit {
   details = '';
   notes = '';
   id='';
+  idIncidenta='';
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
   dozvola:boolean=false;
@@ -46,7 +47,8 @@ export class UpdateNalogRadaComponent implements OnInit {
   beleske:'',
   hitno:false,
   kompanija:'',
-  telefonskiBroj:''
+  telefonskiBroj:'',
+  idIncidenta:''
 }
 
 
@@ -173,7 +175,7 @@ export class UpdateNalogRadaComponent implements OnInit {
       this.emergency=data.hitno;
       this.company=data.kompanija;
       this.phoneNo=data.telefonskiBroj;
-
+      this.idIncidenta=data.idIncidenta;
 
     });
 
@@ -197,6 +199,7 @@ export class UpdateNalogRadaComponent implements OnInit {
       hitno: this.emergency,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
+      idIncidenta:this.idIncidenta,
     };
 
     console.log(JSON.stringify(nalog));
