@@ -54,12 +54,16 @@ export class ApproveUserComponent implements OnInit {
 
       this.auth.approve(username).subscribe();
       console.log(username)
-      window.location.reload();
-
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
    }
+   
    decline(username:string){
     this.auth.decline(username).subscribe();
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 300);
 
   }
 }

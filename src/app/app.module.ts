@@ -57,7 +57,9 @@ import { SafetyDocBasicInfoComponent } from './Components/SafetyDocs/safety-doc-
 import { SafetyDocMenuComponent } from './Components/SafetyDocs/safety-doc-menu/safety-doc-menu.component';
 import { UpdateSafetydocComponent } from './Components/SafetyDocs/update-safetydoc/update-safetydoc.component';
 import { AllUsersComponent } from './Components/AuthAndAuto/all-users/all-users.component';
-
+import { CrewComponentComponent } from './Components/AuthAndAuto/crew-component/crew-component.component';
+import { NewCrewComponentComponent } from './Components/AuthAndAuto/new-crew-component/new-crew-component.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -104,10 +106,12 @@ export function tokenGetter() {
     SafetyDocBasicInfoComponent,
     SafetyDocMenuComponent,
     UpdateSafetydocComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    CrewComponentComponent,
+    NewCrewComponentComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
-  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
+  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule,DragDropModule],
 
   imports: [
     BrowserModule,
@@ -124,6 +128,11 @@ export function tokenGetter() {
       {
         path: '',
         component: LoginCompComponent,
+      },
+      {
+        path: 'report',
+        component:IncidentNewComponent ,
+
       },
       {
         path: 'register',
@@ -152,7 +161,12 @@ export function tokenGetter() {
           {
             path: 'approve',
             component: ApproveUserComponent,
-          },
+          },{
+            path: 'crews',
+            component: CrewComponentComponent,
+
+
+          }
         ]
 
       },
@@ -282,6 +296,10 @@ export function tokenGetter() {
           component:NewElementCompComponent,
       },
       {
+        path:"newCrew",
+        component:NewCrewComponentComponent,
+    },
+      {
           path:'newreq',
           component:NewWorkRequestComponent,
           canActivate: [AuthGuardService],
@@ -335,6 +353,18 @@ export interface User{
   approved:boolean;
 }
 
+export interface Ekipa{
+  idEkipe:string;
+  nazivEkipe:string;
+}
+
+
+export interface EkipaDTO{
+  idEkipe:string;
+  nazivEkipe:string;
+  usersId:string[]; 
+  
+}
 export interface Incident{
   id:string;
   incidentType:string;

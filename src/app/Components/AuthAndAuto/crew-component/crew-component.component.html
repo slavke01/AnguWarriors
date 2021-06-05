@@ -1,0 +1,91 @@
+<div class="buttons-div">
+    
+  <a
+  href="/newCrew"
+  class="btn btn-outline-dark"
+  role="button"
+  aria-pressed="true"
+  style="width: 100px; height: 50px; margin-right: 50px"
+  >New Crew</a
+>
+</div>
+
+
+
+<div class="tabela-div">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. Mia"
+        #input
+      />
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="IdEkipe">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id ekipe</th>
+          <td mat-cell *matCellDef="let row">{{ row.idEkipe }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="NazivEkipe">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Naziv ekipe</th>
+          <td mat-cell *matCellDef="let row">{{ row.nazivEkipe }}</td>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Delete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Odrisi</th>
+          <td mat-cell *matCellDef="let row">
+            <button class="btn btn-secondary" (click)="decline(row.idEkipe)">
+              Delete
+            </button>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Show">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Show members</th>
+          <td mat-cell *matCellDef="let row">
+            <button class="btn btn-secondary" (click)="show(row.idEkipe)">
+              Show
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+    </div>
+  </div>
+  
+  
+
+  <div class="show" *ngIf="showData" style="margin-top: 30px;">
+    <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let x of crewmembers">
+              <td>{{x.username}}</td>
+              <td>{{x.firstName}}</td>
+              <td>{{x.lastName}}</td>
+          </tr>
+      </tbody>
+  </table>
+  
+  
+  </div>
+  

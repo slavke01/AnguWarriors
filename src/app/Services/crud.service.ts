@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Elementi, Incident, NalogRada, PlanRada, SafetyDoc } from '../app.module';
+import { EkipaDTO, Elementi, Incident, NalogRada, PlanRada, SafetyDoc } from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 export class CRUDService {
   baseURL: string = 'https://localhost:44370/';
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json",'Access-Control-Allow-Origin' : '*' }),
+    headers: new HttpHeaders({ "Content-Type": "application/json",
+    'Access-Control-Allow-Origin' : '*' }),
   };
   constructor(private http:HttpClient) { }
 
@@ -71,6 +72,24 @@ export class CRUDService {
       this.httpOptions);
   }
 
+   createCrew(crew:EkipaDTO){
+    const body = JSON.stringify(crew);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createCrew',
+      body,
+      this.httpOptions
+    );
+   }
+  getCrews(){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getCrews',
+      this.httpOptions);
+  }
+  getFreeCrewMembers(){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getFreeCrewMembers',
+      this.httpOptions);
+  }
   getSafetyDoc(id:string){
     return this.http.get<any>(
       this.baseURL + 'api/crud/getSafety/'+id,
@@ -191,7 +210,11 @@ export class CRUDService {
       this.baseURL + 'api/crud/getNumberIncidents',
       this.httpOptions);
   }
-
+   deleteCrew(id:string){
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteCrew/'+id,
+      this.httpOptions);
+   }
   deleteIncident(id:string){
     
     return this.http.post<any>(
@@ -225,7 +248,13 @@ export class CRUDService {
       this.httpOptions);
   }
 
+ getCrewMembers(id:string){
+  return this.http.get<any>(
+    this.baseURL + 'api/crud/getCrewMembers/'+id,
+    this.httpOptions);
 
+
+ }
 }
 
 

@@ -143,8 +143,8 @@ namespace AnguWarriorsBack.Controllers
         }
       }
 
-      int pJ=0, pF=0, pM=0, pA=0, pMaj=0, pJun=0, pJul=0,pAvg=0, pS=0, pO=0, pN=0, pD=0;
-      int nJ=0, nF=0, nM=0, nA=0, nMaj=0, nJun=0, nJul=0,nAvg=0, nS=0, nO=0, nN=0, nD=0;
+      int pJ = 0, pF = 0, pM = 0, pA = 0, pMaj = 0, pJun = 0, pJul = 0, pAvg = 0, pS = 0, pO = 0, pN = 0, pD = 0;
+      int nJ = 0, nF = 0, nM = 0, nA = 0, nMaj = 0, nJun = 0, nJul = 0, nAvg = 0, nS = 0, nO = 0, nN = 0, nD = 0;
 
 
       foreach (Incident inc in planiraniIncidenti)
@@ -349,7 +349,7 @@ namespace AnguWarriorsBack.Controllers
       rez.Add(retVal2);
       rez.Add(retVal3);
       rez.Add(retVal4);
-      
+
 
       return Ok(rez);
     }
@@ -388,7 +388,7 @@ namespace AnguWarriorsBack.Controllers
       Incident retVal = await this._context.Incidents.FindAsync(id);
       if (retVal != null)
       {
-     
+
         return Ok(retVal);
       }
       else
@@ -416,7 +416,7 @@ namespace AnguWarriorsBack.Controllers
         retVal.Pozivi = inc.Pozivi;
 
 
-        this._context.IncidentChanges.Add(new IncidentChangesMessage(retVal.ID,"Izmjenjeno :"+DateTime.Now.ToString()));
+        this._context.IncidentChanges.Add(new IncidentChangesMessage(retVal.ID, "Izmjenjeno :" + DateTime.Now.ToString()));
         await this._context.SaveChangesAsync();
         return Ok();
       }
@@ -620,7 +620,7 @@ namespace AnguWarriorsBack.Controllers
       if (retVal != null)
       {
         this._context.Attach(retVal);
-      
+
         retVal.Status = sddto.Status;
         retVal.Detalji = sddto.Detalji;
         retVal.Beleske = sddto.Beleske;
@@ -656,9 +656,14 @@ namespace AnguWarriorsBack.Controllers
       }
     }
 
+    [HttpGet("api/crud/getCrews")]
+    [Authorize]
+    public async Task<IActionResult> GetCrews() {
 
+      List<Ekipa> retVal = this._context.Ekipe.ToList();
 
-
+      return Ok(retVal);
+    }
     [HttpGet("/api/crud/getElements")]
     public async Task<IActionResult> GetElements()
     {
@@ -666,6 +671,99 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+    [HttpGet("api/crud/getFreeCrewMembers")]
+    [Authorize]
+    public async Task<IActionResult> GetFreeCrewmates() {
+
+      List<User> all = this._context.Users.ToList();
+      List<string> free = new List<string>();
+
+      foreach (User u in all) {
+
+        if (u.UserType == TipKorisnika.RADNIK && u.IdEkipe == null && u.Approved == true) {
+          free.Add(u.Username);
+
+        }
+
+      }
+
+      return Ok(free);
+
+    }
+
+    [HttpPost("api/crud/createCrew")]
+    [Authorize]
+    public async Task<IActionResult> CreateCrew([FromBody] EkipaDTO edto) {
+
+      if (edto == null) {
+        return BadRequest();
+      }
+      Ekipa ek = new Ekipa();
+      ek.IdEkipe = edto.IdEkipe;
+      ek.NazivEkipe = edto.NazivEkipe;
+      this._context.Ekipe.Add(ek);
+      List<User> all = this._context.Users.ToList();
+      foreach (string u in edto.usersId) {
+        foreach (User ui in all) {
+          if (ui.Username == u) {
+            this._context.Attach(ui);
+            ui.IdEkipe = edto.IdEkipe;
+          }
+
+        }
+
+      }
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
+
+    [HttpPost("api/crud/deleteCrew/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteCrew([FromRoute] string id) {
+      Ekipa e = await this._context.Ekipe.FindAsync(id);
+
+      if (e == null) {
+        return BadRequest();
+      }
+
+      List<User> all = this._context.Users.ToList();
+      foreach (User u in all) {
+
+        if (u.UserType == TipKorisnika.RADNIK) {
+          if (u.IdEkipe == e.IdEkipe) {
+            this._context.Attach(u);
+            u.IdEkipe = null;
+          }
+        }
+      }
+      this._context.Remove(e);
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
+
+
+    [HttpGet("api/crud/getCrewMembers/{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetCrewMembers([FromRoute] string id) {
+
+      List<User> all = this._context.Users.ToList();
+      List<User> retVal = new List<User>();
+
+      foreach (User u in all) {
+        if (u.UserType == TipKorisnika.RADNIK) {
+          if (u.IdEkipe == id) {
+
+            retVal.Add(u);
+          }
+
+        }
+
+      }
+
+      return Ok(retVal);
+    }
 
 
     [HttpGet("/api/crud/getNalozi")]

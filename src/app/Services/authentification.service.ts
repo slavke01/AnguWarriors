@@ -16,7 +16,8 @@ export class AuthentificationService {
 
   registerUser(user: User): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json",'Access-Control-Allow-Origin' : '*' }),
+      headers: new HttpHeaders({ "Content-Type": "application/json",
+      'Access-Control-Allow-Origin' : '*' }),
     };
     const body = JSON.stringify(user);
     return this.http.post<any>(
@@ -41,7 +42,13 @@ export class AuthentificationService {
       this.httpOptions);
 
   }
+  getCrewMembers(id:string){
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getCrewMembers/'+id,
+      this.httpOptions);
 
+
+  }
   getAproved(){
     return this.http.get<any>(
       this.baseURL + 'api/getApproved',

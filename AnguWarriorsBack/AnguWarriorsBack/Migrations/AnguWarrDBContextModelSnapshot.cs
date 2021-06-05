@@ -19,6 +19,19 @@ namespace AnguWarriorsBack.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AnguWarriorsBack.Models.Ekipa", b =>
+                {
+                    b.Property<string>("IdEkipe")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("NazivEkipe")
+                        .IsRequired();
+
+                    b.HasKey("IdEkipe");
+
+                    b.ToTable("Ekipe");
+                });
+
             modelBuilder.Entity("AnguWarriorsBack.Models.Element", b =>
                 {
                     b.Property<string>("ID")
@@ -316,6 +329,8 @@ namespace AnguWarriorsBack.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(255);
+
+                    b.Property<string>("IdEkipe");
 
                     b.Property<string>("LastName")
                         .IsRequired()

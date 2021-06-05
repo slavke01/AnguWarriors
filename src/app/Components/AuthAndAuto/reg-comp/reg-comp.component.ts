@@ -28,8 +28,9 @@ export class RegCompComponent implements OnInit {
   password: string = '';
   repeatpassword: string = '';
   hide = true;
-  dozvola:boolean=false;
-
+  dozvola: boolean = false;
+  tipovi:string[] = ['CLAN', 'DISPECER', 'RADNIK'];
+  type="";
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -41,9 +42,7 @@ export class RegCompComponent implements OnInit {
     if (this.firstNameCon.hasError('required')) {
       return 'You must enter your First name';
     }
-    if (this.lastNameCon.hasError('required')) {
-      return 'You must enter your last name';
-    }
+   
     return '';
   }
   getErrorMessageLastName() {
@@ -141,38 +140,38 @@ export class RegCompComponent implements OnInit {
   ngOnInit(): void {}
 
   metodaAjmo() {
- 
-    
-      var user: User = {
-        username: this.username,
-        password: this.password,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        datumRodjenja: this.dateOfBirth,
-        adress: this.address,
-        eMail: this.emailAddress,
-        userType:"CLAN",
-        approved:false
-      };
-    
+    var user: User = {
+      username: this.username,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      datumRodjenja: this.dateOfBirth,
+      adress: this.address,
+      eMail: this.emailAddress,
+      userType: this.type,
+      approved: false,
+    };
 
-        console.log(user); 
+    console.log(user);
 
-        
-        this.authService.registerUser(user).subscribe();
-        this.router.navigate(["/"]);
+    this.authService.registerUser(user).subscribe();
+    this.router.navigate(['/']);
   }
 
-  KlikDozvola(){
-
-    if(this.username!='' && this.password!='' && this.firstName!='' && this.lastName!='' &&this.dateOfBirth!=null && this.address!=''
-       && this.emailAddress!='' && this.repeatpassword!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
+  KlikDozvola() {
+    if (
+      this.username != '' &&
+      this.password != '' &&
+      this.firstName != '' &&
+      this.lastName != '' &&
+      this.dateOfBirth != null &&
+      this.address != '' &&
+      this.emailAddress != '' &&
+      this.repeatpassword != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
     }
   }
 }

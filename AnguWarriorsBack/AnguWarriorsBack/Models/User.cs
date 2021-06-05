@@ -37,7 +37,9 @@ namespace AnguWarriorsBack.Models
         [Required]
         public bool Approved { get; set; }
 
-        public User() { }
+        public string IdEkipe { get; set; }
+
+    public User() { }
         /*
         public User(string username,string pw,string first,string last,DateTime datum,string adress,string email,TipKorisnika tip) {
 

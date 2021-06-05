@@ -1,0 +1,78 @@
+<div>
+  <div class="levi">
+    <p>
+      <mat-form-field appearance="outline" style="width: 230px">
+        <mat-label>Enter ID crew</mat-label>
+        <input
+          matInput
+          (input)="onChangeCrewId($event.target.value)"
+          placeholder="Crew Id"
+          [formControl]="idCrewCon"
+          required
+        />
+        <mat-error *ngIf="idCrewCon.invalid">{{
+          getErrorMessageCrewID()
+        }}</mat-error>
+        <!--mat-hint>Hint</mat-hint-->
+      </mat-form-field>
+    </p>
+  </div>
+
+  <div class="desni">
+    <p>
+      <mat-form-field appearance="outline" style="width: 230px">
+        <mat-label>Enter crews name</mat-label>
+        <input
+          matInput
+          (input)="onChangeCrewName($event.target.value)"
+          placeholder="Crews name"
+          [formControl]="nameCrewCon"
+          required
+        />
+        <mat-error *ngIf="nameCrewCon.invalid">{{
+          getErrorMessageCrewName()
+        }}</mat-error>
+        <!--mat-hint>Hint</mat-hint-->
+      </mat-form-field>
+    </p>
+  </div>
+
+  <div  class="dd">
+    <div class="example-container">
+        <h2>Added crew members</h2>
+      
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="added"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of added" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+      
+      <div class="example-container">
+        <h2>All crew members</h2>
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="all"
+          [cdkDropListConnectedTo]="[todoList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of all" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ <div class="btn" style="position: absolute; top: 600px; margin-left: 160px">
+        <button class="btn btn-dark" (click)="metodaAjmo()">Done</button>
+</div>
+
+
+
+<app-side-bar></app-side-bar>

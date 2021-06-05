@@ -11,7 +11,7 @@ import { MatIconModule} from "@angular/material/icon"
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChartsModule } from 'ng2-charts';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 const MaterialComponents=[
     MatButtonModule,
     MatDialogModule,
@@ -24,7 +24,8 @@ const MaterialComponents=[
     MatNativeDateModule,
     ChartsModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    DragDropModule
 ];
 
 @NgModule({
