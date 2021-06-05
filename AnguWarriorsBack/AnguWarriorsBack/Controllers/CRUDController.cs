@@ -122,6 +122,239 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+    [HttpGet("/api/crud/getIncidentsByDate")]
+    [Authorize]
+    public async Task<IActionResult> GetIncidentsByDate()
+    {
+      List<Incident> sviIncidenti = this._context.Incidents.ToList();
+
+      List<Incident> planiraniIncidenti = new List<Incident>();
+      List<Incident> neplaniraniIncidenti = new List<Incident>();
+
+      foreach (Incident inc in sviIncidenti)
+      {
+        if (inc.IncidentType == TipIncidenta.PLANIRANI)
+        {
+          planiraniIncidenti.Add(inc);
+        }
+        else
+        {
+          neplaniraniIncidenti.Add(inc);
+        }
+      }
+
+      int pJ=0, pF=0, pM=0, pA=0, pMaj=0, pJun=0, pJul=0,pAvg=0, pS=0, pO=0, pN=0, pD=0;
+      int nJ=0, nF=0, nM=0, nA=0, nMaj=0, nJun=0, nJul=0,nAvg=0, nS=0, nO=0, nN=0, nD=0;
+
+
+      foreach (Incident inc in planiraniIncidenti)
+      {
+        if (inc.VrijemeRada.Month == 1)
+        {
+          pJ++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 2)
+        {
+          pF++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 3)
+        {
+          pM++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 4)
+        {
+          pA++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 5)
+        {
+          pMaj++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 6)
+        {
+          pJun++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 7)
+        {
+          pJul++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 8)
+        {
+          pAvg++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 9)
+        {
+          pS++;
+          continue;
+        }
+        if (inc.VrijemeRada.Month == 10)
+        {
+          pO++;
+          continue;
+        }
+        if (inc.VrijemeRada.Month == 11)
+        {
+          pN++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 12)
+        {
+          pD++;
+          continue;
+        }
+
+      }
+
+      foreach (Incident inc in neplaniraniIncidenti)
+      {
+        if (inc.VrijemeRada.Month == 1)
+        {
+          nJ++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 2)
+        {
+          nF++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 3)
+        {
+          nM++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 4)
+        {
+          nA++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 5)
+        {
+          nMaj++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 6)
+        {
+          nJun++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 7)
+        {
+          nJul++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 8)
+        {
+          nAvg++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 9)
+        {
+          nS++;
+          continue;
+        }
+        if (inc.VrijemeRada.Month == 10)
+        {
+          nO++;
+          continue;
+        }
+        if (inc.VrijemeRada.Month == 11)
+        {
+          nN++;
+          continue;
+        }
+
+        if (inc.VrijemeRada.Month == 12)
+        {
+          nD++;
+          continue;
+        }
+
+      }
+
+
+      List<int> listaPlanirani = new List<int>();
+      List<int> listaNeplanirani = new List<int>();
+
+      listaPlanirani.Add(pJ);
+      listaPlanirani.Add(pF);
+      listaPlanirani.Add(pM);
+      listaPlanirani.Add(pA);
+      listaPlanirani.Add(pMaj);
+      listaPlanirani.Add(pJun);
+      listaPlanirani.Add(pJul);
+      listaPlanirani.Add(pAvg);
+      listaPlanirani.Add(pS);
+      listaPlanirani.Add(pO);
+      listaPlanirani.Add(pN);
+      listaPlanirani.Add(pD);
+
+
+      listaNeplanirani.Add(nJ);
+      listaNeplanirani.Add(nF);
+      listaNeplanirani.Add(nM);
+      listaNeplanirani.Add(nA);
+      listaNeplanirani.Add(nMaj);
+      listaNeplanirani.Add(nJun);
+      listaNeplanirani.Add(nJul);
+      listaNeplanirani.Add(nAvg);
+      listaNeplanirani.Add(nS);
+      listaNeplanirani.Add(nO);
+      listaNeplanirani.Add(nN);
+      listaNeplanirani.Add(nD);
+
+
+      List<List<int>> rez = new List<List<int>>();
+      rez.Add(listaPlanirani);
+      rez.Add(listaNeplanirani);
+
+      return Ok(rez);
+    }
+
+
+    [HttpGet("/api/crud/getAllByUsername")]
+    [Authorize]
+    public async Task<IActionResult> GetAllByUsername()
+    {
+      int retVal1 = this._context.Incidents.ToList().Count;
+      int retVal2 = this._context.Nalozi.ToList().Count;
+      int retVal3 = this._context.Planovi.ToList().Count;
+      int retVal4 = this._context.SafetyDocuments.ToList().Count;
+
+      List<int> rez = new List<int>();
+      rez.Add(retVal1);
+      rez.Add(retVal2);
+      rez.Add(retVal3);
+      rez.Add(retVal4);
+      
+
+      return Ok(rez);
+    }
+
+
     [HttpGet("/api/crud/getSafetyDocuments")]
     [Authorize]
     public async Task<IActionResult> GetSafetyDocuments()

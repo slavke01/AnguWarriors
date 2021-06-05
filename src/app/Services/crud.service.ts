@@ -165,6 +165,20 @@ export class CRUDService {
       this.httpOptions);
   }
 
+  getAllByUsername(){
+
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getAllByUsername',
+      this.httpOptions);
+  }
+
+  getIncidentsForChart(){
+
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getIncidentsByDate',
+      this.httpOptions);
+  }
+
   getNalozi(){
 
     return this.http.get<NalogRada[]>(
