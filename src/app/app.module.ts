@@ -56,6 +56,7 @@ import { SafetyDocStartComponent } from './Components/SafetyDocs/safety-doc-star
 import { SafetyDocBasicInfoComponent } from './Components/SafetyDocs/safety-doc-basic-info/safety-doc-basic-info.component';
 import { SafetyDocMenuComponent } from './Components/SafetyDocs/safety-doc-menu/safety-doc-menu.component';
 import { UpdateSafetydocComponent } from './Components/SafetyDocs/update-safetydoc/update-safetydoc.component';
+import { AllUsersComponent } from './Components/AuthAndAuto/all-users/all-users.component';
 
 
 export function tokenGetter() {
@@ -102,7 +103,8 @@ export function tokenGetter() {
     SafetyDocStartComponent,
     SafetyDocBasicInfoComponent,
     SafetyDocMenuComponent,
-    UpdateSafetydocComponent
+    UpdateSafetydocComponent,
+    AllUsersComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule],
@@ -139,9 +141,20 @@ export function tokenGetter() {
 
       },
       {
-        path: 'approve',
-        component: ApproveUserComponent,
-        canActivate: [AuthGuardService]
+        path: 'admin',
+        component: AdminCompComponent,
+        canActivate: [AuthGuardService],
+        children:[
+          {
+            path: '',
+            component: AllUsersComponent,
+          },
+          {
+            path: 'approve',
+            component: ApproveUserComponent,
+          },
+        ]
+
       },
 
       {

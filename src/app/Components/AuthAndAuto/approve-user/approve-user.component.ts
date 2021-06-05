@@ -13,6 +13,7 @@ import { AuthentificationService } from 'src/app/Services/authentification.servi
 export class ApproveUserComponent implements OnInit {
   data:User[]=[];
 
+
   displayedColumns: string[] = [
     'Username',
     'FirstName',

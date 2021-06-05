@@ -179,5 +179,22 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+
+    [HttpGet("/api/getApproved")]
+    public async Task<IActionResult> GetApproved()
+    {
+      List<User> temp = this._context.Users.ToList();
+      List<User> retVal = new List<User>();
+      foreach (User u in temp)
+      {
+        if (u.Approved == true)
+        {
+          retVal.Add(u);
+        }
+      }
+
+
+      return Ok(retVal);
+    }
   }
 }
