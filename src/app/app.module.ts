@@ -62,6 +62,7 @@ import { NewCrewComponentComponent } from './Components/AuthAndAuto/new-crew-com
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { WorkReqDialogComponent } from './Components/WorkRequest/work-req-dialog/work-req-dialog.component';
 import { IskacuciProzorZaSwitchingPlanComponent } from './Components/SwitchingPlan/iskacuci-prozor-za-switching-plan/iskacuci-prozor-za-switching-plan.component';
+import { IskacuciProzorZaEkipuUPlanuComponent } from './Components/SwitchingPlan/iskacuci-prozor-za-ekipu-uplanu/iskacuci-prozor-za-ekipu-uplanu.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -112,7 +113,8 @@ export function tokenGetter() {
     CrewComponentComponent,
     NewCrewComponentComponent,
     WorkReqDialogComponent,
-    IskacuciProzorZaSwitchingPlanComponent
+    IskacuciProzorZaSwitchingPlanComponent,
+    IskacuciProzorZaEkipuUPlanuComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule,DragDropModule],
@@ -436,6 +438,7 @@ export interface PlanRada{
   telefonskiBroj:string;
   createdBy:string;
   workRequestId:string;
+  crewId:string;
 }
 export interface changePassword{
 username:string;

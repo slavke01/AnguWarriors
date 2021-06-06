@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PlanRada } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
+import { IskacuciProzorZaEkipuUPlanuComponent } from '../iskacuci-prozor-za-ekipu-uplanu/iskacuci-prozor-za-ekipu-uplanu.component';
 import { IskacuciProzorZaSwitchingPlanComponent } from '../iskacuci-prozor-za-switching-plan/iskacuci-prozor-za-switching-plan.component';
 
 @Component({
@@ -155,7 +156,8 @@ export class BasicPlanRadaComponent implements OnInit {
       detalji:this.details,
       ulica:this.ulica,
       createdBy:username,
-      workRequestId:this.idNalog
+      workRequestId:this.idNalog,
+      crewId:this.idEkipe
     };
     this.CrudService.createPlan(plan).subscribe();
     this.router.navigate(['switching']);
@@ -175,10 +177,11 @@ export class BasicPlanRadaComponent implements OnInit {
   }
 
   idNalog="";
+  idEkipe="";
 
   otvoriDialog(): void {
     const dialogRef = this.dialog.open(IskacuciProzorZaSwitchingPlanComponent, {
-      width: '700px',
+      width: '900px',
       height: '400px',
       data: { id: this.idNalog },
     });
@@ -187,6 +190,20 @@ export class BasicPlanRadaComponent implements OnInit {
       console.log(result);
       this.idNalog = result["result"];
       console.log(this.idNalog);
+    });
+  }
+
+  otvoriDialogCrew(): void {
+    const dialogRef = this.dialog.open(IskacuciProzorZaEkipuUPlanuComponent, {
+      width: '700px',
+      height: '400px',
+      data: { id: this.idEkipe },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.idEkipe = result["result"];
+      console.log(this.idEkipe);
     });
   }
 

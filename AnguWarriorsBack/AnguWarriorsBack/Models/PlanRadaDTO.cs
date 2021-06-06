@@ -20,6 +20,7 @@ namespace AnguWarriorsBack.Models
     public string Detalji { get; set; }
     public string Status { get; set; }
     public string workRequestId { get; set; }
+    public string crewId { get; set; }
 
     public PlanRadaDTO() { }
 
