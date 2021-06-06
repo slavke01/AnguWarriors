@@ -10,14 +10,16 @@ import { Observable } from 'rxjs';
 export class AuthentificationService {
   baseURL: string = 'https://localhost:44370/';
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json"}),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
 
   registerUser(user: User): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json",
-      'Access-Control-Allow-Origin' : '*' }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }),
     };
     const body = JSON.stringify(user);
     return this.http.post<any>(
@@ -26,63 +28,64 @@ export class AuthentificationService {
       httpOptions
     );
   }
-  login(login:Login){
+
+  getToken(username: string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/getToken/'+username,
+      this.httpOptions
+    );
+  }
+  login(login: Login) {
     const body = JSON.stringify(login);
     return this.http.post<any>(
       this.baseURL + 'api/login',
       body,
       this.httpOptions
     );
-
   }
 
-  getUnaproved(){
+  getUnaproved() {
     return this.http.get<any>(
       this.baseURL + 'api/getUnapproved',
-      this.httpOptions);
-
+      this.httpOptions
+    );
   }
-  getCrewMembers(id:string){
+  getCrewMembers(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getCrewMembers/'+id,
-      this.httpOptions);
-
-
+      this.baseURL + 'api/crud/getCrewMembers/' + id,
+      this.httpOptions
+    );
   }
-  getAproved(){
+  getAproved() {
     return this.http.get<any>(
       this.baseURL + 'api/getApproved',
-      this.httpOptions);
-
+      this.httpOptions
+    );
   }
-    decline(username:string){
-      return this.http.post<any>(
-        this.baseURL + 'api/decline/'+username,
-        this.httpOptions);
-
-    }
-    approve(username:string){
-      return this.http.post<any>(
-        this.baseURL + 'api/approve/'+username,
-        this.httpOptions);
-
-    }
-  getUser(username:string){
-    
+  decline(username: string) {
+    return this.http.post<any>(
+      this.baseURL + 'api/decline/' + username,
+      this.httpOptions
+    );
+  }
+  approve(username: string) {
+    return this.http.post<any>(
+      this.baseURL + 'api/approve/' + username,
+      this.httpOptions
+    );
+  }
+  getUser(username: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/getUser/'+username,
-      this.httpOptions);
+      this.baseURL + 'api/getUser/' + username,
+      this.httpOptions
+    );
   }
-  changePassword(data:changePassword){
+  changePassword(data: changePassword) {
     const body = JSON.stringify(data);
     return this.http.post<any>(
       this.baseURL + 'api/changepassword',
       body,
       this.httpOptions
     );
-
-
-
   }
-
 }

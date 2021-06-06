@@ -370,6 +370,7 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> CreateSafetyDoc([FromBody] SafetyDocDTO sdDTO)
     {
 
+      PlanRada p = await this._context.Planovi.FindAsync(sdDTO.Id);
       SafetyDoc sdPravi = new SafetyDoc();
       sdPravi.Id = sdDTO.Id;
       sdPravi.Status = sdDTO.Status;
@@ -378,9 +379,8 @@ namespace AnguWarriorsBack.Controllers
       sdPravi.CreatedBy = sdDTO.CreatedBy;
       sdPravi.SafetyType = sdDTO.SafetyType;
       sdPravi.TelefonskiBroj = sdDTO.TelefonskiBroj;
-
-      sdPravi.IdNalogaRada = "cao";
-      sdPravi.Ekipa = "nasa ekipa";
+      sdPravi.IdNalogaRada = sdDTO.PlanRadaId;
+      sdPravi.Ekipa = p.Ekipa;
 
       this._context.SafetyDocChanges.Add(new SafetyDocChanges(sdPravi.Id, "Dodato :" + DateTime.Now.ToString()));
       this._context.SafetyDocuments.Add(sdPravi);
@@ -407,7 +407,7 @@ namespace AnguWarriorsBack.Controllers
         sdFake.CreatedBy = sd.CreatedBy;
         sdFake.SafetyType = sd.SafetyType;
         sdFake.TelefonskiBroj = sd.TelefonskiBroj;
-
+        sdFake.PlanRadaId = sd.IdNalogaRada;
         retValZaPrikaz.Add(sdFake);
       }
 
@@ -431,7 +431,7 @@ namespace AnguWarriorsBack.Controllers
         sddto.CreatedBy = sd.CreatedBy;
         sddto.SafetyType = sd.SafetyType;
         sddto.TelefonskiBroj = sd.TelefonskiBroj;
-
+        sddto.PlanRadaId = sd.IdNalogaRada;
         return Ok(sddto);
       }
       else
@@ -456,7 +456,7 @@ namespace AnguWarriorsBack.Controllers
         retVal.CreatedBy = sddto.CreatedBy;
         retVal.SafetyType = sddto.SafetyType;
         retVal.TelefonskiBroj = sddto.TelefonskiBroj;
-
+        retVal.IdNalogaRada = sddto.PlanRadaId;
 
         this._context.SafetyDocChanges.Add(new SafetyDocChanges(retVal.Id, "Izmjenjeno :" + DateTime.Now.ToString()));
         await this._context.SaveChangesAsync();
@@ -1060,6 +1060,23 @@ namespace AnguWarriorsBack.Controllers
       return Ok();
     }
 
+    [HttpPost("/api/crud/deleteDevice/{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteDevice([FromRoute] string id)
+    {
+      Element retVal = await this._context.Elements.FindAsync(id);
+      if (retVal != null)
+      {
+        this._context.Elements.Remove(retVal);
+        await this._context.SaveChangesAsync();
+
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      }
+    }
 
     [HttpGet("/api/crud/getElements")]
     public async Task<IActionResult> GetElements()

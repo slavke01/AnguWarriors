@@ -37,8 +37,9 @@ export class UpdateSafetydocComponent implements OnInit {
     telefonskiBroj: '',
     createdBy: '',
     safetyType: '',
+    planRadaId:''
   };
-
+  planrada:string='';
   dozvola: boolean = false;
   constructor(
     private crs: CRUDService,
@@ -53,7 +54,7 @@ export class UpdateSafetydocComponent implements OnInit {
       this.sdDetalji = data.detalji;
       this.sdBeleska = data.beleske;
       this.sdTelefonskiBroj = data.telefonskiBroj;
-
+      this.planrada=data.planRadaId;
       this.type = data.safetyType;
     });
     this.crs.getSafetyChanges(id).subscribe((data: string[]) => {
@@ -125,6 +126,7 @@ export class UpdateSafetydocComponent implements OnInit {
       telefonskiBroj: this.sdTelefonskiBroj,
       createdBy: username,
       safetyType: this.type,
+      planRadaId:this.planrada,
     };
 
     console.log(JSON.stringify(saf));

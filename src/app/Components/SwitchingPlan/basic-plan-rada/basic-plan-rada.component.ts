@@ -11,10 +11,9 @@ import { IskacuciProzorZaSwitchingPlanComponent } from '../iskacuci-prozor-za-sw
 @Component({
   selector: 'app-basic-plan-rada',
   templateUrl: './basic-plan-rada.component.html',
-  styleUrls: ['./basic-plan-rada.component.css']
+  styleUrls: ['./basic-plan-rada.component.css'],
 })
 export class BasicPlanRadaComponent implements OnInit {
-
   StartTimeCon = new FormControl('', [Validators.required]);
   IDPlanaCon = new FormControl('', [Validators.required]);
   EndTimeCon = new FormControl('', [Validators.required]);
@@ -25,7 +24,7 @@ export class BasicPlanRadaComponent implements OnInit {
   NotesCon = new FormControl('', [Validators.required]);
   UlicaCon = new FormControl('', [Validators.required]);
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
-  tipoviRada = ['PREKIDAC', 'OSIGURAC','TRANSFORMATOR','DISKONEKTOR'];
+  tipoviRada = ['PREKIDAC', 'OSIGURAC', 'TRANSFORMATOR', 'DISKONEKTOR'];
   type = null;
   typeWork = null;
   startTime = null;
@@ -37,13 +36,16 @@ export class BasicPlanRadaComponent implements OnInit {
   notes = '';
   ulica = '';
   idplana = '';
-  dozvola:boolean=false;
+  dozvola: boolean = false;
 
-  constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService,private router:Router,public dialog: MatDialog) { }
+  constructor(
+    private jwtHelper: JwtHelperService,
+    private CrudService: CRUDService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
@@ -137,14 +139,14 @@ export class BasicPlanRadaComponent implements OnInit {
     this.notes = param;
     this.KlikDozvola();
   }
-  
 
-  submit(){
-    const token = localStorage.getItem("jwt");
-    var x =this.jwtHelper.decodeToken(token);
-    var username = x["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+  submit() {
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     var plan: PlanRada = {
-      idPlana:this.idplana,
+      idPlana: this.idplana,
       documentType: this.type,
       status: 'Draft',
       pocetakRada: this.startTime,
@@ -153,31 +155,36 @@ export class BasicPlanRadaComponent implements OnInit {
       beleske: this.notes,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
-      detalji:this.details,
-      ulica:this.ulica,
-      createdBy:username,
-      workRequestId:this.idNalog,
-      crewId:this.idEkipe
+      detalji: this.details,
+      ulica: this.ulica,
+      createdBy: username,
+      workRequestId: this.idNalog,
+      crewId: this.idEkipe,
     };
     this.CrudService.createPlan(plan).subscribe();
     this.router.navigate(['switching']);
   }
 
-  KlikDozvola(){
-
-    if(this.idplana!='' && this.startTime!=null && this.endTime!=null && this.purpose!='' &&this.notes!='' && this.company!=''
-       && this.phoneNo!='' && this.details!='' && this.ulica!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
+  KlikDozvola() {
+    if (
+      this.idplana != '' &&
+      this.startTime != null &&
+      this.endTime != null &&
+      this.purpose != '' &&
+      this.notes != '' &&
+      this.company != '' &&
+      this.phoneNo != '' &&
+      this.details != '' &&
+      this.ulica != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
     }
   }
 
-  idNalog="";
-  idEkipe="";
+  idNalog = '';
+  idEkipe = '';
 
   otvoriDialog(): void {
     const dialogRef = this.dialog.open(IskacuciProzorZaSwitchingPlanComponent, {
@@ -188,7 +195,7 @@ export class BasicPlanRadaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-      this.idNalog = result["result"];
+      this.idNalog = result['result'];
       console.log(this.idNalog);
     });
   }
@@ -202,10 +209,8 @@ export class BasicPlanRadaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-      this.idEkipe = result["result"];
+      this.idEkipe = result['result'];
       console.log(this.idEkipe);
     });
   }
-
-
 }

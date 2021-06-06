@@ -92,6 +92,31 @@ namespace AnguWarriorsBack.Controllers
 
     }
 
+    [HttpGet("/api/getToken/{username}")]
+    public async Task<IActionResult> GetToken([FromRoute]string username) {
+      var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, username)
+        };
+
+      var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+      var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+      var tokeOptions = new JwtSecurityToken(
+          issuer: "http://localhost:44370",
+          audience: "http://localhost:4200",
+          claims: claims,
+          expires: DateTime.Now.AddMinutes(10),
+          signingCredentials: signinCredentials
+      );
+      var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+      return Ok(new { Token = tokenString });
+
+
+    }
+
+
+
+
     [HttpGet("/api/getUnapproved")]
     public async Task<IActionResult> GetUnapproved([FromRoute]string username)
     {

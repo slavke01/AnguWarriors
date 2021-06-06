@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { LoginCompComponent } from './Components/AuthAndAuto/login-comp/login-comp.component';
 import { RegCompComponent } from './Components/AuthAndAuto/reg-comp/reg-comp.component';
@@ -34,11 +34,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MapComponentComponent } from './Components/Home/map-component/map-component.component';
-import { MatInputModule } from "@angular/material/input"
-import { MatIconModule} from "@angular/material/icon"
-import { ReactiveFormsModule } from "@angular/forms"
-import { AuthentificationService } from "./Services/authentification.service"
-import { CRUDService } from "./Services/crud.service"
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthentificationService } from './Services/authentification.service';
+import { CRUDService } from './Services/crud.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './Components/AuthAndAuto/user-info/user-info.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -63,9 +63,18 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { WorkReqDialogComponent } from './Components/WorkRequest/work-req-dialog/work-req-dialog.component';
 import { IskacuciProzorZaSwitchingPlanComponent } from './Components/SwitchingPlan/iskacuci-prozor-za-switching-plan/iskacuci-prozor-za-switching-plan.component';
 import { IskacuciProzorZaEkipuUPlanuComponent } from './Components/SwitchingPlan/iskacuci-prozor-za-ekipu-uplanu/iskacuci-prozor-za-ekipu-uplanu.component';
+import { SafetydocdialogComponent } from './Components/SafetyDocs/safetydocdialog/safetydocdialog.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
 
 export function tokenGetter() {
-  return localStorage.getItem("jwt");
+  return localStorage.getItem('jwt');
 }
 @NgModule({
   declarations: [
@@ -114,10 +123,18 @@ export function tokenGetter() {
     NewCrewComponentComponent,
     WorkReqDialogComponent,
     IskacuciProzorZaSwitchingPlanComponent,
-    IskacuciProzorZaEkipuUPlanuComponent
+    IskacuciProzorZaEkipuUPlanuComponent,
+    SafetydocdialogComponent,
   ],
   entryComponents: [NewCallDialogTableComponent],
-  exports: [MatTableModule, MatFormFieldModule, MatPaginatorModule,MatInputModule,MatIconModule,DragDropModule],
+  exports: [
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatIconModule,
+    DragDropModule,
+  ],
 
   imports: [
     BrowserModule,
@@ -130,6 +147,7 @@ export function tokenGetter() {
     ChartsModule,
     WavesModule,
     HttpClientModule,
+    SocialLoginModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -137,33 +155,32 @@ export function tokenGetter() {
       },
       {
         path: 'report',
-        component:IncidentNewComponent ,
-
+        component: IncidentNewComponent,
       },
       {
         path: 'register',
         component: RegCompComponent,
       },
       {
-        path:'userInfo',
-        component:UserInfoComponent,
-        canActivate: [AuthGuardService]
+        path: 'userInfo',
+        component: UserInfoComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'incidents',
         component: IncidentsCompComponent,
-        canActivate: [AuthGuardService]
-
-      },{
-          path:"newcall",
-          component:NewCallCompComponent,
-          canActivate: [AuthGuardService]
-        },
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'newcall',
+        component: NewCallCompComponent,
+        canActivate: [AuthGuardService],
+      },
       {
         path: 'admin',
         component: AdminCompComponent,
         canActivate: [AuthGuardService],
-        children:[
+        children: [
           {
             path: '',
             component: AllUsersComponent,
@@ -171,21 +188,18 @@ export function tokenGetter() {
           {
             path: 'approve',
             component: ApproveUserComponent,
-          },{
+          },
+          {
             path: 'crews',
             component: CrewComponentComponent,
-
-
-          }
-        ]
-
+          },
+        ],
       },
 
       {
         path: 'home',
         component: DashboardCompComponent,
-        canActivate: [AuthGuardService]
-
+        canActivate: [AuthGuardService],
       },
       {
         path: 'new',
@@ -226,238 +240,239 @@ export function tokenGetter() {
       {
         path: 'notifications',
         component: Notifications3CompComponent,
-        canActivate: [AuthGuardService]
-
+        canActivate: [AuthGuardService],
       },
       {
         path: 'settings',
         component: SettingsCompComponent,
-        canActivate: [AuthGuardService]
-
+        canActivate: [AuthGuardService],
       },
       {
         path: 'requests',
         component: WorkRequestCompComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService],
       },
       {
-          path:'switching',
-          component:PlanRadaComponent,
-          canActivate: [AuthGuardService]
+        path: 'switching',
+        component: PlanRadaComponent,
+        canActivate: [AuthGuardService],
       },
       {
         path: 'map',
         component: MapComponentComponent,
-        canActivate: [AuthGuardService]
-
+        canActivate: [AuthGuardService],
       },
       {
         path: 'editincident',
-        component:EditIncidentComponent ,
-        
+        component: EditIncidentComponent,
       },
       {
-        path:'editnalog',
+        path: 'editnalog',
         component: UpdateNalogRadaComponent,
       },
       {
-        path:'editsafety',
+        path: 'editsafety',
         component: UpdateSafetydocComponent,
       },
       {
-        path:'safety',
+        path: 'safety',
         component: SafetyDocStartComponent,
-        canActivate:[AuthGuardService]
-        
+        canActivate: [AuthGuardService],
       },
       {
-        path:'safetydocnew',
+        path: 'safetydocnew',
         component: SafetyDocMenuComponent,
-        children:[
+        children: [
           {
-            path:'',
+            path: '',
             component: SafetyDocBasicInfoComponent,
-            canActivate:[AuthGuardService]
-            
+            canActivate: [AuthGuardService],
           },
-
-
-        ]
+        ],
       },
       {
-        path:'editplan',
+        path: 'editplan',
         component: UpdatePlanRadaComponent,
       },
       {
         path: 'newswitch',
-        component:  NewPlanRadaComponent ,
+        component: NewPlanRadaComponent,
         canActivate: [AuthGuardService],
         children: [
           {
             path: '',
             component: BasicPlanRadaComponent,
           },
-          
-        ]
+        ],
       },
 
       {
-          path:"newelement",
-          component:NewElementCompComponent,
+        path: 'newelement',
+        component: NewElementCompComponent,
       },
       {
-        path:"newCrew",
-        component:NewCrewComponentComponent,
-    },
+        path: 'newCrew',
+        component: NewCrewComponentComponent,
+      },
       {
-          path:'newreq',
-          component:NewWorkRequestComponent,
-          canActivate: [AuthGuardService],
+        path: 'newreq',
+        component: NewWorkRequestComponent,
+        canActivate: [AuthGuardService],
 
-          children: [
-            {
-              path: '',
-              component: BasicInformationWorkRequestComponent,
-            },
-            {
-              path: 'history',
-              component: StateChangesHistoryRequestComponent,
-            },
-            {
-              path: 'multimedia',
-              component: MultimediaAttachmentsNewRequestComponent,
-            },
-            {
-              path: 'equipment',
-              component: EquipmentNewRequestComponent,
-            }]
-  
-      }
+        children: [
+          {
+            path: '',
+            component: BasicInformationWorkRequestComponent,
+          },
+          {
+            path: 'history',
+            component: StateChangesHistoryRequestComponent,
+          },
+          {
+            path: 'multimedia',
+            component: MultimediaAttachmentsNewRequestComponent,
+          },
+          {
+            path: 'equipment',
+            component: EquipmentNewRequestComponent,
+          },
+        ],
+      },
     ]),
     BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:44370"],
-        blacklistedRoutes: []
-      }
-    })
+        whitelistedDomains: ['localhost:44370'],
+        blacklistedRoutes: [],
+      },
+    }),
   ],
   providers: [
     AuthentificationService,
-    CRUDService
+    CRUDService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('944781843826-dbk4i39vbchmp42k1mf380kol5i525tj.apps.googleusercontent.com'),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-export let logged:boolean;
-export interface User{
-  username:string;
-  password:string;
-  firstName:string;
-  lastName:string;
-  eMail:string;
-  adress:string;
-  datumRodjenja:Date;
-  userType:string;
-  approved:boolean;
+export let logged: boolean;
+export interface User {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  eMail: string;
+  adress: string;
+  datumRodjenja: Date;
+  userType: string;
+  approved: boolean;
 }
 
-export interface Ekipa{
-  idEkipe:string;
-  nazivEkipe:string;
+export interface Ekipa {
+  idEkipe: string;
+  nazivEkipe: string;
 }
 
-
-export interface EkipaDTO{
-  idEkipe:string;
-  nazivEkipe:string;
-  usersId:string[]; 
-  
+export interface EkipaDTO {
+  idEkipe: string;
+  nazivEkipe: string;
+  usersId: string[];
 }
-export interface Incident{
-  id:string;
-  incidentType:string;
-  prioritet:number;
-  confirmed:boolean;
-  status:string;
-  eta:Date;
-  ata:Date;
-  etr:Date;
-  vrijemeRada:Date;
-  affectedPeople:number;
-  pozivi:number;
-  voltage:number;
-
+export interface Incident {
+  id: string;
+  incidentType: string;
+  prioritet: number;
+  confirmed: boolean;
+  status: string;
+  eta: Date;
+  ata: Date;
+  etr: Date;
+  vrijemeRada: Date;
+  affectedPeople: number;
+  pozivi: number;
+  voltage: number;
 }
-export interface Call{
-  razlog:string;
-  komentar:string;
-  kvar:string;
-  usernameKor:string
+export interface Call {
+  razlog: string;
+  komentar: string;
+  kvar: string;
+  usernameKor: string;
 }
 
-export interface NalogRada{
-  id:string;
-  nalogType:string;
-  status:string;
-  pocetakRada:Date;
-  krajRada:Date;
-  svrha:string;
-  beleske:string;
-  hitno:boolean;
-  kompanija:string;
-  telefonskiBroj:string;
-  idIncidenta:string
+export interface NalogRada {
+  id: string;
+  nalogType: string;
+  status: string;
+  pocetakRada: Date;
+  krajRada: Date;
+  svrha: string;
+  beleske: string;
+  hitno: boolean;
+  kompanija: string;
+  telefonskiBroj: string;
+  idIncidenta: string;
 }
 
-export interface Login{
-  Username:string,
-  Password:string
+export interface Login {
+  Username: string;
+  Password: string;
 }
-export interface Elementi{
-  id:string,
-  naziv:string,
-  elementType:string,
-  adress:string,
-  longitude:string,
-  latitude:string
-}
-
-export interface PlanRada{
-  idPlana:string;
-  documentType:string;
-  status:string;
-  pocetakRada:Date;
-  krajRada:Date;
-  svrha:string;
-  beleske:string;
-  detalji:string;
-  ulica:string;
-  kompanija:string;
-  telefonskiBroj:string;
-  createdBy:string;
-  workRequestId:string;
-  crewId:string;
-}
-export interface changePassword{
-username:string;
-oldPassword:string;
-newPassword:string;
-}
-export interface DialogData{
-
-id:string;
-
-}
-export interface SafetyDoc{
-  id:string;
-  status:string;
-  detalji:string;
-  beleske:string;
-  telefonskiBroj:string;
-  createdBy:string;
-  safetyType:string;
-
+export interface Elementi {
+  id: string;
+  naziv: string;
+  elementType: string;
+  adress: string;
+  longitude: string;
+  latitude: string;
 }
 
+export interface PlanRada {
+  idPlana: string;
+  documentType: string;
+  status: string;
+  pocetakRada: Date;
+  krajRada: Date;
+  svrha: string;
+  beleske: string;
+  detalji: string;
+  ulica: string;
+  kompanija: string;
+  telefonskiBroj: string;
+  createdBy: string;
+  workRequestId: string;
+  crewId: string;
+}
+export interface changePassword {
+  username: string;
+  oldPassword: string;
+  newPassword: string;
+}
+export interface DialogData {
+  id: string;
+}
+export interface SafetyDoc {
+  id: string;
+  status: string;
+  detalji: string;
+  beleske: string;
+  telefonskiBroj: string;
+  createdBy: string;
+  safetyType: string;
+  planRadaId: string;
+}

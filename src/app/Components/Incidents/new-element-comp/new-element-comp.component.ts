@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CRUDService } from 'src/app/Services/crud.service';
 import { Elementi } from '../../../app.module';
 @Component({
@@ -25,7 +26,7 @@ export class NewElementCompComponent implements OnInit {
   type: string = this.niz[0];
   dozvola:boolean=false;
 
-  constructor(private crudService:CRUDService) {}
+  constructor(private crudService:CRUDService,private router:Router) {}
 
   ngOnInit(): void {}
 
@@ -78,6 +79,9 @@ export class NewElementCompComponent implements OnInit {
     }
       console.log(element);
       this.crudService.createElement(element).subscribe();
+      setTimeout(() => {
+        this.router.navigate(['new/devices']);
+      }, 300);
 
     }
   onChangeId(param: string) {

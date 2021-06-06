@@ -15,7 +15,7 @@ namespace AnguWarriorsBack.Models
     public string Detalji { get; set; }
     public string Beleske { get; set; }
     public string TelefonskiBroj { get; set; }
-
+    public string PlanRadaId { get; set; }
     public SafetyDocDTO() { }
     
 

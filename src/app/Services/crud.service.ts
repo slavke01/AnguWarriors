@@ -52,7 +52,7 @@ export class CRUDService {
     );
   }
 
-  createCall(poziv:Call):Observable<any>{
+  createCall(poziv: Call): Observable<any> {
     const body = JSON.stringify(poziv);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createPoziv',
@@ -248,6 +248,13 @@ export class CRUDService {
   deleteIncident(id: string) {
     return this.http.post<any>(
       this.baseURL + 'api/crud/deleteIncident/' + id,
+      this.httpOptions
+    );
+  }
+
+  deleteDevice(id: string) {
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteDevice/' + id,
       this.httpOptions
     );
   }
