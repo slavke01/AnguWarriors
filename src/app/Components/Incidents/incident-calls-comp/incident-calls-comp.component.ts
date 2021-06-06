@@ -2,59 +2,13 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-
-export interface TableData {
-  id: string;
-  reason: string;
-  hazard: string;
-  comment: string;
-
-}
-
-const data: TableData[] = [
-  {
-    id: '1',
-    reason: 'danas',
-    hazard: 'heh',
-    comment: 'Cao',
-    
-  },{
-    id: '6',
-    reason: 'danas',
-    hazard: 'heh4',
-    comment: 'Cao',
-    
-  },
-  {
-    id: '4',
-    reason: 'danas',
-    hazard: 'heh3',
-    comment: 'Cao',
-    
-  },{
-    id: '9',
-    reason: 'danas',
-    hazard: 'heh2',
-    comment: 'Cao',
-    
-  },{
-    id: '11',
-    reason: 'danas',
-    hazard: 'heh1',
-    comment: 'Cao',
-    
-  },{
-    id: '16',
-    reason: 'danas',
-    hazard: 'heh',
-    comment: 'Cao',
-    
-  },
+import { Call } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
 
 
 
-];
+
+
 
 @Component({
   selector: 'app-incident-calls-comp',
@@ -63,16 +17,20 @@ const data: TableData[] = [
 })
 export class IncidentCallsCompComponent implements AfterViewInit {
 
-  constructor() { 
-    this.dataSource = new MatTableDataSource(data);
+  data:Call[]=[] 
+
+  constructor(private crs:CRUDService) { 
+
+    crs.getCalls().subscribe((podaci:Call[])=>{this.dataSource = new MatTableDataSource(podaci);})
+    
   }
   displayedColumns: string[] = [
-    'id',
+    'username',
     'reason',
     'hazard',
     'comment',
   ];
-  dataSource: MatTableDataSource<TableData>;
+  dataSource: MatTableDataSource<Call>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit() {

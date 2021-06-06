@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import {
+  Call,
   EkipaDTO,
   Elementi,
   Incident,
@@ -51,6 +52,15 @@ export class CRUDService {
     );
   }
 
+  createCall(poziv:Call):Observable<any>{
+    const body = JSON.stringify(poziv);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createPoziv',
+      body,
+      this.httpOptions
+    );
+  }
+
   createPlan(plan: PlanRada): Observable<any> {
     const body = JSON.stringify(plan);
     return this.http.post<any>(
@@ -73,6 +83,13 @@ export class CRUDService {
   getIncident(id: string) {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncident/' + id,
+      this.httpOptions
+    );
+  }
+
+  getCalls() {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getPozive',
       this.httpOptions
     );
   }

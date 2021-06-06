@@ -10,7 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CRUDService } from 'src/app/Services/crud.service';
 import { AuthentificationService } from 'src/app/Services/authentification.service';
-import { User } from 'src/app/app.module';
+import { Call, User } from 'src/app/app.module';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-call-comp',
   templateUrl: './new-call-comp.component.html',
@@ -20,7 +21,9 @@ export class NewCallCompComponent implements OnInit {
   hidden=false;
   constructor(
     public dialog: MatDialog,
-    private auth: AuthentificationService
+    private auth: AuthentificationService,
+    private crs:CRUDService,
+    private router:Router
   ) {}
   reason = '';
   comment = '';
@@ -64,4 +67,20 @@ export class NewCallCompComponent implements OnInit {
     this.hazard = param;
   }
   ngOnInit(): void {}
+
+
+  posaljdeCall(){
+      let c:Call = {
+        razlog:this.reason,
+      komentar:this.comment,
+      kvar:this.hazard,
+      usernameKor:this.username
+      }
+
+      this.crs.createCall(c).subscribe();
+      setTimeout(() => {
+        this.router.navigate(['new/calls']);
+      }, 300);
+
+  }
 }

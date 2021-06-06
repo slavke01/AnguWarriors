@@ -251,6 +251,31 @@ namespace AnguWarriorsBack.Migrations
                     b.ToTable("PlanRadaChanges");
                 });
 
+            modelBuilder.Entity("AnguWarriorsBack.Models.Poziv", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Komentar")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Kvar")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Razlog")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("UsernameKor")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pozivi");
+                });
+
             modelBuilder.Entity("AnguWarriorsBack.Models.SafetyDoc", b =>
                 {
                     b.Property<string>("Id")

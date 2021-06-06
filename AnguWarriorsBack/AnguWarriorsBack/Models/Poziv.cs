@@ -1,25 +1,40 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AnguWarriorsBack.Models
 {
-    public class Poziv
+
+  [Table("Pozivi")]
+  public class Poziv
     {
-        public string Razlog { get; set; }
-        public string Komentar { get; set; }
-        public string Kvar { get; set; } // Ovo mozda zamjeniti klasom posle 
-        public string UsernameKor { get; set; }
+
+    [Key]
+    public string Id { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Razlog { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Komentar { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Kvar { get; set; } // Ovo mozda zamjeniti klasom posle
+    [StringLength(255)]
+    public string UsernameKor { get; set; }
 
 
         public Poziv() { }
 
-        public Poziv(string razlog,string komentar,string kvar,string id) {
+        public Poziv(string id,string razlog,string komentar,string kvar,string idk) {
+            this.Id = id;
             this.Razlog = razlog;
             this.Komentar = komentar;
             this.Kvar = kvar;
-            this.UsernameKor = id;
+            this.UsernameKor = idk;
 
         }
     }

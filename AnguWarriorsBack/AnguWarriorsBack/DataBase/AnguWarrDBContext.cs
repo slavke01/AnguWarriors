@@ -26,5 +26,6 @@ namespace AnguWarriorsBack.DataBase
     public DbSet<SafetyDoc> SafetyDocuments { get; set; }
     public DbSet<SafetyDocChanges> SafetyDocChanges { get; set; }
     public DbSet<Ekipa> Ekipe { get; set; }
+    public DbSet<Poziv> Pozivi { get; set; }
     }
 }

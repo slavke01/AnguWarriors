@@ -37,6 +37,53 @@ namespace AnguWarriorsBack.Controllers
       return Ok();
     }
 
+    [HttpPost("/api/crud/createPoziv")]
+    public async Task<IActionResult> CreatePoziv([FromBody] PozivDTO pozDTO)
+    {
+
+      Poziv p = new Poziv();
+
+      p.Komentar = pozDTO.Komentar;
+      p.Kvar = pozDTO.Kvar;
+      p.Razlog = pozDTO.Razlog;
+      p.UsernameKor = pozDTO.UsernameKor;
+      p.Id = Guid.NewGuid().ToString();
+
+      this._context.Pozivi.Add(p);
+
+      await this._context.SaveChangesAsync();
+
+      return Ok();
+
+    }
+
+
+    [HttpGet("/api/crud/getPozive")]
+    [Authorize]
+    public async Task<IActionResult> GetPozive()
+    {
+      List<Poziv> sviPozivi = this._context.Pozivi.ToList();
+
+      List<PozivDTO> retPozivi = new List<PozivDTO>();
+
+      foreach(Poziv p in sviPozivi)
+      {
+        PozivDTO pdto = new PozivDTO();
+
+        pdto.Komentar = p.Komentar;
+        pdto.Kvar = p.Kvar;
+        pdto.Razlog = p.Razlog;
+        pdto.UsernameKor = p.UsernameKor;
+
+        retPozivi.Add(pdto);
+
+      }
+
+
+      return Ok(retPozivi);
+    }
+
+
     [HttpPost("/api/crud/createSafetyDocument")]
     public async Task<IActionResult> CreateSafetyDoc([FromBody] SafetyDocDTO sdDTO)
     {
