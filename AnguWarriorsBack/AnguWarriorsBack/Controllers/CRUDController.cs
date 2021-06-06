@@ -671,6 +671,23 @@ namespace AnguWarriorsBack.Controllers
       return Ok(retVal);
     }
 
+
+
+    [HttpGet("api/crud/getAllCallers")]
+    [Authorize]
+    public async Task<IActionResult> GetAllCallers() {
+      List<User> temp = this._context.Users.ToList();
+      List<User> retVal = new List<User>();
+      foreach (User u in temp) {
+        if (u.Approved==true && u.UserType==TipKorisnika.CLAN) {
+          retVal.Add(u);
+
+        }
+
+      }
+      return Ok(retVal);
+    }
+
     [HttpGet("api/crud/getFreeCrewMembers")]
     [Authorize]
     public async Task<IActionResult> GetFreeCrewmates() {

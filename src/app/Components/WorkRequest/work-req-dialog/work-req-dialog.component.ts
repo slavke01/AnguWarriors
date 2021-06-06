@@ -44,7 +44,6 @@ export class WorkReqDialogComponent implements OnInit {
 
   pickMe(id:string){
 
-    this.data.id=id;
     this.dialogRef.close({result:id});
   }
   ngOnInit(): void {}

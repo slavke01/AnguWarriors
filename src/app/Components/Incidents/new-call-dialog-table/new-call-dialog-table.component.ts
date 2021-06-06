@@ -1,42 +1,17 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  Inject,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
-export interface TableData {
-  name: string;
-  lastName: string;
-  Account: number;
-  Adresa: string;
-  Prioritet:string;
-
-}
-
-const data:TableData[] = [
-  {
-    name: 'Mirko1',
-    lastName: 'Mirkovic',
-    Account: 12345,
-    Adresa: 'NS',
-    Prioritet: 'nema',
-  },
-  {
-    name: 'Mirko2',
-    lastName: 'Mirkovic',
-    Account: 12345,
-    Adresa: 'NS',
-    Prioritet: 'nema',
-  },
-  {
-    name: 'Mirko3',
-    lastName: 'Mirkovic',
-    Account: 12345,
-    Adresa: 'NS',
-    Prioritet: 'nema',
-  },
-];
-
+import { DialogData, User } from 'src/app/app.module';
+import { CRUDService } from 'src/app/Services/crud.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-call-dialog-table',
@@ -44,24 +19,40 @@ const data:TableData[] = [
   styleUrls: ['./new-call-dialog-table.component.css'],
 })
 export class NewCallDialogTableComponent implements AfterViewInit {
-  dataSource: MatTableDataSource<TableData>;
+  dataSource: MatTableDataSource<User>;
+  data1: User[] = [];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor() {
-    this.dataSource = new MatTableDataSource(data);
+  constructor(
+    private crs: CRUDService,
+    public dialogRef: MatDialogRef<NewCallDialogTableComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {
+    this.crs.getAllCallers().subscribe((podatak: User[]) => {
+      this.data1 = this.data1.concat(podatak);
+      this.dataSource = new MatTableDataSource(podatak);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  displayedColumns: string[] = [
-    'name',
-    'lastName',
-    'Account',
-    'Adresa',
-    'Prioritet'
-  ];
+  displayedColumns: string[] = ['Username', 'FirstName', 'LastName', 'Adresa','Pick'];
 
+  ngAfterViewInit() {}
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  pickMe(id: string) {
+    this.dialogRef.close({ result: id });
   }
 }

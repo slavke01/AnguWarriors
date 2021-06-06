@@ -1,33 +1,84 @@
+<div style="position:absolute; left: 100px;">
+
 <div>
+  <table>
+    <tr style="margin-top: 50px;width: 250px; position: absolute">
+      <th><label style="margin-right: 65px">Reason: </label></th>
 
-    <table>
+      <th>
+        <input
+          class="form-control"
+          (input)="onChangeReason($event.target.value)"
+          type="text"
+        />
+      </th>
+    </tr>
 
-        <tr style="margin-top: 50px;position: absolute">
-            <th><label style="margin-right: 65px;">Reason: </label></th>
+    <tr style="margin-top: 150px;width: 250px; position: absolute">
+      <th><label style="margin-right: 50px">Comment:</label></th>
 
-            <th>  <input class="form-control" (input)="onChangeReason($event.target.value)" type="text" /></th>
-        </tr>
+      <th>
+        <input
+          class="form-control"
+          (input)="onChangeComment($event.target.value)"
+          type="text"
+        />
+      </th>
+    </tr>
+    <tr style="margin-top: 250px; width: 250px; position: absolute">
+      <th><label style="margin-right: 70px">Hazard:</label></th>
 
-        <tr style="margin-top: 150px;position: absolute">
-            <th><label style="margin-right: 50px;">Comment:</label></th>
+      <th>
+        <input
+          class="form-control"
+          (input)="onChangeHazard($event.target.value)"
+          type="text"
+        />
+      </th>
+    </tr>
+  </table>
+</div>
 
-            <th>  <input class="form-control" (input)="onChangeComment($event.target.value)" type="text" /></th>
-        </tr>
-        <tr style="margin-top: 250px;position: absolute">
-            <th><label style="margin-right: 70px;">Hazard:</label></th>
-
-            <th>  <input class="form-control" (input)="onChangeHazard($event.target.value)" type="text" /></th>
-        </tr>
-    </table>
-
-
+<div *ngIf="hidden">
+  <table class="table">
+    <tr>
+      <div>
+        <input
+          style="width: 150px; margin-top: 15px"
+          class="form-control"
+          disabled
+          type="text"
+          value="{{ korisnik.username }}"
+        />
+      </div>
+    </tr>
+    <tr>
+      <div>
+        <input
+          style="width: 150px; margin-top: 15px"
+          class="form-control"
+          disabled
+          type="text"
+          value="{{ korisnik.firstName }}"
+        />
+      </div>
+    </tr>
+    <tr>
+      <div>
+        <input
+          style="width: 150px; margin-top: 15px"
+          class="form-control"
+          disabled
+          type="text"
+          value="{{ korisnik.lastName }}"
+        />
+      </div>
+    </tr>
+  </table>
 </div>
 <div class="ModalDiv">
-
-    <button class="btn btn-dark" (click)="openDialog()">Pick one</button>
-
-
-
-
-
+  <button class="btn btn-dark" style="width: 100px;" (click)="openDialog()">Pick one</button>
 </div>
+</div>
+
+<app-side-bar></app-side-bar>

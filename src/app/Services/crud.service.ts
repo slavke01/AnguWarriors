@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { EkipaDTO, Elementi, Incident, NalogRada, PlanRada, SafetyDoc } from '../app.module';
+import {
+  EkipaDTO,
+  Elementi,
+  Incident,
+  NalogRada,
+  PlanRada,
+  SafetyDoc,
+} from '../app.module';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CRUDService {
   baseURL: string = 'https://localhost:44370/';
   httpOptions = {
-    headers: new HttpHeaders({ "Content-Type": "application/json",
-    'Access-Control-Allow-Origin' : '*' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }),
   };
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  createIncident(incident:Incident):Observable<any>{
-
+  createIncident(incident: Incident): Observable<any> {
     const body = JSON.stringify(incident);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createIncident',
@@ -25,8 +33,7 @@ export class CRUDService {
     );
   }
 
-  createSafetyDocument(sd:SafetyDoc):Observable<any>{
-
+  createSafetyDocument(sd: SafetyDoc): Observable<any> {
     const body = JSON.stringify(sd);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createSafetyDocument',
@@ -35,9 +42,7 @@ export class CRUDService {
     );
   }
 
-
-  createNalog(nalog:NalogRada):Observable<any>{
-
+  createNalog(nalog: NalogRada): Observable<any> {
     const body = JSON.stringify(nalog);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createNalog',
@@ -46,8 +51,7 @@ export class CRUDService {
     );
   }
 
-  createPlan(plan:PlanRada):Observable<any>{
-
+  createPlan(plan: PlanRada): Observable<any> {
     const body = JSON.stringify(plan);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createPlan',
@@ -56,7 +60,7 @@ export class CRUDService {
     );
   }
 
-  createElement(element:Elementi):Observable<any>{
+  createElement(element: Elementi): Observable<any> {
     const body = JSON.stringify(element);
     console.log(body);
     return this.http.post<any>(
@@ -66,43 +70,48 @@ export class CRUDService {
     );
   }
 
-  getIncident(id:string){
+  getIncident(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getIncident/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getIncident/' + id,
+      this.httpOptions
+    );
   }
 
-   createCrew(crew:EkipaDTO){
+  createCrew(crew: EkipaDTO) {
     const body = JSON.stringify(crew);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createCrew',
       body,
       this.httpOptions
     );
-   }
-  getCrews(){
+  }
+  getCrews() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getCrews',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
-  getFreeCrewMembers(){
+  getFreeCrewMembers() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getFreeCrewMembers',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
-  getSafetyDoc(id:string){
+  getSafetyDoc(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getSafety/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getSafety/' + id,
+      this.httpOptions
+    );
   }
 
-  getSafetyDocuments(){
+  getSafetyDocuments() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getSafetyDocuments',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
-  updateIncident(incident:Incident){
+  updateIncident(incident: Incident) {
     const body = JSON.stringify(incident);
     return this.http.post<any>(
       this.baseURL + 'api/crud/updateIncident',
@@ -110,7 +119,7 @@ export class CRUDService {
       this.httpOptions
     );
   }
-  updateSafetyDoc(sd:SafetyDoc){
+  updateSafetyDoc(sd: SafetyDoc) {
     const body = JSON.stringify(sd);
     return this.http.post<any>(
       this.baseURL + 'api/crud/updateSafety',
@@ -118,13 +127,13 @@ export class CRUDService {
       this.httpOptions
     );
   }
-  getPlan(id:string){
+  getPlan(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getPlan/'+id,
-      this.httpOptions);
-
+      this.baseURL + 'api/crud/getPlan/' + id,
+      this.httpOptions
+    );
   }
-  updatePlan(plan:PlanRada){
+  updatePlan(plan: PlanRada) {
     const body = JSON.stringify(plan);
     return this.http.post<any>(
       this.baseURL + 'api/crud/updatePlan',
@@ -132,129 +141,137 @@ export class CRUDService {
       this.httpOptions
     );
   }
-  getNalog(id:string){
+  getNalog(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getNalog/'+id,
-      this.httpOptions);
-
+      this.baseURL + 'api/crud/getNalog/' + id,
+      this.httpOptions
+    );
   }
 
-  getIncidentChanges(id:string){
+  getIncidentChanges(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getIncidentChanges/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getIncidentChanges/' + id,
+      this.httpOptions
+    );
   }
 
-  getNalogChanges(id:string){
+  getNalogChanges(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getWorkChanges/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getWorkChanges/' + id,
+      this.httpOptions
+    );
   }
-  getPlanChanges(id:string){
+  getPlanChanges(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getPlanChanges/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getPlanChanges/' + id,
+      this.httpOptions
+    );
   }
 
-  getSafetyChanges(id:string){
+  getSafetyChanges(id: string) {
     return this.http.get<any>(
-      this.baseURL + 'api/crud/getSafetyChanges/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/getSafetyChanges/' + id,
+      this.httpOptions
+    );
   }
-  updateNalog(nalog:NalogRada){
+  updateNalog(nalog: NalogRada) {
     const body = JSON.stringify(nalog);
     return this.http.post<any>(
       this.baseURL + 'api/crud/updateNalog',
       body,
       this.httpOptions
     );
-
-
   }
-  getIncidents(){
-
+  getIncidents() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncidents',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
-  getElements(){
-
+  getElements() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getElements',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
-  getAllByUsername(){
-
+  getAllByUsername() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getAllByUsername',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
-  getIncidentsForChart(){
-
+  getIncidentsForChart() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncidentsByDate',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
-  getNalozi(){
-
+  getNalozi() {
     return this.http.get<NalogRada[]>(
       this.baseURL + 'api/crud/getNalozi',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
-  getNumber(){
+  getNumber() {
     return this.http.get<number[]>(
       this.baseURL + 'api/crud/getNumberIncidents',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
-   deleteCrew(id:string){
+  deleteCrew(id: string) {
     return this.http.post<any>(
-      this.baseURL + 'api/crud/deleteCrew/'+id,
-      this.httpOptions);
-   }
-  deleteIncident(id:string){
-    
-    return this.http.post<any>(
-      this.baseURL + 'api/crud/deleteIncident/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/deleteCrew/' + id,
+      this.httpOptions
+    );
   }
-
-  deleteSafetyDoc(id:string){
-    
+  deleteIncident(id: string) {
     return this.http.post<any>(
-      this.baseURL + 'api/crud/deleteSafetyDoc/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/deleteIncident/' + id,
+      this.httpOptions
+    );
   }
 
+  deleteSafetyDoc(id: string) {
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/deleteSafetyDoc/' + id,
+      this.httpOptions
+    );
+  }
 
-  deleteNalogRada(id:string){
-    
+  deleteNalogRada(id: string) {
     return this.http.post<any>(
-      this.baseURL + 'api/crud/deleteNalog/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/deleteNalog/' + id,
+      this.httpOptions
+    );
   }
-  deletePlanRada(id:string){
-    
+  deletePlanRada(id: string) {
     return this.http.post<any>(
-      this.baseURL + 'api/crud/deleteSwitching/'+id,
-      this.httpOptions);
+      this.baseURL + 'api/crud/deleteSwitching/' + id,
+      this.httpOptions
+    );
   }
-  getPlanovi(){
+  getPlanovi() {
     return this.http.get<PlanRada[]>(
       this.baseURL + 'api/crud/getPlanovi',
-      this.httpOptions);
+      this.httpOptions
+    );
   }
 
- getCrewMembers(id:string){
-  return this.http.get<any>(
-    this.baseURL + 'api/crud/getCrewMembers/'+id,
-    this.httpOptions);
+  getCrewMembers(id: string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getCrewMembers/' + id,
+      this.httpOptions
+    );
+  }
 
-
- }
+  getAllCallers() {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getAllCallers',
+      this.httpOptions
+    );
+  }
 }
-
-

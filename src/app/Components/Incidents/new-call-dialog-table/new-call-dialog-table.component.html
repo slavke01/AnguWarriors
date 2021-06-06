@@ -7,37 +7,39 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
         <!-- ID Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="Username">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.username }}</td>
         </ng-container>
   
         <!-- Progress Column -->
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-          <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+        <ng-container matColumnDef="FirstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.firstname }}</td>
         </ng-container>
   
         <!-- Name Column -->
-        <ng-container matColumnDef="Account">
+        <ng-container matColumnDef="LastName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
-          <td mat-cell *matCellDef="let row">{{ row.Account }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
         </ng-container>
   
         <!-- Color Column -->
         <ng-container matColumnDef="Adresa">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresa</th>
           <td mat-cell *matCellDef="let row">
-            {{ row.Adresa }}
+            {{ row.adress }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="Prioritet">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Prioritet</th>
-            <td mat-cell *matCellDef="let row">
-              {{ row.Prioritet }}
-            </td>
-          </ng-container>
-     
+        <ng-container matColumnDef="Pick">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Pick Me</th>
+          <td mat-cell *matCellDef="let row" >
+                <button class="btn btn-secondary" (click)="pickMe(row.username)" >Pick me</button>
+          </td>
+        </ng-container>
+
+
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   

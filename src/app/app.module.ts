@@ -150,7 +150,11 @@ export function tokenGetter() {
         component: IncidentsCompComponent,
         canActivate: [AuthGuardService]
 
-      },
+      },{
+          path:"newcall",
+          component:NewCallCompComponent,
+          canActivate: [AuthGuardService]
+        },
       {
         path: 'admin',
         component: AdminCompComponent,
@@ -342,7 +346,7 @@ export function tokenGetter() {
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
+export let logged:boolean;
 export interface User{
   username:string;
   password:string;
@@ -381,6 +385,12 @@ export interface Incident{
   pozivi:number;
   voltage:number;
 
+}
+export interface Call{
+  razlog:string;
+  komentar:string;
+  kvar:string;
+  usernameKor:string
 }
 
 export interface NalogRada{
