@@ -111,14 +111,16 @@ namespace AnguWarriorsBack.Controllers
 
       PlanRada plan = new PlanRada();
 
+      NalogRada nr = await this._context.Nalozi.FindAsync(plandto.workRequestId);
+
       plan.Beleske = plandto.Beleske;
       plan.CreatedBy = plandto.CreatedBy;
       plan.CreatedOn = DateTime.Now;
       plan.Detalji = plandto.Detalji;
       plan.DocumentType = plandto.DocumentType;
-      plan.Ekipa = "neka";
-      plan.IdIncidenta = "neki";
-      plan.IdNalogaRada = "neki";
+      plan.Ekipa = "";
+      plan.IdIncidenta = nr.IdIncidenta;
+      plan.IdNalogaRada = plandto.workRequestId;
       plan.IdPlana = plandto.IdPlana;
       plan.Kompanija = plandto.Kompanija;
       plan.KrajRada = plandto.KrajRada;
@@ -127,6 +129,7 @@ namespace AnguWarriorsBack.Controllers
       plan.Svrha = plandto.Svrha;
       plan.TelefonskiBroj = plandto.TelefonskiBroj;
       plan.Ulica = plandto.Ulica;
+      
       this._context.PlanRadaChanges.Add(new PlanRadaChanges(plan.IdPlana, "Dodato :" + DateTime.Now.ToString()));
       this._context.Planovi.Add(plan);
       await this._context.SaveChangesAsync();

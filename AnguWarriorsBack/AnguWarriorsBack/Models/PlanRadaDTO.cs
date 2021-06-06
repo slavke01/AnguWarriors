@@ -19,7 +19,9 @@ namespace AnguWarriorsBack.Models
     public string Ulica { get; set; }
     public string Detalji { get; set; }
     public string Status { get; set; }
+    public string workRequestId { get; set; }
 
+    public PlanRadaDTO() { }
 
 
 

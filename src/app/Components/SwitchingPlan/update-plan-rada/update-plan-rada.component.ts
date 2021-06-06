@@ -33,6 +33,7 @@ export class UpdatePlanRadaComponent implements OnInit {
   notes = '';
   ulica = '';
   idplana = '';
+  workReuestid='';
   dozvola:boolean=false;
   poruke:string[]=[]
   model:PlanRada={
@@ -47,7 +48,8 @@ export class UpdatePlanRadaComponent implements OnInit {
     ulica:'',
     kompanija:'',
     telefonskiBroj:'',
-    createdBy:''
+    createdBy:'',
+    workRequestId:''
 
   }
   constructor(private router:Router,private crudService:CRUDService,private jwtHelper:JwtHelperService) { 
@@ -64,6 +66,7 @@ export class UpdatePlanRadaComponent implements OnInit {
         this.phoneNo=data.telefonskiBroj;
         this.details=data.detalji;
         this.ulica=data.ulica;
+        this.workReuestid=data.workRequestId;
 
 
     });
@@ -184,7 +187,8 @@ this.poruke=data;
       telefonskiBroj: this.phoneNo,
       detalji:this.details,
       ulica:this.ulica,
-      createdBy:username
+      createdBy:username,
+      workRequestId:this.workReuestid
     };
     this.crudService.updatePlan(plan).subscribe();
     setTimeout(() => {

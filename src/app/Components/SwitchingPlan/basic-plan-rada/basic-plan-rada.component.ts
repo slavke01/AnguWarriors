@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PlanRada } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
+import { IskacuciProzorZaSwitchingPlanComponent } from '../iskacuci-prozor-za-switching-plan/iskacuci-prozor-za-switching-plan.component';
 
 @Component({
   selector: 'app-basic-plan-rada',
@@ -36,7 +38,7 @@ export class BasicPlanRadaComponent implements OnInit {
   idplana = '';
   dozvola:boolean=false;
 
-  constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService,private router:Router) { }
+  constructor(private jwtHelper: JwtHelperService,private CrudService: CRUDService,private router:Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -152,7 +154,8 @@ export class BasicPlanRadaComponent implements OnInit {
       telefonskiBroj: this.phoneNo,
       detalji:this.details,
       ulica:this.ulica,
-      createdBy:username
+      createdBy:username,
+      workRequestId:this.idNalog
     };
     this.CrudService.createPlan(plan).subscribe();
     this.router.navigate(['switching']);
@@ -170,4 +173,22 @@ export class BasicPlanRadaComponent implements OnInit {
       this.dozvola=false;
     }
   }
+
+  idNalog="";
+
+  otvoriDialog(): void {
+    const dialogRef = this.dialog.open(IskacuciProzorZaSwitchingPlanComponent, {
+      width: '700px',
+      height: '400px',
+      data: { id: this.idNalog },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.idNalog = result["result"];
+      console.log(this.idNalog);
+    });
+  }
+
+
 }
