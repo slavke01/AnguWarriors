@@ -1111,8 +1111,167 @@ namespace AnguWarriorsBack.Controllers
     }
 
 
+    [HttpGet("/api/crud/getReadNotificationsByUsername/{username}")]
+    public async Task<IActionResult> GetReadNotificationsByUsername([FromRoute] string username)
+    {
+      List<Poruka> sveNotifikacije = this._context.Poruke.ToList();
+
+      List<Poruka> trazeneNotifikacije = new List<Poruka>();
+
+      foreach(Poruka p in sveNotifikacije)
+      {
+        if (p.IdKorisnika == username && p.Procitana==true)
+        {
+          trazeneNotifikacije.Add(p);
+        }
+      }
+
+
+      List<PorukaDTO> trazeneNotifikacijeFinal = new List<PorukaDTO>();
+
+      foreach (Poruka p in trazeneNotifikacije)
+      {
+        PorukaDTO pdto = new PorukaDTO();
+
+        pdto.IdKorisnika = p.IdKorisnika;
+        pdto.Procitana = p.Procitana;
+        pdto.Sadrzaj = p.Sadrzaj;
+        pdto.Tip = p.Tip;
+        pdto.IdPoruke = p.IdPoruke;
+
+        trazeneNotifikacijeFinal.Add(pdto);
+      }
+
+
+      return Ok(trazeneNotifikacijeFinal);
+    }
+
+
+    [HttpGet("/api/crud/getUnreadNotificationsByUsername/{username}")]
+    public async Task<IActionResult> GetUnreadNotificationsByUsername([FromRoute] string username)
+    {
+      List<Poruka> sveNotifikacije = this._context.Poruke.ToList();
+
+      List<Poruka> trazeneNotifikacije = new List<Poruka>();
+
+      foreach (Poruka p in sveNotifikacije)
+      {
+        if (p.IdKorisnika == username && p.Procitana == false)
+        {
+          trazeneNotifikacije.Add(p);
+        }
+      }
+
+
+      List<PorukaDTO> trazeneNotifikacijeFinal = new List<PorukaDTO>();
+
+      foreach (Poruka p in trazeneNotifikacije)
+      {
+        PorukaDTO pdto = new PorukaDTO();
+
+        pdto.IdKorisnika = p.IdKorisnika;
+        pdto.Procitana = p.Procitana;
+        pdto.Sadrzaj = p.Sadrzaj;
+        pdto.Tip = p.Tip;
+        pdto.IdPoruke = p.IdPoruke;
+
+        trazeneNotifikacijeFinal.Add(pdto);
+      }
+
+
+      return Ok(trazeneNotifikacijeFinal);
+    }
+
+
+    [HttpGet("/api/crud/getSuccessNotificationsByUsername/{username}")]
+    public async Task<IActionResult> GetSuccessNotificationsByUsername([FromRoute] string username)
+    {
+      List<Poruka> sveNotifikacije = this._context.Poruke.ToList();
+
+      List<Poruka> trazeneNotifikacije = new List<Poruka>();
+
+      foreach (Poruka p in sveNotifikacije)
+      {
+        if (p.IdKorisnika == username && p.Tip=="Success" && p.Procitana==true)
+        {
+          trazeneNotifikacije.Add(p);
+        }
+      }
+
+
+      List<PorukaDTO> trazeneNotifikacijeFinal = new List<PorukaDTO>();
+
+      foreach (Poruka p in trazeneNotifikacije)
+      {
+        PorukaDTO pdto = new PorukaDTO();
+
+        pdto.IdKorisnika = p.IdKorisnika;
+        pdto.Procitana = p.Procitana;
+        pdto.Sadrzaj = p.Sadrzaj;
+        pdto.Tip = p.Tip;
+        pdto.IdPoruke = p.IdPoruke;
+
+        trazeneNotifikacijeFinal.Add(pdto);
+      }
+
+
+      return Ok(trazeneNotifikacijeFinal);
+    }
+
+
+    [HttpGet("/api/crud/getErrorNotificationsByUsername/{username}")]
+    public async Task<IActionResult> GetErrorNotificationsByUsername([FromRoute] string username)
+    {
+      List<Poruka> sveNotifikacije = this._context.Poruke.ToList();
+
+      List<Poruka> trazeneNotifikacije = new List<Poruka>();
+
+      foreach (Poruka p in sveNotifikacije)
+      {
+        if (p.IdKorisnika == username && p.Tip == "Error" && p.Procitana==true)
+        {
+          trazeneNotifikacije.Add(p);
+        }
+      }
+
+
+      List<PorukaDTO> trazeneNotifikacijeFinal = new List<PorukaDTO>();
+
+      foreach (Poruka p in trazeneNotifikacije)
+      {
+        PorukaDTO pdto = new PorukaDTO();
+
+        pdto.IdKorisnika = p.IdKorisnika;
+        pdto.Procitana = p.Procitana;
+        pdto.Sadrzaj = p.Sadrzaj;
+        pdto.Tip = p.Tip;
+        pdto.IdPoruke = p.IdPoruke;
+
+        trazeneNotifikacijeFinal.Add(pdto);
+      }
+
+
+      return Ok(trazeneNotifikacijeFinal);
+    }
+
+    [HttpPost("/api/crud/makeNotificationRead/{id}")]
+    [Authorize]
+    public async Task<IActionResult> MakeNotificationRead([FromRoute]  string id)
+    {
+
+      Poruka eBasOva =  await this._context.Poruke.FindAsync(id);
+
+      this._context.Attach(eBasOva);
+
+      eBasOva.Procitana = true;
+
+      await this._context.SaveChangesAsync();
+
+      return Ok();
+    }
 
     #endregion
+
 
     [HttpGet("/api/crud/getAllByUsername")]
     [Authorize]
@@ -1132,9 +1291,6 @@ namespace AnguWarriorsBack.Controllers
 
       return Ok(rez);
     }
-
-    
-   
 
 
 

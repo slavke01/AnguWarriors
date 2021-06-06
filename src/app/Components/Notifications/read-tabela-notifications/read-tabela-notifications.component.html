@@ -1,0 +1,22 @@
+<h2 >Read notifications:</h2>
+
+<div class="show"  >
+    <table class="table table-sm table-dark" style="width: 350px;">
+      <thead>
+          <tr>
+              <th>Message:</th>
+              <th>Type:</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let x of allNotifications">
+              <td>{{x.sadrzaj}}</td>
+              <td>{{x.tip}}</td>
+          </tr>
+      </tbody>
+  </table>
+  
+  
+  </div>
+
+

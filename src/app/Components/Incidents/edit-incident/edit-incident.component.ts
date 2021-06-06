@@ -226,7 +226,8 @@ export class EditIncidentComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Uspesno izmenjen incident",
           procitana:false,
-          tip:"Success"
+          tip:"Success",
+          idPoruke:""
       }
 
       this.crud.createMessage(poruka).subscribe();
@@ -237,7 +238,8 @@ export class EditIncidentComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Greska pri izmeni incidenta",
         procitana:false,
-        tip:"Error"
+        tip:"Error",
+        idPoruke:""
     }
 
     this.crud.createMessage(poruka).subscribe();

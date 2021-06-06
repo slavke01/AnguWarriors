@@ -170,7 +170,8 @@ export class BasicPlanRadaComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Uspesno dodat plan",
         procitana:false,
-        tip:"Success"
+        tip:"Success",
+        idPoruke:""
     }
 
     this.CrudService.createMessage(poruka).subscribe();
@@ -181,7 +182,8 @@ export class BasicPlanRadaComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Greska pri dodavanju plana",
         procitana:false,
-        tip:"Error"
+        tip:"Error",
+        idPoruke:""
     }
 
     this.CrudService.createMessage(poruka).subscribe();

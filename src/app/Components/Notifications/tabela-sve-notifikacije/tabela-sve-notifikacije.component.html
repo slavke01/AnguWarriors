@@ -1,0 +1,22 @@
+
+<h2 >Unread notifications:</h2>
+
+<div class="show"  >
+    <table class="table table-sm table-dark" style="width: 350px;">
+      <thead>
+          <tr>
+              <th>Message:</th>
+              <th>Type:</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let x of allNotifications">
+              <td>{{x.sadrzaj}}</td>
+              <td>{{x.tip}}</td>
+              <button style="margin-left: 3px; margin-top: 3px; margin-bottom: 3px; margin-right: 3px;" (click)="ajdeBre(x.idPoruke)" class="btn btn-secondary">Read it</button>
+          </tr>
+      </tbody>
+  </table>
+  
+  
+  </div>

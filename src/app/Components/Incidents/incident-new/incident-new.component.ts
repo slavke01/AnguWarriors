@@ -193,7 +193,8 @@ export class IncidentNewComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Uspesno dodat incident",
           procitana:false,
-          tip:"Success"
+          tip:"Success",
+          idPoruke:""
       }
 
       this.crudService.createMessage(poruka).subscribe();
@@ -204,7 +205,8 @@ export class IncidentNewComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Greska pri dodavanju incidenta",
           procitana:false,
-          tip:"Error"
+          tip:"Error",
+          idPoruke:""
       }
 
       this.crudService.createMessage(poruka).subscribe();

@@ -81,6 +81,15 @@ export class CRUDService {
     );
   }
 
+
+  makeNotificatioRead(id: string): Observable<any> {
+    const body = JSON.stringify(id);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/makeNotificationRead/'+id,
+      this.httpOptions
+    );
+  }
+
   getIncident(id: string) {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getIncident/' + id,
@@ -91,6 +100,36 @@ export class CRUDService {
   getCalls() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getPozive',
+      this.httpOptions
+    );
+  }
+
+  getReadNotifications(usrnm:string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getReadNotificationsByUsername/'+usrnm,
+      this.httpOptions
+    );
+  }
+
+  getUnreadNotifications(usrnm:string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getUnreadNotificationsByUsername/'+usrnm,
+      this.httpOptions
+    );
+  }
+
+  
+
+  getSuccessNotifications(usrnm:string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getSuccessNotificationsByUsername/'+usrnm,
+      this.httpOptions
+    );
+  }
+
+  getErrorNotifications(usrnm:string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/getErrorNotificationsByUsername/'+usrnm,
       this.httpOptions
     );
   }

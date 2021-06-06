@@ -216,7 +216,8 @@ export class UpdateNalogRadaComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Uspesno izmenjen nalog",
           procitana:false,
-          tip:"Success"
+          tip:"Success",
+          idPoruke:""
       }
   
       this.CrudService.createMessage(poruka).subscribe();
@@ -227,7 +228,8 @@ export class UpdateNalogRadaComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Greska pri izmenivanju naloga",
           procitana:false,
-          tip:"Error"
+          tip:"Error",
+          idPoruke:""
       }
   
       this.CrudService.createMessage(poruka).subscribe();

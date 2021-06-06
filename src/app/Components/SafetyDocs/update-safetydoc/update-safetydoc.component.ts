@@ -137,7 +137,8 @@ export class UpdateSafetydocComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Uspesno izmjenjen sigurnosni dokument",
           procitana:false,
-          tip:"Success"
+          tip:"Success",
+          idPoruke:""
       }
   
       this.crs.createMessage(poruka).subscribe();
@@ -148,7 +149,8 @@ export class UpdateSafetydocComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Greska pri izmeni sigurnosnog dokument",
           procitana:false,
-          tip:"Error"
+          tip:"Error",
+          idPoruke:""
       }
   
       this.crs.createMessage(poruka).subscribe();

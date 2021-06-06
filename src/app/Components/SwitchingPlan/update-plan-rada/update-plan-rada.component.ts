@@ -201,7 +201,8 @@ export class UpdatePlanRadaComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Uspesno izmjenjen plan",
         procitana:false,
-        tip:"Success"
+        tip:"Success",
+        idPoruke:""
     }
 
     this.crudService.createMessage(poruka).subscribe();
@@ -212,7 +213,8 @@ export class UpdatePlanRadaComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Greska pri izmjenjen plana",
         procitana:false,
-        tip:"Error"
+        tip:"Error",
+        idPoruke:""
     }
 
     this.crudService.createMessage(poruka).subscribe();

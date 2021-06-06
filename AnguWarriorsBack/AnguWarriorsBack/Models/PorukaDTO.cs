@@ -12,6 +12,7 @@ namespace AnguWarriorsBack.Models
     public string Sadrzaj { get; set; }
     public string Tip { get; set; }
     public bool Procitana { get; set; }
+    public string IdPoruke { get; set; }
 
     public PorukaDTO() { }
 

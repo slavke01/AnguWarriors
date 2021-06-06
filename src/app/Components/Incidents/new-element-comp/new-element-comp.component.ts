@@ -93,7 +93,8 @@ export class NewElementCompComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Uspesno dodat element",
         procitana:false,
-        tip:"Success"
+        tip:"Success",
+        idPoruke:""
     }
 
     this.crudService.createMessage(poruka).subscribe();
@@ -104,7 +105,8 @@ export class NewElementCompComponent implements OnInit {
         idKorisnika:username,
         sadrzaj:"Greska pri dodavanju elementa",
         procitana:false,
-        tip:"Error"
+        tip:"Error",
+        idPoruke:""
     }
 
     this.crudService.createMessage(poruka).subscribe();

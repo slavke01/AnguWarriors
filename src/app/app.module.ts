@@ -73,6 +73,10 @@ import {
   FacebookLoginProvider,
 } from 'angularx-social-login';
 import { ToastrModule } from 'ngx-toastr';
+import { TabelaSveNotifikacijeComponent } from './Components/Notifications/tabela-sve-notifikacije/tabela-sve-notifikacije.component';
+import { SuccesTabelaNotificationsComponent } from './Components/Notifications/succes-tabela-notifications/succes-tabela-notifications.component';
+import { ErrorTabelaNotificationsComponent } from './Components/Notifications/error-tabela-notifications/error-tabela-notifications.component';
+import { ReadTabelaNotificationsComponent } from './Components/Notifications/read-tabela-notifications/read-tabela-notifications.component';
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
@@ -125,6 +129,10 @@ export function tokenGetter() {
     IskacuciProzorZaSwitchingPlanComponent,
     IskacuciProzorZaEkipuUPlanuComponent,
     SafetydocdialogComponent,
+    TabelaSveNotifikacijeComponent,
+    SuccesTabelaNotificationsComponent,
+    ErrorTabelaNotificationsComponent,
+    ReadTabelaNotificationsComponent
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [
@@ -239,8 +247,25 @@ export function tokenGetter() {
       },
       {
         path: 'notifications',
-        component: Notifications3CompComponent,
+        component: NotificationsMenuCompComponent,
         canActivate: [AuthGuardService],
+        children:[{
+          path:"",
+          component:TabelaSveNotifikacijeComponent,
+        },{
+
+          path:"successNotifications",
+          component:SuccesTabelaNotificationsComponent,
+
+        },{
+          path:"errorNotifications",
+          component:ErrorTabelaNotificationsComponent,
+        },{
+          path:"readNotifications",
+          component:ReadTabelaNotificationsComponent,
+        }
+          
+      ]
       },
       {
         path: 'settings',
@@ -484,6 +509,6 @@ export interface Poruka{
  idKorisnika :string,
  sadrzaj :string,
  tip :string,
- procitana :boolean
-
+ procitana :boolean,
+ idPoruke: string
 }

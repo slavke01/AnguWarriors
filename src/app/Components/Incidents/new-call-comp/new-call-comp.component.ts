@@ -91,7 +91,8 @@ export class NewCallCompComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Uspesno dodat poziv",
           procitana:false,
-          tip:"Success"
+          tip:"Success",
+          idPoruke:""
       }
 
       this.crs.createMessage(poruka).subscribe();
@@ -102,7 +103,8 @@ export class NewCallCompComponent implements OnInit {
           idKorisnika:username,
           sadrzaj:"Greska pri dodavanju poziva",
           procitana:false,
-          tip:"Error"
+          tip:"Error",
+          idPoruke:""
       }
 
       this.crs.createMessage(poruka).subscribe();
