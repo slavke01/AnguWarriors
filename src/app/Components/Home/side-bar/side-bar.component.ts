@@ -22,6 +22,7 @@ export class SideBarComponent implements OnInit {
    }
 
   show:boolean=false;
+  showsearch:boolean=false;
   ngOnInit(): void {
   }
   logOut() {
@@ -32,5 +33,9 @@ export class SideBarComponent implements OnInit {
 
   this.show=!this.show;
   console.log(this.show)
+ }
+ showSearch(){
+
+  this.showsearch=!this.showsearch;
  }
 }

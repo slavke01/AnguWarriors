@@ -77,6 +77,7 @@ import { TabelaSveNotifikacijeComponent } from './Components/Notifications/tabel
 import { SuccesTabelaNotificationsComponent } from './Components/Notifications/succes-tabela-notifications/succes-tabela-notifications.component';
 import { ErrorTabelaNotificationsComponent } from './Components/Notifications/error-tabela-notifications/error-tabela-notifications.component';
 import { ReadTabelaNotificationsComponent } from './Components/Notifications/read-tabela-notifications/read-tabela-notifications.component';
+import { SearchComponent } from './Components/Home/search/search.component';
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
@@ -133,6 +134,7 @@ export function tokenGetter() {
     SuccesTabelaNotificationsComponent,
     ErrorTabelaNotificationsComponent,
     ReadTabelaNotificationsComponent,
+    SearchComponent,
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [
@@ -339,6 +341,10 @@ export function tokenGetter() {
       {
         path: 'newCrew',
         component: NewCrewComponentComponent,
+      },
+      {
+        path: 'testing',
+        component: SearchComponent,
       },
       {
         path: 'newreq',

@@ -144,7 +144,7 @@ export class CRUDService {
     );
   }
 
-
+ 
   createResolution(res: Resolution) {
     const body = JSON.stringify(res);
     console.log(res);
@@ -157,6 +157,12 @@ export class CRUDService {
   getCrews() {
     return this.http.get<any>(
       this.baseURL + 'api/crud/getCrews',
+      this.httpOptions
+    );
+  }
+  getSearch(id:string) {
+    return this.http.get<any>(
+      this.baseURL + 'api/crud/search/'+id,
       this.httpOptions
     );
   }

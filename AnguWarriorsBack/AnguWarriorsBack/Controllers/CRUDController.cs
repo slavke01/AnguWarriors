@@ -1287,6 +1287,50 @@ namespace AnguWarriorsBack.Controllers
 
     #endregion
 
+    [HttpGet("/api/crud/search/{id}")]
+    public async Task<IActionResult> Search([FromRoute] string id) {
+
+
+      Incident i = await this._context.Incidents.FindAsync(id);
+      List<string> retval = new List<string>();
+      retval.Add(id);
+      if (i != null) {
+        retval.Add("Incident");
+        return Ok(retval);
+      }
+
+      NalogRada nr = await this._context.Nalozi.FindAsync(id);
+      if (nr != null)
+      {
+        retval.Add("Work Request");
+        return Ok(retval);
+      }
+      PlanRada pr = await this._context.Planovi.FindAsync(id);
+      if (pr != null)
+      {
+        retval.Add("Switching Plan");
+        return Ok(retval);
+      }
+
+      SafetyDoc sd = await this._context.SafetyDocuments.FindAsync(id);
+      if (sd != null)
+      {
+        retval.Add("Safety Document");
+        return Ok(retval);
+      }
+
+
+      Element e = await this._context.Elements.FindAsync(id);
+      if (e != null)
+      {
+        retval.Add("Device");
+        return Ok(retval);
+      }
+
+      return BadRequest();
+    }
+
+
     [HttpGet("/api/crud/getAllByUsername")]
     [Authorize]
     public async Task<IActionResult> GetAllByUsername()

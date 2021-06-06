@@ -1,0 +1,28 @@
+<div style="margin-left: 30px;">
+<div>
+  <mat-form-field>
+    <mat-label style="color: black">Enter ID:</mat-label>
+    <input style="color: black" matInput [(ngModel)]="searchid" />
+  </mat-form-field>
+
+  <button
+    (click)="search(searchid)"
+    style="left: 270px;top: 10px; position: absolute;"
+    class="btn btn-dark"
+  >
+    Done
+  </button>
+</div>
+
+<div>
+  <mat-form-field>
+    <mat-label style="color: black">Id:</mat-label>
+    <input style="color: black" matInput disabled value="{{response[0]}}" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label style="color: black">Type:</mat-label>
+    <input style="color: black" matInput disabled value="{{response[1]}}" />
+  </mat-form-field>
+</div>
+</div>

@@ -100,3 +100,11 @@ border-style: outset;
     height: 400px;
 
 }
+.search{
+    position: absolute;
+    left: 64px;
+    background: gainsboro;
+    border: 4px lightgray;
+    border-style: outset;
+
+}

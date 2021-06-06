@@ -2,7 +2,7 @@
   <ul>
     <li>
       <div class="akoBasMora">
-        <a routerLink="/register">
+        <a (click)="showSearch()">
             <img
             class="slicica-sidebar"
             src="assets/1200px-Magnifying_glass_icon.svg.png"
@@ -95,5 +95,11 @@
     <div class="info" *ngIf="show">
       <app-user-info></app-user-info>
     </div>
+
+</div >
+
+
+<div class="search" *ngIf="showsearch">
+<app-search></app-search>
 
 </div>
