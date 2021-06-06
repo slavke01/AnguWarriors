@@ -9,6 +9,7 @@ import {
   NalogRada,
   PlanRada,
   Poruka,
+  Resolution,
   SafetyDoc,
 } from '../app.module';
 import { Observable } from 'rxjs';
@@ -138,6 +139,17 @@ export class CRUDService {
     const body = JSON.stringify(crew);
     return this.http.post<any>(
       this.baseURL + 'api/crud/createCrew',
+      body,
+      this.httpOptions
+    );
+  }
+
+
+  createResolution(res: Resolution) {
+    const body = JSON.stringify(res);
+    console.log(res);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createResolution',
       body,
       this.httpOptions
     );

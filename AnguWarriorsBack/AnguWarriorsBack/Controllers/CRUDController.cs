@@ -1272,6 +1272,20 @@ namespace AnguWarriorsBack.Controllers
 
     #endregion
 
+    #region Resolution
+    [HttpPost("/api/crud/createResolution")]
+    public async Task<IActionResult> CreateResolution([FromBody] Resolution res) {
+
+      if (res==null) {
+        return BadRequest();
+      }
+      res.IdRes = Guid.NewGuid().ToString();
+      this._context.Resolutions.Add(res);
+      await this._context.SaveChangesAsync();
+      return Ok();
+    }
+
+    #endregion
 
     [HttpGet("/api/crud/getAllByUsername")]
     [Authorize]

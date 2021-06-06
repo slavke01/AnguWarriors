@@ -132,7 +132,7 @@ export function tokenGetter() {
     TabelaSveNotifikacijeComponent,
     SuccesTabelaNotificationsComponent,
     ErrorTabelaNotificationsComponent,
-    ReadTabelaNotificationsComponent
+    ReadTabelaNotificationsComponent,
   ],
   entryComponents: [NewCallDialogTableComponent],
   exports: [
@@ -249,23 +249,24 @@ export function tokenGetter() {
         path: 'notifications',
         component: NotificationsMenuCompComponent,
         canActivate: [AuthGuardService],
-        children:[{
-          path:"",
-          component:TabelaSveNotifikacijeComponent,
-        },{
-
-          path:"successNotifications",
-          component:SuccesTabelaNotificationsComponent,
-
-        },{
-          path:"errorNotifications",
-          component:ErrorTabelaNotificationsComponent,
-        },{
-          path:"readNotifications",
-          component:ReadTabelaNotificationsComponent,
-        }
-          
-      ]
+        children: [
+          {
+            path: '',
+            component: TabelaSveNotifikacijeComponent,
+          },
+          {
+            path: 'successNotifications',
+            component: SuccesTabelaNotificationsComponent,
+          },
+          {
+            path: 'errorNotifications',
+            component: ErrorTabelaNotificationsComponent,
+          },
+          {
+            path: 'readNotifications',
+            component: ReadTabelaNotificationsComponent,
+          },
+        ],
       },
       {
         path: 'settings',
@@ -505,10 +506,18 @@ export interface SafetyDoc {
   planRadaId: string;
 }
 
-export interface Poruka{
- idKorisnika :string,
- sadrzaj :string,
- tip :string,
- procitana :boolean,
- idPoruke: string
+export interface Poruka {
+  idKorisnika: string;
+  sadrzaj: string;
+  tip: string;
+  procitana: boolean;
+  idPoruke: string;
+}
+
+export interface Resolution {
+  idRes: string;
+  cause: string;
+  subCause: string;
+  construction: string;
+  material: string;
 }

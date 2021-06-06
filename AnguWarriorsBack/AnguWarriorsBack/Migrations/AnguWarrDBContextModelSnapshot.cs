@@ -297,6 +297,28 @@ namespace AnguWarriorsBack.Migrations
                     b.ToTable("Pozivi");
                 });
 
+            modelBuilder.Entity("AnguWarriorsBack.Models.Resolution", b =>
+                {
+                    b.Property<string>("IdRes")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Cause")
+                        .IsRequired();
+
+                    b.Property<string>("Construction")
+                        .IsRequired();
+
+                    b.Property<string>("Material")
+                        .IsRequired();
+
+                    b.Property<string>("SubCause")
+                        .IsRequired();
+
+                    b.HasKey("IdRes");
+
+                    b.ToTable("Resolutions");
+                });
+
             modelBuilder.Entity("AnguWarriorsBack.Models.SafetyDoc", b =>
                 {
                     b.Property<string>("Id")

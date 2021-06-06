@@ -18,7 +18,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private toastr: ToastrService,
-    private jwtHelper:JwtHelperService
+    private jwtHelper: JwtHelperService
   ) {}
 
   ngOnInit(): void {}
@@ -171,7 +171,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
       hitno: this.emergency,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
-      idIncidenta:this.idInc,
+      idIncidenta: this.idInc,
     };
 
     console.log(JSON.stringify(nalog));
@@ -179,34 +179,32 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     var x = this.jwtHelper.decodeToken(token);
     var username =
       x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-    this.CrudService.createNalog(nalog).subscribe((response) => {
-      this.toastr.success("Uspesno dodat nalog","Success");
-      var poruka:Poruka={
-        idKorisnika:username,
-        sadrzaj:"Uspesno dodat nalog",
-        procitana:false,
-        tip:"Success",
-        idPoruke:""
-    }
+    this.CrudService.createNalog(nalog).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno dodat nalog', 'Success');
+        var poruka: Poruka = {
+          idKorisnika: username,
+          sadrzaj: 'Uspesno dodat nalog',
+          procitana: false,
+          tip: 'Success',
+          idPoruke: '',
+        };
 
-    this.CrudService.createMessage(poruka).subscribe();
-      
-    },
-    (err) => {
-      this.toastr.error("Greska pri dodavanju","Eror");
-      var poruka:Poruka={
-        idKorisnika:username,
-        sadrzaj:"Greska pri dodavanju",
-        procitana:false,
-        tip:"Error",
-        idPoruke:""
-    }
+        this.CrudService.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri dodavanju', 'Eror');
+        var poruka: Poruka = {
+          idKorisnika: username,
+          sadrzaj: 'Greska pri dodavanju',
+          procitana: false,
+          tip: 'Error',
+          idPoruke: '',
+        };
 
-    this.CrudService.createMessage(poruka).subscribe();
-    });
-
-
-
+        this.CrudService.createMessage(poruka).subscribe();
+      }
+    );
 
     setTimeout(() => {
       this.router.navigate(['requests']);
@@ -239,7 +237,7 @@ export class BasicInformationWorkRequestComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-      this.idInc = result["result"];
+      this.idInc = result['result'];
       console.log(this.idInc);
     });
   }

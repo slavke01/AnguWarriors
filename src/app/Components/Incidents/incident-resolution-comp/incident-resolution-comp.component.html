@@ -75,7 +75,7 @@
           <th>
             <select
               class="form-control"
-              (change)="onChangeConstruction($event.target.value)"
+              (change)="onChangeMaterial($event.target.value)"
             >
               <option [selected]="type" *ngFor="let opcija of materijal">
                 {{ opcija }}
@@ -89,4 +89,8 @@
 
     </tr>
   </table>
+  <div>
+    <button (click)="submit()" style="margin-left: 300px;" class="btn btn-dark">Done</button>
+  
+  </div>
 </div>

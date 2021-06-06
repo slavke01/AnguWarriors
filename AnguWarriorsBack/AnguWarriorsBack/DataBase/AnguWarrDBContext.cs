@@ -28,5 +28,6 @@ namespace AnguWarriorsBack.DataBase
     public DbSet<Ekipa> Ekipe { get; set; }
     public DbSet<Poziv> Pozivi { get; set; }
     public DbSet<Poruka> Poruke { get; set; }
+    public DbSet<Resolution> Resolutions { get; set; }
     }
 }
