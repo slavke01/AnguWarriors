@@ -5,6 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { EkipaDTO } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 
@@ -25,15 +26,10 @@ export class NewCrewComponentComponent implements OnInit {
 
   all: string[] = [];
 
-  constructor(private crs:CRUDService) {
-    this.crs.getFreeCrewMembers().subscribe((data:string[])=>{
-        this.all=data;
-
-
+  constructor(private crs: CRUDService, private toastr: ToastrService) {
+    this.crs.getFreeCrewMembers().subscribe((data: string[]) => {
+      this.all = data;
     });
-
-
-
   }
 
   ngOnInit(): void {}
@@ -77,15 +73,20 @@ export class NewCrewComponentComponent implements OnInit {
     this.KlikDozvola();
   }
   metodaAjmo() {
-   
-    var ekipa:EkipaDTO={
-        idEkipe:this.idCrew,
-        nazivEkipe:this.crewName,
-        usersId:this.added
-    }
+    var ekipa: EkipaDTO = {
+      idEkipe: this.idCrew,
+      nazivEkipe: this.crewName,
+      usersId: this.added,
+    };
     console.log(JSON.stringify(ekipa));
-      this.crs.createCrew(ekipa).subscribe();
-
+    this.crs.createCrew(ekipa).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno dodat ekipa', 'Success');
+      },
+      (err) => {
+        this.toastr.error('Greska pri dodavanju ekipe', 'Eror');
+      }
+    );
   }
   KlikDozvola() {
     if (this.idCrew != '' && this.crewName != '') {

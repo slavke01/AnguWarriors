@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { PlanRada } from 'src/app/app.module';
+import { ToastrService } from 'ngx-toastr';
+import { PlanRada, Poruka } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 
 @Component({
   selector: 'app-update-plan-rada',
   templateUrl: './update-plan-rada.component.html',
-  styleUrls: ['./update-plan-rada.component.css']
+  styleUrls: ['./update-plan-rada.component.css'],
 })
 export class UpdatePlanRadaComponent implements OnInit {
   StartTimeCon = new FormControl('', [Validators.required]);
@@ -21,7 +22,7 @@ export class UpdatePlanRadaComponent implements OnInit {
   NotesCon = new FormControl('', [Validators.required]);
   UlicaCon = new FormControl('', [Validators.required]);
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
-  tipoviRada = ['PREKIDAC', 'OSIGURAC','TRANSFORMATOR','DISKONEKTOR'];
+  tipoviRada = ['PREKIDAC', 'OSIGURAC', 'TRANSFORMATOR', 'DISKONEKTOR'];
   type = null;
   typeWork = null;
   startTime = null;
@@ -33,55 +34,54 @@ export class UpdatePlanRadaComponent implements OnInit {
   notes = '';
   ulica = '';
   idplana = '';
-  workReuestid='';
-  crId='';
-  dozvola:boolean=false;
-  poruke:string[]=[]
-  model:PlanRada={
-    idPlana:'',
-    documentType:'',
-    status:'',
-    pocetakRada:new Date(),
-    krajRada:new Date(),
-    svrha:'',
-    beleske:'',
-    detalji:'',
-    ulica:'',
-    kompanija:'',
-    telefonskiBroj:'',
-    createdBy:'',
-    workRequestId:'',
-    crewId:''
-
-  }
-  constructor(private router:Router,private crudService:CRUDService,private jwtHelper:JwtHelperService) { 
+  workReuestid = '';
+  crId = '';
+  dozvola: boolean = false;
+  poruke: string[] = [];
+  model: PlanRada = {
+    idPlana: '',
+    documentType: '',
+    status: '',
+    pocetakRada: new Date(),
+    krajRada: new Date(),
+    svrha: '',
+    beleske: '',
+    detalji: '',
+    ulica: '',
+    kompanija: '',
+    telefonskiBroj: '',
+    createdBy: '',
+    workRequestId: '',
+    crewId: '',
+  };
+  constructor(
+    private router: Router,
+    private crudService: CRUDService,
+    private jwtHelper: JwtHelperService,
+    private toastr: ToastrService
+  ) {
     let id = this.router.getCurrentNavigation().extras.state.example;
-    this.crudService.getPlan(id).subscribe((data:PlanRada)=>{
-        this.model=data;
-        this.idplana=data.idPlana;
-        this.type=data.documentType;
-        this.startTime=data.pocetakRada;
-        this.endTime=data.krajRada;
-        this.purpose=data.svrha;
-        this.notes=data.beleske;
-        this.company=data.kompanija;
-        this.phoneNo=data.telefonskiBroj;
-        this.details=data.detalji;
-        this.ulica=data.ulica;
-        this.workReuestid=data.workRequestId;
-        this.crId=data.crewId;
-
-
+    this.crudService.getPlan(id).subscribe((data: PlanRada) => {
+      this.model = data;
+      this.idplana = data.idPlana;
+      this.type = data.documentType;
+      this.startTime = data.pocetakRada;
+      this.endTime = data.krajRada;
+      this.purpose = data.svrha;
+      this.notes = data.beleske;
+      this.company = data.kompanija;
+      this.phoneNo = data.telefonskiBroj;
+      this.details = data.detalji;
+      this.ulica = data.ulica;
+      this.workReuestid = data.workRequestId;
+      this.crId = data.crewId;
     });
-      this.crudService.getPlanChanges(id).subscribe((data:string[])=>{
-
-this.poruke=data;
-
-      });
+    this.crudService.getPlanChanges(id).subscribe((data: string[]) => {
+      this.poruke = data;
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
       return 'You must Chose a starting date';
@@ -174,12 +174,13 @@ this.poruke=data;
     this.notes = param;
     this.KlikDozvola();
   }
-  submit(){
-    const token = localStorage.getItem("jwt");
-    var x =this.jwtHelper.decodeToken(token);
-    var username = x["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+  submit() {
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     var plan: PlanRada = {
-      idPlana:this.idplana,
+      idPlana: this.idplana,
       documentType: this.type,
       status: 'Draft',
       pocetakRada: this.startTime,
@@ -188,28 +189,53 @@ this.poruke=data;
       beleske: this.notes,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
-      detalji:this.details,
-      ulica:this.ulica,
-      createdBy:username,
-      workRequestId:this.workReuestid,
-      crewId:this.crId
+      detalji: this.details,
+      ulica: this.ulica,
+      createdBy: username,
+      workRequestId: this.workReuestid,
+      crewId: this.crId,
     };
-    this.crudService.updatePlan(plan).subscribe();
+    this.crudService.updatePlan(plan).subscribe((response) => {
+      this.toastr.success('Uspesno izmjenjen plan', 'Success');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Uspesno izmjenjen plan",
+        procitana:false,
+        tip:"Success"
+    }
+
+    this.crudService.createMessage(poruka).subscribe();
+    },
+    (err) => {
+      this.toastr.error('Greska pri izmjenjen plana', 'Error');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Greska pri izmjenjen plana",
+        procitana:false,
+        tip:"Error"
+    }
+
+    this.crudService.createMessage(poruka).subscribe();
+    });
     setTimeout(() => {
       this.router.navigate(['switching']);
     }, 300);
-   
   }
-  KlikDozvola(){
-
-    if(this.idplana!='' && this.startTime!=null && this.endTime!=null && this.purpose!='' &&this.notes!='' && this.company!=''
-       && this.phoneNo!='' && this.details!='' && this.ulica!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
+  KlikDozvola() {
+    if (
+      this.idplana != '' &&
+      this.startTime != null &&
+      this.endTime != null &&
+      this.purpose != '' &&
+      this.notes != '' &&
+      this.company != '' &&
+      this.phoneNo != '' &&
+      this.details != '' &&
+      this.ulica != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
     }
   }
 }

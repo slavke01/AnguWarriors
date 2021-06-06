@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 import { CRUDService } from 'src/app/Services/crud.service';
-import { Elementi } from '../../../app.module';
+import { Elementi, Poruka } from '../../../app.module';
 @Component({
   selector: 'app-new-element-comp',
   templateUrl: './new-element-comp.component.html',
@@ -24,9 +26,14 @@ export class NewElementCompComponent implements OnInit {
   Lon: string = '';
   Lat: string = '';
   type: string = this.niz[0];
-  dozvola:boolean=false;
+  dozvola: boolean = false;
 
-  constructor(private crudService:CRUDService,private router:Router) {}
+  constructor(
+    private crudService: CRUDService,
+    private router: Router,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -67,23 +74,45 @@ export class NewElementCompComponent implements OnInit {
     return '';
   }
 
-
-    dodajElement(){
-      var element:Elementi={
-        id:this.id,
-        naziv:this.name,
-        elementType:this.type,
-        adress:this.adress,
-        longitude:this.Lon,
-        latitude:this.Lat
+  dodajElement() {
+    var element: Elementi = {
+      id: this.id,
+      naziv: this.name,
+      elementType: this.type,
+      adress: this.adress,
+      longitude: this.Lon,
+      latitude: this.Lat,
+    };
+    const token = localStorage.getItem('jwt');
+      var x = this.jwtHelper.decodeToken(token);
+      var username =
+        x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.crudService.createElement(element).subscribe((response) => {
+      this.toastr.success('Uspesno dodat element', 'Success');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Uspesno dodat element",
+        procitana:false,
+        tip:"Success"
     }
-      console.log(element);
-      this.crudService.createElement(element).subscribe();
-      setTimeout(() => {
-        this.router.navigate(['new/devices']);
-      }, 300);
 
+    this.crudService.createMessage(poruka).subscribe();
+    },
+    (err) => {
+      this.toastr.error('Greska pri dodavanju elementa', 'Eror');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Greska pri dodavanju elementa",
+        procitana:false,
+        tip:"Error"
     }
+
+    this.crudService.createMessage(poruka).subscribe();
+    });
+    setTimeout(() => {
+      this.router.navigate(['new/devices']);
+    }, 300);
+  }
   onChangeId(param: string) {
     this.id = param;
     this.KlikDozvola();
@@ -113,15 +142,18 @@ export class NewElementCompComponent implements OnInit {
     this.KlikDozvola();
   }
 
-  KlikDozvola(){
-
-    if(this.id!='' && this.type!='' && this.name!='' && this.adress!='' &&this.Lon!='' && this.Lat!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
+  KlikDozvola() {
+    if (
+      this.id != '' &&
+      this.type != '' &&
+      this.name != '' &&
+      this.adress != '' &&
+      this.Lon != '' &&
+      this.Lat != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
     }
   }
 }

@@ -72,7 +72,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
-
+import { ToastrModule } from 'ngx-toastr';
 export function tokenGetter() {
   return localStorage.getItem('jwt');
 }
@@ -340,6 +340,7 @@ export function tokenGetter() {
       },
     ]),
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -358,7 +359,9 @@ export function tokenGetter() {
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('944781843826-dbk4i39vbchmp42k1mf380kol5i525tj.apps.googleusercontent.com'),
+            provider: new GoogleLoginProvider(
+              '944781843826-dbk4i39vbchmp42k1mf380kol5i525tj.apps.googleusercontent.com'
+            ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
@@ -475,4 +478,12 @@ export interface SafetyDoc {
   createdBy: string;
   safetyType: string;
   planRadaId: string;
+}
+
+export interface Poruka{
+ idKorisnika :string,
+ sadrzaj :string,
+ tip :string,
+ procitana :boolean
+
 }

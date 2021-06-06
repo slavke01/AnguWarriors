@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { equals } from 'ol/extent';
 import { AngularMaterialModule } from '../../../angular-material/angular-material.module';
 import { User } from '../../../app.module';
@@ -134,7 +135,8 @@ export class RegCompComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthentificationService
+    private authService: AuthentificationService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -155,6 +157,7 @@ export class RegCompComponent implements OnInit {
     console.log(user);
 
     this.authService.registerUser(user).subscribe();
+    this.toastr.success("Uspesno registrovan","Gib 51 Saro <3");
     this.router.navigate(['/']);
   }
 

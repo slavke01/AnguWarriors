@@ -10,8 +10,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CRUDService } from 'src/app/Services/crud.service';
 import { AuthentificationService } from 'src/app/Services/authentification.service';
-import { Call, User } from 'src/app/app.module';
+import { Call, Poruka, User } from 'src/app/app.module';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Component({
   selector: 'app-new-call-comp',
   templateUrl: './new-call-comp.component.html',
@@ -23,7 +25,10 @@ export class NewCallCompComponent implements OnInit {
     public dialog: MatDialog,
     private auth: AuthentificationService,
     private crs:CRUDService,
-    private router:Router
+    private router:Router,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
+
   ) {}
   reason = '';
   comment = '';
@@ -76,8 +81,32 @@ export class NewCallCompComponent implements OnInit {
       kvar:this.hazard,
       usernameKor:this.username
       }
+      const token = localStorage.getItem('jwt');
+      var x = this.jwtHelper.decodeToken(token);
+      var username =
+        x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+      this.crs.createCall(c).subscribe((response) => {
+        this.toastr.success('Uspesno dodat poziv', 'Success');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Uspesno dodat poziv",
+          procitana:false,
+          tip:"Success"
+      }
 
-      this.crs.createCall(c).subscribe();
+      this.crs.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri dodavanju poziva', 'Eror');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Greska pri dodavanju poziva",
+          procitana:false,
+          tip:"Error"
+      }
+
+      this.crs.createMessage(poruka).subscribe();
+      });
       setTimeout(() => {
         this.router.navigate(['new/calls']);
       }, 300);

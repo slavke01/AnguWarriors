@@ -699,7 +699,7 @@ namespace AnguWarriorsBack.Controllers
       plan.Svrha = plandto.Svrha;
       plan.TelefonskiBroj = plandto.TelefonskiBroj;
       plan.Ulica = plandto.Ulica;
-      
+
 
       this._context.PlanRadaChanges.Add(new PlanRadaChanges(plan.IdPlana, "Dodato :" + DateTime.Now.ToString()));
       this._context.Planovi.Add(plan);
@@ -1087,8 +1087,32 @@ namespace AnguWarriorsBack.Controllers
 
     #endregion
 
+    #region Notifications
+
+    [HttpPost("/api/crud/createMessage")]
+    [Authorize]
+    public async Task<IActionResult> CreateMessage([FromBody] PorukaDTO pdto) {
+
+      if (pdto == null) {
+        return BadRequest();
+      }
+      Poruka p = new Poruka();
+      p.IdPoruke = Guid.NewGuid().ToString();
+      p.IdKorisnika = pdto.IdKorisnika;
+      p.Procitana = pdto.Procitana;
+      p.Tip = pdto.Tip;
+      p.Sadrzaj = pdto.Sadrzaj;
 
 
+      this._context.Poruke.Add(p);
+      await this._context.SaveChangesAsync();
+
+      return Ok();
+    }
+
+
+
+    #endregion
 
     [HttpGet("/api/crud/getAllByUsername")]
     [Authorize]

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NalogRada } from '../../../app.module';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
+import { NalogRada, Poruka } from '../../../app.module';
 import { CRUDService } from '../../../Services/crud.service';
 import { WorkReqDialogComponent } from '../work-req-dialog/work-req-dialog.component';
 @Component({
@@ -14,7 +16,9 @@ export class BasicInformationWorkRequestComponent implements OnInit {
   constructor(
     private CrudService: CRUDService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
   ) {}
 
   ngOnInit(): void {}
@@ -171,8 +175,37 @@ export class BasicInformationWorkRequestComponent implements OnInit {
     };
 
     console.log(JSON.stringify(nalog));
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.CrudService.createNalog(nalog).subscribe((response) => {
+      this.toastr.success("Uspesno dodat nalog","Success");
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Uspesno dodat nalog",
+        procitana:false,
+        tip:"Success"
+    }
 
-    this.CrudService.createNalog(nalog).subscribe();
+    this.CrudService.createMessage(poruka).subscribe();
+      
+    },
+    (err) => {
+      this.toastr.error("Greska pri dodavanju","Eror");
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Greska pri dodavanju",
+        procitana:false,
+        tip:"Error"
+    }
+
+    this.CrudService.createMessage(poruka).subscribe();
+    });
+
+
+
+
     setTimeout(() => {
       this.router.navigate(['requests']);
     }, 300);

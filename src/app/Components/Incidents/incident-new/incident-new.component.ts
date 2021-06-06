@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 //import { stat } from 'node:fs';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Incident } from '../../../app.module';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
+import { Incident, Poruka } from '../../../app.module';
 import { CRUDService } from '../../../Services/crud.service';
 @Component({
   selector: 'app-incident-new',
@@ -29,12 +31,12 @@ export class IncidentNewComponent implements OnInit {
   status = null;
   eta = null;
   ata = null;
-  affectedCustomers:number = null;
+  affectedCustomers: number = null;
   etr = null;
-  calls:number = null;
-  voltage:number = null;
+  calls: number = null;
+  voltage: number = null;
   scheduledTime = null;
-  dozvola:boolean=false;
+  dozvola: boolean = false;
 
   getErrorMessageIncID() {
     if (this.IncIDCon.hasError('required')) {
@@ -122,12 +124,9 @@ export class IncidentNewComponent implements OnInit {
     this.KlikDozvola();
   }
 
- 
-
   onChangeEta(param: Date) {
     this.eta = param;
     this.KlikDozvola();
-
   }
 
   onChangeAta(param: Date) {
@@ -139,7 +138,6 @@ export class IncidentNewComponent implements OnInit {
     this.affectedCustomers = param;
     this.KlikDozvola();
   }
-
 
   onChangeEtr(param: Date) {
     this.etr = param;
@@ -160,7 +158,12 @@ export class IncidentNewComponent implements OnInit {
     this.scheduledTime = param;
     this.KlikDozvola();
   }
-  constructor(  private router: Router,private crudService:CRUDService) {}
+  constructor(
+    private router: Router,
+    private crudService: CRUDService,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
+  ) {}
 
   ngOnInit(): void {}
   gotovoFja() {
@@ -179,23 +182,52 @@ export class IncidentNewComponent implements OnInit {
       voltage: this.voltage,
     };
     console.log(JSON.stringify(incident));
-    this.crudService.createIncident(incident).subscribe();
-    
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.crudService.createIncident(incident).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno dodat incident', 'Success');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Uspesno dodat incident",
+          procitana:false,
+          tip:"Success"
+      }
+
+      this.crudService.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri dodavanju incidenta', 'Eror');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Greska pri dodavanju incidenta",
+          procitana:false,
+          tip:"Error"
+      }
+
+      this.crudService.createMessage(poruka).subscribe();
+      }
+    );
   }
 
-
-KlikDozvola(){
-
-  if(this.incId!=null && this.type!=null && this.status!=null && this.eta!=null &&this.ata!=null && this.etr!=null && this.scheduledTime!=null
-    && this.affectedCustomers!=null && this.calls!=null && this.voltage!=null )
-  {
-    this.dozvola=true;
+  KlikDozvola() {
+    if (
+      this.incId != null &&
+      this.type != null &&
+      this.status != null &&
+      this.eta != null &&
+      this.ata != null &&
+      this.etr != null &&
+      this.scheduledTime != null &&
+      this.affectedCustomers != null &&
+      this.calls != null &&
+      this.voltage != null
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
+    }
   }
-  else
-  {
-    this.dozvola=false;
-  }
-}
-
-  
 }

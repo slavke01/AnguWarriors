@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { SafetyDoc } from 'src/app/app.module';
+import { ToastrService } from 'ngx-toastr';
+import { Poruka, SafetyDoc } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 
 @Component({
@@ -37,14 +38,15 @@ export class UpdateSafetydocComponent implements OnInit {
     telefonskiBroj: '',
     createdBy: '',
     safetyType: '',
-    planRadaId:''
+    planRadaId: '',
   };
-  planrada:string='';
+  planrada: string = '';
   dozvola: boolean = false;
   constructor(
     private crs: CRUDService,
     private jwtHelper: JwtHelperService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     let id = this.router.getCurrentNavigation().extras.state.example;
     this.crs.getSafetyDoc(id).subscribe((data: SafetyDoc) => {
@@ -54,7 +56,7 @@ export class UpdateSafetydocComponent implements OnInit {
       this.sdDetalji = data.detalji;
       this.sdBeleska = data.beleske;
       this.sdTelefonskiBroj = data.telefonskiBroj;
-      this.planrada=data.planRadaId;
+      this.planrada = data.planRadaId;
       this.type = data.safetyType;
     });
     this.crs.getSafetyChanges(id).subscribe((data: string[]) => {
@@ -126,12 +128,32 @@ export class UpdateSafetydocComponent implements OnInit {
       telefonskiBroj: this.sdTelefonskiBroj,
       createdBy: username,
       safetyType: this.type,
-      planRadaId:this.planrada,
+      planRadaId: this.planrada,
     };
-
-    console.log(JSON.stringify(saf));
-
-    this.crs.updateSafetyDoc(saf).subscribe();
+    this.crs.updateSafetyDoc(saf).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno izmjenjen sigurnosni dokument', 'Success');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Uspesno izmjenjen sigurnosni dokument",
+          procitana:false,
+          tip:"Success"
+      }
+  
+      this.crs.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri izmjeni sigurnosnog dokument', 'Eror');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Greska pri izmeni sigurnosnog dokument",
+          procitana:false,
+          tip:"Error"
+      }
+  
+      this.crs.createMessage(poruka).subscribe();
+      }
+    );
     setTimeout(() => {
       this.router.navigate(['safety']);
     }, 300);

@@ -8,6 +8,7 @@ import {
   Incident,
   NalogRada,
   PlanRada,
+  Poruka,
   SafetyDoc,
 } from '../app.module';
 import { Observable } from 'rxjs';
@@ -259,6 +260,18 @@ export class CRUDService {
     );
   }
 
+  createMessage(poruka:Poruka){
+
+    const body = JSON.stringify(poruka);
+    console.log(body);
+    return this.http.post<any>(
+      this.baseURL + 'api/crud/createMessage',
+      body,
+      this.httpOptions
+    );
+
+
+  }
   deleteSafetyDoc(id: string) {
     return this.http.post<any>(
       this.baseURL + 'api/crud/deleteSafetyDoc/' + id,

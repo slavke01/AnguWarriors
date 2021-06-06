@@ -3,7 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { PlanRada } from 'src/app/app.module';
+import { ToastrService } from 'ngx-toastr';
+import { PlanRada, Poruka } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 import { IskacuciProzorZaEkipuUPlanuComponent } from '../iskacuci-prozor-za-ekipu-uplanu/iskacuci-prozor-za-ekipu-uplanu.component';
 import { IskacuciProzorZaSwitchingPlanComponent } from '../iskacuci-prozor-za-switching-plan/iskacuci-prozor-za-switching-plan.component';
@@ -42,7 +43,9 @@ export class BasicPlanRadaComponent implements OnInit {
     private jwtHelper: JwtHelperService,
     private CrudService: CRUDService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService
+
   ) {}
 
   ngOnInit(): void {}
@@ -161,7 +164,28 @@ export class BasicPlanRadaComponent implements OnInit {
       workRequestId: this.idNalog,
       crewId: this.idEkipe,
     };
-    this.CrudService.createPlan(plan).subscribe();
+    this.CrudService.createPlan(plan).subscribe((response) => {
+      this.toastr.success('Uspesno dodat plan', 'Success');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Uspesno dodat plan",
+        procitana:false,
+        tip:"Success"
+    }
+
+    this.CrudService.createMessage(poruka).subscribe();
+    },
+    (err) => {
+      this.toastr.error('Greska pri dodavanju plana', 'Error');
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Greska pri dodavanju plana",
+        procitana:false,
+        tip:"Error"
+    }
+
+    this.CrudService.createMessage(poruka).subscribe();
+    });
     this.router.navigate(['switching']);
   }
 

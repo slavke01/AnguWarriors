@@ -251,6 +251,27 @@ namespace AnguWarriorsBack.Migrations
                     b.ToTable("PlanRadaChanges");
                 });
 
+            modelBuilder.Entity("AnguWarriorsBack.Models.Poruka", b =>
+                {
+                    b.Property<string>("IdPoruke")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("IdKorisnika")
+                        .IsRequired();
+
+                    b.Property<bool>("Procitana");
+
+                    b.Property<string>("Sadrzaj")
+                        .IsRequired();
+
+                    b.Property<string>("Tip")
+                        .IsRequired();
+
+                    b.HasKey("IdPoruke");
+
+                    b.ToTable("Poruke");
+                });
+
             modelBuilder.Entity("AnguWarriorsBack.Models.Poziv", b =>
                 {
                     b.Property<string>("Id")

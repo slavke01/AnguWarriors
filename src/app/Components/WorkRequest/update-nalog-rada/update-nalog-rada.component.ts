@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NalogRada } from 'src/app/app.module';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
+import { NalogRada, Poruka } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 
 @Component({
   selector: 'app-update-nalog-rada',
   templateUrl: './update-nalog-rada.component.html',
-  styleUrls: ['./update-nalog-rada.component.css']
+  styleUrls: ['./update-nalog-rada.component.css'],
 })
 export class UpdateNalogRadaComponent implements OnInit {
   IdCon = new FormControl('', [Validators.required]);
@@ -27,30 +29,29 @@ export class UpdateNalogRadaComponent implements OnInit {
   emergency: boolean = false;
   company = '';
   phoneNo = '';
-  dateTimeCreated ='';
+  dateTimeCreated = '';
   purpose = '';
   details = '';
   notes = '';
-  id='';
-  idIncidenta='';
+  id = '';
+  idIncidenta = '';
   tipovi = ['PLANIRANI', 'NEPLANIRANI'];
   tipoviWork = ['work1', 'work2', 'work3'];
-  dozvola:boolean=false;
-  poruke:string[]=[]
-  model:NalogRada={
-  id:',',
-  nalogType:'',
-  status:'',
-  pocetakRada:new Date(),
-  krajRada:new Date(),
-  svrha:'',
-  beleske:'',
-  hitno:false,
-  kompanija:'',
-  telefonskiBroj:'',
-  idIncidenta:''
-}
-
+  dozvola: boolean = false;
+  poruke: string[] = [];
+  model: NalogRada = {
+    id: ',',
+    nalogType: '',
+    status: '',
+    pocetakRada: new Date(),
+    krajRada: new Date(),
+    svrha: '',
+    beleske: '',
+    hitno: false,
+    kompanija: '',
+    telefonskiBroj: '',
+    idIncidenta: '',
+  };
 
   getErrorMessageStartTime() {
     if (this.StartTimeCon.hasError('required')) {
@@ -162,34 +163,36 @@ export class UpdateNalogRadaComponent implements OnInit {
     this.notes = param;
     this.KlikDozvola();
   }
-  constructor(private CrudService:CRUDService,private router:Router) {
+  constructor(
+    private CrudService: CRUDService,
+    private router: Router,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
+  ) {
     let id = this.router.getCurrentNavigation().extras.state.example;
-    this.CrudService.getNalog(id).subscribe((data:NalogRada)=>{
-      this.model=data;
-      this.id=data.id;
-      this.type=data.nalogType;
-      this.startTime=data.pocetakRada;
-      this.endTime=data.krajRada;
-      this.purpose=data.svrha;
-      this.notes=data.beleske;
-      this.emergency=data.hitno;
-      this.company=data.kompanija;
-      this.phoneNo=data.telefonskiBroj;
-      this.idIncidenta=data.idIncidenta;
-
+    this.CrudService.getNalog(id).subscribe((data: NalogRada) => {
+      this.model = data;
+      this.id = data.id;
+      this.type = data.nalogType;
+      this.startTime = data.pocetakRada;
+      this.endTime = data.krajRada;
+      this.purpose = data.svrha;
+      this.notes = data.beleske;
+      this.emergency = data.hitno;
+      this.company = data.kompanija;
+      this.phoneNo = data.telefonskiBroj;
+      this.idIncidenta = data.idIncidenta;
     });
 
-
-    this.CrudService.getNalogChanges(id).subscribe((data:string[])=>{
-    this.poruke=data;
+    this.CrudService.getNalogChanges(id).subscribe((data: string[]) => {
+      this.poruke = data;
     });
-   }
-
-  ngOnInit(): void {
   }
+
+  ngOnInit(): void {}
   AjmoNalog() {
     var nalog: NalogRada = {
-      id:this.id,
+      id: this.id,
       nalogType: this.type,
       status: 'Draft',
       pocetakRada: this.startTime,
@@ -199,27 +202,56 @@ export class UpdateNalogRadaComponent implements OnInit {
       hitno: this.emergency,
       kompanija: this.company,
       telefonskiBroj: this.phoneNo,
-      idIncidenta:this.idIncidenta,
+      idIncidenta: this.idIncidenta,
     };
-
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     console.log(JSON.stringify(nalog));
-    this.CrudService.updateNalog(nalog).subscribe();
+    this.CrudService.updateNalog(nalog).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno izmenjen nalog', 'Success');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Uspesno izmenjen nalog",
+          procitana:false,
+          tip:"Success"
+      }
+  
+      this.CrudService.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri izmenivanju naloga', 'Error');
+        var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Greska pri izmenivanju naloga",
+          procitana:false,
+          tip:"Error"
+      }
+  
+      this.CrudService.createMessage(poruka).subscribe();
+      }
+    );
     setTimeout(() => {
       this.router.navigate(['requests']);
     }, 300);
-   
   }
 
-  KlikDozvola(){
-
-    if(this.id!='' && this.startTime!=null && this.endTime!=null &&this.purpose!='' && this.notes!=''
-       && this.emergency!=null && this.company!='' && this.phoneNo!='')
-    {
-      this.dozvola=true;
-    }
-    else
-    {
-      this.dozvola=false;
+  KlikDozvola() {
+    if (
+      this.id != '' &&
+      this.startTime != null &&
+      this.endTime != null &&
+      this.purpose != '' &&
+      this.notes != '' &&
+      this.emergency != null &&
+      this.company != '' &&
+      this.phoneNo != ''
+    ) {
+      this.dozvola = true;
+    } else {
+      this.dozvola = false;
     }
   }
 }

@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 import { SafetyDoc } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 import { SafetydocdialogComponent } from '../safetydocdialog/safetydocdialog.component';
@@ -35,7 +36,9 @@ export class SafetyDocBasicInfoComponent implements OnInit {
     private crs: CRUDService,
     private jwtHelper: JwtHelperService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
   ) {}
 
   ngOnInit(): void {}
@@ -107,7 +110,12 @@ export class SafetyDocBasicInfoComponent implements OnInit {
 
     console.log(JSON.stringify(saf));
 
-    this.crs.createSafetyDocument(saf).subscribe();
+    this.crs.createSafetyDocument(saf).subscribe((response) => {
+      this.toastr.success("Uspesno dodat sigurnosni","Success");
+    },
+    (err) => {
+      this.toastr.error("Greska pri sigurnosni","Eror");
+    });
     setTimeout(() => {
       this.router.navigate(['safety']);
     }, 300);

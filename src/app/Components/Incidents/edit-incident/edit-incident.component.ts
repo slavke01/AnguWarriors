@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Incident } from 'src/app/app.module';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
+import { Incident, Poruka } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
 
 @Component({
@@ -35,7 +37,7 @@ export class EditIncidentComponent implements OnInit {
   voltage: number = null;
   scheduledTime = null;
   dozvola: boolean = false;
-  poruke:string[]=[];
+  poruke: string[] = [];
   model: Incident = {
     id: '',
     prioritet: 0,
@@ -44,11 +46,11 @@ export class EditIncidentComponent implements OnInit {
     status: '',
     eta: new Date(),
     ata: new Date(),
-    etr:new Date(),
-    vrijemeRada:new Date(),
-    affectedPeople:0,
-    pozivi:0,
-    voltage:0
+    etr: new Date(),
+    vrijemeRada: new Date(),
+    affectedPeople: 0,
+    pozivi: 0,
+    voltage: 0,
   };
   getErrorMessageStatus() {
     if (this.StatusCon.hasError('required')) {
@@ -169,30 +171,32 @@ export class EditIncidentComponent implements OnInit {
     this.scheduledTime = param;
     this.KlikDozvola();
   }
-  constructor(private router: Router, private crud: CRUDService) {
+  constructor(
+    private router: Router,
+    private crud: CRUDService,
+    private toastr: ToastrService,
+    private jwtHelper:JwtHelperService
+  ) {
     let id = this.router.getCurrentNavigation().extras.state.example;
     this.crud.getIncident(id).subscribe((data: Incident) => {
-      this.model=data;
+      this.model = data;
 
-      this.incId=data.id;
-      this.type=data.incidentType;
-    
-      this.isChecked=data.confirmed;
-      this.status=data.status;
-      this.eta=data.eta;
-      this.ata=data.ata;
-      this.etr=data.etr
-      this.scheduledTime=data.vrijemeRada;
-      this.affectedCustomers=data.affectedPeople;
-      this.calls=data.pozivi;
-      this.voltage=data.voltage;
+      this.incId = data.id;
+      this.type = data.incidentType;
 
+      this.isChecked = data.confirmed;
+      this.status = data.status;
+      this.eta = data.eta;
+      this.ata = data.ata;
+      this.etr = data.etr;
+      this.scheduledTime = data.vrijemeRada;
+      this.affectedCustomers = data.affectedPeople;
+      this.calls = data.pozivi;
+      this.voltage = data.voltage;
     });
 
-    this.crud.getIncidentChanges(id).subscribe((data:string[])=>{
-
-     this.poruke=data;
-
+    this.crud.getIncidentChanges(id).subscribe((data: string[]) => {
+      this.poruke = data;
     });
   }
 
@@ -212,12 +216,35 @@ export class EditIncidentComponent implements OnInit {
       pozivi: this.calls,
       voltage: this.voltage,
     };
-    console.log(JSON.stringify(incident));
-    this.crud.updateIncident(incident).subscribe();
+    const token = localStorage.getItem('jwt');
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.crud.updateIncident(incident).subscribe((response) => {
+      this.toastr.success("Uspesno izmenjen incident","Success");
+      var poruka:Poruka={
+          idKorisnika:username,
+          sadrzaj:"Uspesno izmenjen incident",
+          procitana:false,
+          tip:"Success"
+      }
+
+      this.crud.createMessage(poruka).subscribe();
+    },
+    (err) => {
+      this.toastr.error("Greska pri izmeni incidenta","Eror");
+      var poruka:Poruka={
+        idKorisnika:username,
+        sadrzaj:"Greska pri izmeni incidenta",
+        procitana:false,
+        tip:"Error"
+    }
+
+    this.crud.createMessage(poruka).subscribe();
+    });
     setTimeout(() => {
       this.router.navigate(['incidents']);
     }, 300);
-    
   }
   KlikDozvola() {
     if (

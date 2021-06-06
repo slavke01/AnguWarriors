@@ -8,6 +8,7 @@ import {
   SocialAuthService,
   SocialUser,
 } from 'angularx-social-login';
+import { ToastrService } from 'ngx-toastr';
 const RSA_PRIVATE_KEY="superSecretKey@345";
 
 @Component({
@@ -25,7 +26,9 @@ export class LoginCompComponent implements OnInit {
   constructor(
     private router: Router,
     private ase: AuthentificationService,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private toastr: ToastrService
+
   ) {}
   socialUser: SocialUser;
   signInWithGoogle(): void {
@@ -68,10 +71,12 @@ export class LoginCompComponent implements OnInit {
         localStorage.setItem('jwt', token);
         this.invalidLogin = false;
         console.log(token);
+        this.toastr.success("Uspesno ulogovan","Success");
         this.router.navigate(['/home']);
       },
       (err) => {
         this.invalidLogin = true;
+        this.toastr.error("Greska pri logovanju","Eror");
       }
     );
   }
