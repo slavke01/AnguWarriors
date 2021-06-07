@@ -378,8 +378,8 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> CreateSafetyDoc([FromBody] SafetyDocDTO sdDTO)
     {
 
-      PlanRada p = await this._context.Planovi.FindAsync(sdDTO.Id);
-      if (p != null) {
+      PlanRada p = await this._context.Planovi.FindAsync(sdDTO.PlanRadaId);
+      if (p == null) {
         return BadRequest();
       }
 
@@ -393,7 +393,7 @@ namespace AnguWarriorsBack.Controllers
       sdPravi.TelefonskiBroj = sdDTO.TelefonskiBroj;
       sdPravi.IdNalogaRada = sdDTO.PlanRadaId;
       sdPravi.Ekipa = p.Ekipa;
-
+      sdPravi.CreatedOn = DateTime.Now;
       this._context.SafetyDocChanges.Add(new SafetyDocChanges(sdPravi.Id, "Dodato :" + DateTime.Now.ToString()));
       this._context.SafetyDocuments.Add(sdPravi);
       await this._context.SaveChangesAsync();

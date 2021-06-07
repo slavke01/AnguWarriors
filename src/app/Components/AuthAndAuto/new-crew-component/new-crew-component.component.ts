@@ -5,6 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EkipaDTO } from 'src/app/app.module';
 import { CRUDService } from 'src/app/Services/crud.service';
@@ -26,7 +27,7 @@ export class NewCrewComponentComponent implements OnInit {
 
   all: string[] = [];
 
-  constructor(private crs: CRUDService, private toastr: ToastrService) {
+  constructor(private crs: CRUDService, private toastr: ToastrService,private router:Router) {
     this.crs.getFreeCrewMembers().subscribe((data: string[]) => {
       this.all = data;
     });
@@ -87,6 +88,10 @@ export class NewCrewComponentComponent implements OnInit {
         this.toastr.error('Greska pri dodavanju ekipe', 'Eror');
       }
     );
+
+    setTimeout(() => {
+      this.router.navigate(['admin/crews']);
+    }, 300);
   }
   KlikDozvola() {
     if (this.idCrew != '' && this.crewName != '') {

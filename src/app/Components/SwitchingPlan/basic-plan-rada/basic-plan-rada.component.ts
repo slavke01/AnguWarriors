@@ -188,7 +188,10 @@ export class BasicPlanRadaComponent implements OnInit {
 
     this.CrudService.createMessage(poruka).subscribe();
     });
-    this.router.navigate(['switching']);
+    setTimeout(() => {
+      this.router.navigate(['switching']);
+    }, 300);
+    
   }
 
   KlikDozvola() {
