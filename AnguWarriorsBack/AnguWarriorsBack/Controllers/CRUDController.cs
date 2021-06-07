@@ -27,6 +27,11 @@ namespace AnguWarriorsBack.Controllers
     [HttpPost("/api/crud/createIncident")]
     public async Task<IActionResult> CreateIncident([FromBody] Incident incident)
     {
+
+      if (incident == null) {
+        return BadRequest();
+
+      }
       this._context.Incidents.Add(incident);
       this._context.IncidentChanges.Add(new IncidentChangesMessage(incident.ID, "Dodato :" + DateTime.Now.ToString()));
 
@@ -41,6 +46,9 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> GetIncidents()
     {
       List<Incident> retVal = this._context.Incidents.ToList();
+      if (retVal == null) {
+        return BadRequest();
+      }
       return Ok(retVal);
     }
 
@@ -371,6 +379,10 @@ namespace AnguWarriorsBack.Controllers
     {
 
       PlanRada p = await this._context.Planovi.FindAsync(sdDTO.Id);
+      if (p != null) {
+        return BadRequest();
+      }
+
       SafetyDoc sdPravi = new SafetyDoc();
       sdPravi.Id = sdDTO.Id;
       sdPravi.Status = sdDTO.Status;
@@ -386,6 +398,7 @@ namespace AnguWarriorsBack.Controllers
       this._context.SafetyDocuments.Add(sdPravi);
       await this._context.SaveChangesAsync();
       return Ok();
+
     }
 
 
@@ -473,6 +486,8 @@ namespace AnguWarriorsBack.Controllers
     [Authorize]
     public async Task<IActionResult> DeleteSafetyDoc([FromRoute] string id)
     {
+
+      
       SafetyDoc retVal = await this._context.SafetyDocuments.FindAsync(id);
       if (retVal != null)
       {
@@ -679,6 +694,11 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> CreatePlan([FromBody] PlanRadaDTO plandto)
     {
 
+
+      if (plandto == null) {
+
+        return BadRequest();
+      }
       PlanRada plan = new PlanRada();
 
       NalogRada nr = await this._context.Nalozi.FindAsync(plandto.workRequestId);
@@ -828,6 +848,10 @@ namespace AnguWarriorsBack.Controllers
     public async Task<IActionResult> GetPlanChanges([FromRoute] string id)
     {
 
+
+      if (id == null) {
+        return BadRequest();
+      }
       List<PlanRadaChanges> temp = this._context.PlanRadaChanges.ToList();
       List<string> retVal = new List<string>();
 
@@ -855,6 +879,10 @@ namespace AnguWarriorsBack.Controllers
     [HttpPost("/api/crud/createPoziv")]
     public async Task<IActionResult> CreatePoziv([FromBody] PozivDTO pozDTO)
     {
+
+      if (pozDTO==null) {
+        return BadRequest();
+      }
 
       Poziv p = new Poziv();
 
@@ -946,7 +974,7 @@ namespace AnguWarriorsBack.Controllers
       foreach (User u in all)
       {
 
-        if (u.UserType == TipKorisnika.RADNIK && u.IdEkipe == null && u.Approved == true)
+        if (u.UserType == TipKorisnika.CLAN && u.IdEkipe == null && u.Approved == true)
         {
           free.Add(u.Username);
 
@@ -1006,7 +1034,7 @@ namespace AnguWarriorsBack.Controllers
       foreach (User u in all)
       {
 
-        if (u.UserType == TipKorisnika.RADNIK)
+        if (u.UserType == TipKorisnika.CLAN)
         {
           if (u.IdEkipe == e.IdEkipe)
           {
@@ -1031,7 +1059,7 @@ namespace AnguWarriorsBack.Controllers
 
       foreach (User u in all)
       {
-        if (u.UserType == TipKorisnika.RADNIK)
+        if (u.UserType == TipKorisnika.CLAN)
         {
           if (u.IdEkipe == id)
           {

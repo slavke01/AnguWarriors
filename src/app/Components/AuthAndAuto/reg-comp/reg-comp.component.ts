@@ -157,7 +157,7 @@ export class RegCompComponent implements OnInit {
     console.log(user);
 
     this.authService.registerUser(user).subscribe();
-    this.toastr.success("Uspesno registrovan","Gib 51 Saro <3");
+    this.toastr.success("Uspesno registrovan","Success");
     this.router.navigate(['/']);
   }
 
