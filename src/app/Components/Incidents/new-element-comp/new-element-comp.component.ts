@@ -32,7 +32,7 @@ export class NewElementCompComponent implements OnInit {
     private crudService: CRUDService,
     private router: Router,
     private toastr: ToastrService,
-    private jwtHelper:JwtHelperService
+    private jwtHelper: JwtHelperService
   ) {}
 
   ngOnInit(): void {}
@@ -84,33 +84,35 @@ export class NewElementCompComponent implements OnInit {
       latitude: this.Lat,
     };
     const token = localStorage.getItem('jwt');
-      var x = this.jwtHelper.decodeToken(token);
-      var username =
-        x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-    this.crudService.createElement(element).subscribe((response) => {
-      this.toastr.success('Uspesno dodat element', 'Success');
-      var poruka:Poruka={
-        idKorisnika:username,
-        sadrzaj:"Uspesno dodat element",
-        procitana:false,
-        tip:"Success",
-        idPoruke:""
-    }
+    var x = this.jwtHelper.decodeToken(token);
+    var username =
+      x['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.crudService.createElement(element).subscribe(
+      (response) => {
+        this.toastr.success('Uspesno dodat element', 'Success');
+        var poruka: Poruka = {
+          idKorisnika: username,
+          sadrzaj: 'Uspesno dodat element',
+          procitana: false,
+          tip: 'Success',
+          idPoruke: '',
+        };
 
-    this.crudService.createMessage(poruka).subscribe();
-    },
-    (err) => {
-      this.toastr.error('Greska pri dodavanju elementa', 'Eror');
-      var poruka:Poruka={
-        idKorisnika:username,
-        sadrzaj:"Greska pri dodavanju elementa",
-        procitana:false,
-        tip:"Error",
-        idPoruke:""
-    }
+        this.crudService.createMessage(poruka).subscribe();
+      },
+      (err) => {
+        this.toastr.error('Greska pri dodavanju elementa', 'Eror');
+        var poruka: Poruka = {
+          idKorisnika: username,
+          sadrzaj: 'Greska pri dodavanju elementa',
+          procitana: false,
+          tip: 'Error',
+          idPoruke: '',
+        };
 
-    this.crudService.createMessage(poruka).subscribe();
-    });
+        this.crudService.createMessage(poruka).subscribe();
+      }
+    );
     setTimeout(() => {
       this.router.navigate(['new/devices']);
     }, 300);
@@ -145,6 +147,10 @@ export class NewElementCompComponent implements OnInit {
   }
 
   KlikDozvola() {
+    var x:Number = parseFloat(this.Lon);
+    var y:Number = parseFloat(this.Lat);
+    console.log(x);
+    console.log(y);
     if (
       this.id != '' &&
       this.type != '' &&
@@ -153,7 +159,17 @@ export class NewElementCompComponent implements OnInit {
       this.Lon != '' &&
       this.Lat != ''
     ) {
-      this.dozvola = true;
+      if (x > 19 && x<20 ) {
+        if(y>45 && y<46){
+          this.dozvola = true;
+
+        }
+       
+    }else{
+      this.dozvola = false;
+
+    }
+      
     } else {
       this.dozvola = false;
     }

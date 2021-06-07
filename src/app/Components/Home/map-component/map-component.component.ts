@@ -18,24 +18,12 @@ import { Elementi } from '../../../app.module';
   styleUrls: ['./map-component.component.css'],
 })
 export class MapComponentComponent implements OnInit {
-  constructor(private cs:CRUDService) {
-
-    
-
-
-  }
+  constructor(private cs: CRUDService) {}
   map;
-  iglice:Elementi[]=[]
-  ficuri:Feature[]=[]
-
+  iglice: Elementi[] = [];
+  ficuri: Feature[] = [];
 
   ngOnInit(): void {
-
-
-    
-    
-  
-
     var fill = new Fill({
       color: 'rgba(224,61,170,0.7)',
     });
@@ -64,52 +52,30 @@ export class MapComponentComponent implements OnInit {
         center: olProj.fromLonLat([19.8335, 45.2671]),
         zoom: 12,
       }),
-      
     });
 
-    
+    this.cs.getElements().subscribe((podatak: Elementi[]) => {
+      this.iglice = this.iglice.concat(podatak);
 
-    this.cs.getElements().subscribe((podatak:Elementi[])=>{this.iglice=this.iglice.concat(podatak);
-       
-      
+      for (var igla of this.iglice) {
+        let x = parseFloat(igla.longitude);
+        let y = parseFloat(igla.latitude);
 
-      for (var igla of this.iglice){
-        
-        
+        let ff = new Feature({
+          geometry: new Point(olProj.fromLonLat([x, y])),
+        });
 
-        let x=parseFloat(igla.longitude);
-        let y=parseFloat(igla.latitude);
-
-      
-        let ff =new Feature({
-          geometry: new Point(olProj.fromLonLat([x,y]))
-        })
-        
         this.ficuri.push(ff);
-
       }
-
-      
-      
 
       var layer = new VectorLayer({
         source: new VectorSource({
-          features:this.ficuri
-          ,
+          features: this.ficuri,
         }),
         style: stil,
       });
-  
-      
 
       this.map.addLayer(layer);
-
-    })
-
-    
-
-    
-
-    
+    });
   }
 }
